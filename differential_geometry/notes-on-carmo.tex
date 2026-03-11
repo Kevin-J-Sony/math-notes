@@ -1,0 +1,2122 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+
+\title{Notes on Differential Geometry by Carmo}
+\author{Kevin Sony}
+\date{Spring 2026}
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\newcommand{\betabar}{\bar{\beta}}
+\newcommand{\kbar}{\bar{k}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\comment}[1]{}
+
+
+\begin{document}
+	
+	\maketitle
+	
+	\section*{Chapter 1}
+	\subsection*{Section 2}
+	
+	\subsubsection*{Definition}
+	A parameterized differentiable curve is a differentiable map $\alpha \colon I \to \R^n$ of an open interval $I \subset \R$ into $R^n$. 
+	
+	\subsubsection*{Exercise 1}
+	Let $\alpha(t)$ be the parameterized curve whose trace is the unit circle $x^2 + y^2 = 1$ such that $\alpha(t)$ runs clockwise and $\alpha(0) = (0, 1)$.
+	
+	The solution is $\alpha(t) = (\sin t, \cos t)$.
+	
+	\subsubsection*{Exercise 2}
+	Let $\alpha(t)$ be a parameterized which does not pass through the origin. If $\alpha(t_0)$ is the point on the trace closest to the origin and $\alpha'(t_0) \neq \mathbf{0}$, show that the position vector $\alpha(t_0)$ is orthogonal to $\alpha'(t_0)$
+	
+	We know that $\alpha(t) = (x(t), y(t))$. We also know that $\alpha(t_0)$ is the closest point to the origin. Expressed, alternatively, if we let $d(t)$ be the distance of $\alpha(t)$ from the origin, $d(t) = \sqrt{(x(t)^2 + y(t)^2)}$, then we know that $d(t) > 0$ for all $t$ and that this function is minimized at $t = t_0$. Taking the derivative gets
+	\begin{gather*}
+		d'(t) = \dfrac{1}{2 \sqrt{ x(t)^2 + y(t)^2 }} \cdot \left( 2x(t)x'(t) + 2y(t)y'(t) \right) = \dfrac{x(t)x'(t) + y(t)y'(t)}{d(t)}
+	\end{gather*}
+	Since this function is minimized at $t = t_0$, $d'(t_0) = 0$ and since $d(t) > 0$, we have
+	\begin{gather*}
+		0 = \dfrac{x(t_0)x'(t_0) + y(t_0)y'(t_0)}{d(t_0)} \\
+		x(t_0)x'(t_0) + y(t_0)y'(t_0) = 0
+	\end{gather*}
+	But this condition is nothing other than the dot product of $\alpha(t_0)$ and $\alpha'(t_0)$, i.e. $\alpha(t_0) \cdot \alpha'(t_0) = 0$. Thus, $\alpha(t_0)$ and $\alpha'(t_0)$ are orthogonal to each other.
+
+	\subsubsection*{Exercise 3}
+	If $\alpha''(t) = \mathbf{0}$ for all $t$, what can be said about $\alpha(t)$?
+	
+	$\alpha''(t)) = \mathbf{0}$ implies $x_i''(t) = 0$ for each coordinate $x_i$, and so $x_i(t) = c_{1i} t + c_{2i}$. Collecting the coordinates and organizing it, we get $\alpha(t) = c_1 t + c_2$. $\alpha$ is a hyperplane.
+	
+	\subsubsection*{Exercise 4}
+	Let $\alpha \colon I \to \R^3$ be a parameterized curve and let $v \in \R^3$ be a fixed vector. Assume that $\alpha'(t)$ is orthogonal to $v$ for all $t \in I$ and that $\alpha(0)$ is also orthogonal to v. Prove that $\alpha(t)$ is orthogonal to v for all $t \in I$.
+	
+	Restating the assumptions, we have $\alpha'(t) \cdot v = 0$ for all $t \in I$ and $\alpha(0) \cdot v = 0$. With this in mind, let $f(t) = \alpha(t) \cdot v$. Differentiating this function gets
+	\begin{gather*}
+		f'(t) = \alpha'(t) \cdot v + \alpha(t) \cdot \dfrac{dv}{dt} = \alpha(t) \cdot \dfrac{dv}{dt}
+	\end{gather*}
+	Since $v$ is fixed, $\dfrac{dv}{dt} = \mathbf{0}$, and so $f'(t) = 0$. Integrating this with respect to $t$ recovers $f(t) = c$ for all $t \in I$. Since $\alpha(0) \cdot v = 0$, $f(0) = 0$ and so $f(t) = 0$ for all $t \in I$, meaning that $\alpha(t) \cdot v = 0$ for all $t \in I$.
+	
+	\subsubsection*{Exercise 5}
+	Let $\alpha \colon I \to \R^3$ be a parameterized curve, with $\alpha'(t) \neq \mathbf{0}$ for all $t \in I$. Show that $| \alpha(t) | = c \neq 0$ if and only if $\alpha(t)$ is orthogonal to $\alpha'(t)$ for all $t \in I$.
+	
+	Suppose that $d(t) = | \alpha(t) | = c \neq 0$. From exercise 2, we know that
+	\begin{gather*}
+		d'(t) = \dfrac{ \sum_{i=1}^{3} x_i(t)x_i'(t) } {d(t)}
+	\end{gather*}
+	Since $d(t) = c \neq 0$, $d'(t) = 0$ and so $\sum_{i=1}^{3} x_i(t)x_i'(t) = 0$, which is just $\alpha(t) \cdot \alpha'(t) = 0$.
+
+	Now suppose that $\alpha(t) \cdot \alpha'(t) = 0$. Consider $g(t) = \alpha(t) \cdot \alpha(t) = d(t)^2$. Then $g'(t) = 2 \alpha(t) \cdot \alpha'(t) = 0$. Therefore, $g'(t) = k = d(t)^2$. We know $k \neq 0$ since if it were, then $d(t) = 0$, and thus $\alpha(t) = \mathbf{0}$, for all $t \in I$. But that would mean $\alpha'(t) = 0$, contradicting our initial assumption that $\alpha'(t) \neq 0$. Therefore, $k \neq 0$.
+	
+	
+	\subsection*{Section 3}
+	\subsubsection*{Definition}
+	A parameterized differentiable curve $\alpha \colon I \to \R^n$ is said to be regular if $\alpha'(t) \neq 0$ for all $t \in I$
+
+	\subsubsection*{Definition}
+	Given $t$, the arc length of a regular parameterized curve $\alpha \colon I \to \R^n$ from the point $t_0$ is
+	\begin{gather*}
+		s(t) = \int_{t_0}^t |\alpha'(k)| dk
+	\end{gather*} 
+	
+	\subsubsection*{Exercise 1}
+	Show that the tangent lines to the regular parameterized curve $\alpha(t) = (3t, 3t^2, 2t^3)$ makes a constant angle with the line $y = 0$, $z = x$.
+	
+	We know that vectors $u, v \in \R^3$ satisfy
+	\begin{gather*}
+		u \cdot v = |u| |v| \cos \theta
+	\end{gather*}
+	where $\theta$ is the angle between the vectors. Rearranging the equation, we get
+	\begin{gather*}
+		\cos \theta = \dfrac{u \cdot v}{|u| |v|}
+	\end{gather*}
+	The line tangent to the curve $\alpha$ at time $t$ is given by the equation
+	\begin{gather*}
+		\ell_t(s) = \alpha(t) + \alpha'(t)s \quad \text{for } s \in \R
+	\end{gather*}
+	Substituting in $\alpha(t)$ and $\alpha'(t)$, we have
+	\begin{gather*}
+		\ell_t(s) = (3t, 3t^2, 2t^3) + (3, 6t, 6t^2)s
+	\end{gather*}
+	The line described by $y = 0$, $z = x$ is
+	\begin{gather*}
+		\ell(s) = (s, 0, s) = (1, 0, 1)s
+	\end{gather*}
+	The vectors describing the direction of the lines are $(3, 6t, 6t^2)$ and $(1, 0, 1)$. Plugging it into the equation for the cosine of the angle between them, we get
+	\begin{gather*}
+		\cos \theta = \dfrac{(3, 6t, 6t^2) \cdot (1, 0, 1)}{|(3, 6t, 6t^2)| |(1, 0, 1)|} = \dfrac{3 + 6t^2}{\sqrt{9 + 36t^2 + 36t^4} \cdot \sqrt{2}} \\
+		= \dfrac{3 + 6t^2}{3 \sqrt{2} \cdot \sqrt{1 + 4t^2 + 4t^4} } = \dfrac{1 + 2t^2}{\sqrt{2} \cdot (1 + 2t^2)} = \dfrac{1}{\sqrt{2}}
+	\end{gather*}
+	Since $\cos \theta$ is constant, the angle $\theta$ is also constant.
+	
+	\subsubsection*{Exercise 2}
+	A circular disk of radius 1 in the plane $xy$ rolls without slipping along the $x$ axis. The path a point on the circumference of the circle traces is called the cycloid. Obtain the parameterized curve $\alpha \colon \R \to \R^2$. Then compute the arc length of the cycloid corresponding to a complete rotation of the disk.
+	
+	To find the parameterized curve of the cycloid $\alpha$, we want to first see how the point moves along the circumference with respect to the circle. To do this, we first picture that the circle is in place (i.e. it is constantly slipping). The unit circle is centered at $(0, 1)$, so that the point starts at the origin. Letting $\theta$ be the parameter, we get
+	\begin{gather*}
+		\alpha(\theta) = (-\sin \theta, 1 - \cos \theta)
+	\end{gather*}
+	
+	Now, we have to adjust our coordinates to account for the motion of the circle. The circle avoids slipping if it moves forward by as much as it rotates. If it rotates by an angle of $\theta$, then the amount of the circle that touches the ground is $\theta$, so it has to move forward by $\theta$.
+	
+	Thus, the motion of the center of the circle in the $x$ direction is $x(t) = t$. The equation for parameterized curve of the cycloid $\alpha$ is
+	\begin{gather*}
+		\alpha(t) = (t -\sin t, 1 - \cos t)
+	\end{gather*}
+	
+	To find the length of the cycloid corresponding to a full rotation of the disk, first differentiate $\alpha(t)$
+	\begin{gather*}
+		\alpha'(t) = (1 - \cos t, \sin t)
+	\end{gather*}
+	The magnitude is
+	\begin{gather*}
+		| \alpha'(t) | = \sqrt{1 - 2\cos t + \cos^2 t + \sin^2 t} = \sqrt{2 - 2 \cos t} \\ 
+		= \sqrt{4 \sin^2 \left( \dfrac{t}{2} \right)} = 2 \left| \sin \left( \dfrac{t}{2} \right) \right|
+	\end{gather*}
+	The arc length is thus
+	\begin{gather*}
+		s(t) = \int_{0}^{2\pi} 2 \left| \sin \left( \dfrac{t}{2} \right) \right| dt = 2 \int_{0}^{2\pi} \sin \left( \dfrac{t}{2} \right) dt \\
+		= 2 \left( -2 \cos \left( \dfrac{t}{2} \right) \Biggr|_0^{2\pi} \right) = -4 \left( \cos \pi - \cos 0 \right) = 8
+	\end{gather*}
+
+	\subsubsection*{Exercise 3}
+	We are constructing something known as the "cissoid of Diocles". Let $OA$ be the diameter of a circle $S^1$, a line segment on the $x$ axis with a length of $2a$. Create lines tangent to $S^1$ at $O$ and $A$, $Oy$ and $AV$. Now, draw a line from $O$ to another point $B_k$ that lies on $AV$. Let $C_k$ be the point where $S^1$ and $OB_k$ intersect, and define $p_k$ from $O$ that lies on $OB_k$ in such a way that $Op_k$ = $B_kC_k$. Construct all $p_k$ for all $B_k$ on $AV$ to get the cissoid of Diocles. Find the parameterized curve corresponding to the line made by $p$. Prove that the origin $(0, 0)$ is the singular point of the cissoid. Prove that as $t \to \infty$, $\alpha(t)$ approaches $x = 2a$ and $\alpha'(t) \to (0, 2a)$.
+	
+	Let $\theta_k$ correspond to the angle $\angle AOB_k$. Obviously, the line $OB_k$ is given by $y = x \tan \theta_k$. $B_k$ is at $(2a, 2a \tan \theta_k )$. The equation for $S^1$ is $(x - a)^2 + y^2 = a^2$ and so $C_k$ satisfies both equation, that is
+	\begin{gather*}
+		(x_{C_k} - a)^2 + (x_{C_k} \tan \theta_k)^2 = a^2 \\
+		x_{C_k}^2 - 2ax_{C_k} + a^2 + x_{C_k}^2 \tan^2 \theta_k = a^2 \\
+		x_{C_k}^2 \left( 1 + \tan^2 \theta_k \right) - 2ax_{C_k} = 0 \\
+		x_{C_k} \left( x_{C_k} \sec^2 \theta_k - 2a \right) = 0
+	\end{gather*}
+	
+	Discarding the trivial solution, the $x$ value of $C_k$ is $x_{C_k} = 2a \cos^2 \theta_k$. Plugging it into the equation of the line $OB_k$ gets $y_k = \tan \theta_k \cdot 2a \cos^2 \theta_k = 2 a \sin \theta_k \cos \theta_k$. $C_k$ is $\left( 2a \cos^2 \theta_k, 2 a \sin \theta_k \cos \theta_k \right)$. Let $d_k$ be the length of $B_kC_k$. From the Pythagorean theorem
+	\begin{gather*}
+		d_k^2 = \left( 2a - 2a \cos^2 \theta_k  \right)^2 + \left( 2a \tan \theta_k - 2 a \sin \theta_k \cos \theta_k \right)^2 \\
+		= \left( 2a \sin^2 \theta_k  \right)^2 + \left( 2a \sin \theta_k \cdot \left( \dfrac{1}{\cos \theta_k} - \cos \theta_k \right) \right)^2 \\
+		= \left( 2a \sin^2 \theta_k  \right)^2 + \left( 2a \sin \theta_k \cdot \left( \dfrac{1 - \cos^2 \theta_k}{\cos \theta_k} \right) \right)^2 \\
+		= \left( 2a \sin^2 \theta_k  \right)^2 + \left( 2a \cdot \dfrac{\sin^3 \theta_k}{\cos \theta_k} \right)^2 = \left( 2a \sin^2 \theta_k  \right)^2 + \left( 2a \sin^2 \theta_k \tan \theta_k \right)^2 \\
+		= \left( 2a \sin^2 \theta_k  \right)^2 \cdot \left( 1 + \tan^2 \theta_k \right) = 4a^2 \sin^4 \theta_k \sec^2 \theta_k
+	\end{gather*}
+	The distance is $d_k = 2a \left| \sin \theta_k \tan \theta_k \right|$, and since $- \dfrac{\pi}{2} < \theta_k < \dfrac{\pi}{2}$, $d_k = 2a \sin \theta_k \tan \theta_k$.
+	
+	The point $p_k$ lies on $OB_k$ such that the length of $Op_k$ is $d_k$. Note that $x_{p_k} = d_k \cos \theta_k = 2a \sin^2 \theta_k$ and $y_{p_k} = d_k \sin \theta_k = 2a \sin^2 \theta_k \tan \theta_k$. The parameterized curve $\alpha(\theta)$ is
+	\begin{gather*}
+		\alpha(\theta) = (2a \sin^2 \theta, 2a \sin^2 \theta \tan \theta) \text{, } \theta \in \left( -\dfrac{\pi}{2}, \dfrac{\pi}{2} \right)
+	\end{gather*}
+	From here, it is trivial to change the parameter so that the curve is traced out for all numbers. Let $t = \tan \theta$. Then 
+	\begin{gather*}
+		x_{p_k} = 2a \sin^2 \theta = 2a \sin^2 \theta \cdot \dfrac{\cos^2 \theta}{\cos^2 \theta} = 2a \tan^2 \theta \cdot \dfrac{1}{\sec^2 \theta} \\
+		x_{p_k}= \dfrac{2a \tan^2 \theta}{\tan^2 \theta + 1} = \dfrac{2a t^2}{t^2 + 1}
+	\end{gather*}
+	and
+	\begin{gather*}
+		y_{p_k} = 2a \sin^2 \theta \tan \theta = \dfrac{2a \tan^2 \theta}{\tan^2 \theta + 1} \cdot \tan \theta \\
+		y_{p_k} = \dfrac{2at^3}{t^2 + 1}
+	\end{gather*}
+	
+	The alternative parametrization of the curve is $\alpha(t) = \left( \dfrac{2a t^2}{t^2 + 1}, \dfrac{2at^3}{t^2 + 1} \right)$ for $t \in \R$. This alternative parametrization makes it much more simpler to get the derivative of $\alpha$.
+	\begin{gather*}
+		x'(t) = \dfrac{(t^2 + 1) \cdot 4at - 2at^2 \cdot 2t}{(t^2 + 1)^2} = \dfrac{4at}{(t^2 + 1)^2} \\
+		y'(t) = \dfrac{(t^2 + 1) \cdot 6at^2 - 2at^3 \cdot 2t}{(t^2 + 1)^2} = \dfrac{2at^2(t^2 + 3)}{(t^2 + 1)^2}
+	\end{gather*}
+	There is only one singular point. At $t = 0$, $\alpha'(0) = (0, 0)$, and so $\alpha(0)$, which is at the origin, is the singular point of $\alpha$.
+	
+	We say $\alpha(t)$ approaches the line $x = 2a$ as $t \to \infty$ if the distance between $\alpha(t)$ and $x = 2a$ approaches $0$ as $t \to \infty$.
+	\begin{gather*}
+		\left| 2a - x(t) \right| = \left| 2a - \dfrac{2a t^2}{t^2 + 1} \right| = \left| \dfrac{2a}{t^2 + 1} \right|
+	\end{gather*}
+	so as $t \to \infty$, $| 2a - x(t) | \to 0$. Furthermore, $x'(t) \to 0$ and $y'(t) \to 2a$, so $\alpha'(t) \to (0, 2a)$.
+	
+	\subsubsection*{Exercise 4}
+	Let $\alpha \colon (0, \pi) \to \R^2$ be given by
+	\begin{gather*}
+		\alpha(t) = \left( \sin t, \cos t + \log \tan \dfrac{t}{2} \right)
+	\end{gather*}
+	where $t$ is the angle the $y$ axis makes with the vector $\alpha'(t)$. This curve is known as the tractrix. Show that it is a regular differentiable parameterized curve except at $t = \pi/2$, and that the length of the segment of the tangent of the tractrix between the point of tangency and the $y$ axis is constantly equal to $1$.
+	
+	The derivative of $x(t)$ is $x'(t) = \cos t$. To find the derivative of $y(t)$ though, first rewrite $y(t)$
+	\begin{gather*}
+		y(t) = \cos t + \log \tan \dfrac{t}{2} = \cos t + \log \left( \dfrac{\sin t}{1 + \cos t} \right) \\
+		= \cos t + \log \sin t - \log \left( 1 + \cos t \right)
+	\end{gather*}
+	The derivative is thus
+	\begin{gather*}
+		y'(t) = - \sin t + \dfrac{\cos t}{\sin t} + \dfrac{\sin t}{1 + \cos t} \\
+		= \dfrac{-\sin^2 t (1 + \cos t) + \cos t + \cos^2 t  + \sin^2 t}{\sin t (1 + \cos t)} \\
+		= \dfrac{\cos^2 t (1 + \cos t)}{\sin t (1 + \cos t)}
+	\end{gather*}
+	Since $t \in (0, \pi)$, $\sin t \neq 0$ and $1 + \cos t \neq 0$. Therefore
+	\begin{gather*}
+		y'(t) = \dfrac{\cos^2 t}{\sin t}
+	\end{gather*}
+	At $t = \pi/2$, $\cos t = 0$, and so $\alpha'(\pi/2) = (0, 0)$ is the sole singular point. The tangent line of the tractrix at each point $\alpha(t)$ is given by
+	\begin{gather*}
+		\ell_t(s) = \alpha(t) + \alpha'(t) s
+	\end{gather*}
+	At $s = 0$, $\ell_t(0) = \alpha(t)$. The line intersects the $y$ axis when $x_{\ell}(s') = 0$, i.e.
+	\begin{gather*}
+		x_{\ell}(s) = \sin t + s' \cos t = 0 \\
+		s' = - \dfrac{\sin t}{\cos t}
+	\end{gather*}
+	Then $y_{\ell}(s') = \cos t + \log \tan \dfrac{t}{2} + s' \cdot \dfrac{\cos^2 t}{\sin t} = \log \tan \dfrac{t}{2}$. The distance between $\ell_t(0)$ and $\ell_t(s')$ is
+	\begin{gather*}
+		d = \sqrt{\left( x_{\ell}(s') - x_{\ell}(0) \right)^2 + \left( y_{\ell}(s') - y_{\ell}(0) \right)^2} \\
+		= \sqrt{ \left( -\sin t \right)^2 + \left( \log \tan \dfrac{t}{2} - \left( \cos t + \log \tan \dfrac{t}{2} \right) \right)^2 } \\
+		= \sqrt{ \sin^2 t + \cos^2 t} = 1
+	\end{gather*}
+	
+	\subsubsection*{Exercise 5}
+	Let $\alpha \colon (-1, \infty) \to \R^2$ be given by
+	\begin{gather*}
+		\alpha(t) = \left( \dfrac{3at}{1 + t^3}, \dfrac{3at^2}{1 + t^3} \right)
+	\end{gather*}
+	Show that for $t = 0$, $\alpha$ is tangent to the $x$ axis. Show as $t \to \infty$, $\alpha(t) \to (0, 0)$ and $\alpha'(t) \to (0, 0)$. Show that with the curve going the opposite direction, as $t \to -1$, the curve and its tangent approaches the line $x + y + a = 0$.
+	
+	The derivatives of $x(t)$ and $y(t)$ are
+	\begin{gather*}
+		x'(t) = \dfrac{3a(1 + t^3) - 3at \cdot 3t^2}{(1 + t^3)^2} = \dfrac{3a(1 - 2t^3)}{(1 + t^3)^2}
+	\end{gather*}
+	and
+	\begin{gather*}
+		y'(t) = \dfrac{6at(1 + t^3) - 3at^2 \cdot 3t^2}{(1 + t^3)^2} = \dfrac{3at(2 - t^3)}{(1 + t^3)^2}
+	\end{gather*}
+
+	At $t = 0$, $\alpha'(0) = (x'(0), y'(0)) = (3a, 0)$, meaning $\alpha$ is changing at this point in time only in the $x$ direction. Furthermore, $\alpha(0) = (0, 0)$, meaning that at the origin, the curve is tangent to the $x$ axis.
+	
+	Now, as $t \to \infty$, $x(t) \to 0$ and $y(t) \to 0$ as the denominator $1 + t^3$ for both parameters is a polynomial with a degree strictly greater than in the numerator, and for similar reasons, $x'(t) \to 0$ and $y'(t) \to 0$ as the denominator $(1 + t^3)^2$ is a polynomial with a degree strictly greater than found in the numerator. Therefore, $\alpha(t) \to (0, 0)$ and $\alpha'(t) \to (0, 0)$.
+	
+	To get the equation of the parameterized curve that goes in the opposite direction, find an adequate change in coordinates $q$. There are some properties $q$ must satisfy. As $q \to \infty$, $t \to -1$ from the right, and as $q \to 0$ from the right, $t \to \infty$. One such relationship which this is satisfied is $q = \dfrac{1}{1 + t}$ or $t = \dfrac{1}{q} - 1$. Plugging this value of $t$ back into $x(t)$ and $y(t)$
+	\begin{gather*}
+		x_{new}(q) = x \left( \dfrac{1}{q} - 1 \right) = \dfrac{3aq^2 - 3aq^3}{q^3 + q^3(\frac{1}{q} - 1)^3} = \dfrac{-3aq^3 + 3aq^2}{3q^2 - 3q + 1} \\
+		y_{new}(q) = y \left( \dfrac{1}{q} - 1 \right) = \dfrac{-3aq^3 + 3aq^2}{3q^2 - 3q + 1} \cdot \dfrac{1 - q}{q} = \dfrac{3aq^4 - 6aq^3 + 3aq^2}{3q^3 - 3q^2 + q} 
+	\end{gather*}
+	As $q \to \infty$, $x_{new}(q) \to -aq + a$ and $y_{new}(q) \to aq - 2a$. Roughly then, $x_{new}'(q) \to -a$ and $y_{new}'(q) \to a$, and so $\alpha_{new}'(q) \to (-a, a)$. Furthermore, $x_{new}(q) + y_{new}(q) \approx -aq + a + aq - 2a = -a$, or $x_{new}(q) + y_{new}(q) + a \approx 0$.
+	
+	Alternatively (with help from Gemini), rather than use a change in coordinates, note that
+	\begin{gather*}
+		\lim_{t \to -1} x(t) + y(t) = \lim_{t \to -1} \left( \dfrac{3at}{1 + t^3} + \dfrac{3at^2}{1 + t^3} \right) \\ 
+		= \lim_{t \to -1} \dfrac{3at + 3at^2}{1 + t^3} = \lim_{t \to -1} \dfrac{3a + 6at}{3t^2} = -a
+	\end{gather*}
+	and so 
+	\begin{gather*}
+		\lim_{t \to -1} x(t) + y(t) + a = 0
+	\end{gather*}
+	Similarly
+	\begin{gather*}
+		\dfrac{dy}{dx} = \dfrac{y'(t)}{x'(t)} = \dfrac{3at(2 - t^3)}{3a(1 - 2t^3)} = \dfrac{2t - t^4}{1 - 2t^3}
+	\end{gather*}
+	and so
+	\begin{gather*}
+		\lim_{t \to -1} \dfrac{dy}{dx} = \dfrac{-2-1}{1+2} = -1
+	\end{gather*}	
+	
+	\subsubsection*{Exercise 6}
+	Let $a$ and $b$ be constants satisfying $a > 0$, $b < 0$ and let $\alpha(t) = (ae^{bt} \cos t, ae^{bt} \sin t)$, $t \in \R$,be a parameterized curve. Show that as $t \to \infty$, $\alpha(t)$ approaches the origin. Show that $\alpha(t) \to (0, 0)$ as $t \to \infty$ and that
+	\begin{gather*}
+		\lim_{t \to \infty} \int_{t_0}^t \left| \alpha'(k) \right| dk
+	\end{gather*}
+	is finite.
+	
+	As $t \to \infty$, $bt \to -\infty$ and so $e^{bt} \to 0$. Thus, $\alpha(t) = (ae^{bt} \cos t, ae^{bt} \sin t) \to (0, 0)$. Similarly, $\alpha'(t) = \left( ae^{bt} (b\cos t - \sin t), ae^{bt} (b \sin t + \cos t) \right) \to (0, 0)$ as $t \to \infty$. The magnitude is
+	\begin{gather*}
+		\left| \alpha'(k) \right| = \sqrt{a^2e^{2bk} (b\cos k - \sin k)^2 + a^2e^{2bk} (b\sin k + \cos k)^2} \\
+		= ae^{bk} \sqrt{b^2 \cos^2 k + \sin^2 k + b^2 \sin^2 k + \cos^2 k} = ae^{bk} \sqrt{b^2 + 1}
+	\end{gather*}
+	and the arc length of $\alpha(t)$ on the interval $[t_0, \infty)$ is
+	\begin{gather*}
+		\lim_{t \to \infty} \int_{t_0}^t \left| \alpha'(k) \right| dk = \lim_{t \to \infty} \int_{t_0}^t ae^{bk} \sqrt{b^2 + 1} dk \\
+		= a \sqrt{b^2 + 1} \cdot \lim_{t \to \infty} \int_{t_0}^t e^{bk} dk = a \sqrt{b^2 + 1} \cdot \lim_{t \to \infty} \dfrac{e^{bk}}{b} \Biggr|_{t_0}^t \\ 
+		= \dfrac{a \sqrt{b^2 + 1}}{b} \lim_{t \to \infty} ( e^{bt} - e^{bt_0} ) = - \dfrac{a e^{bt_0} \sqrt{b^2 + 1}}{b}
+	\end{gather*}
+	
+	\subsubsection*{Exercise 7}
+	A map $\alpha \colon I \to \R^n$ is called a curve of class $C^k$ if each coordinate function $x_i(t)$ has continuous derivatives up to order $k$. If $\alpha$ is continuous but not differentiable, $\alpha$ is of class $C^0$. $\alpha$ is simple if it is injective (i.e. one-to-one).
+	
+	Let $\alpha \colon I \to \R^n$ be a simple curve of class $C^0$. $\alpha$ has a weak tangent at $t = t_0 \in I$ if the line determined by $\alpha(t_0 + h)$ and $\alpha(t_0)$ exists as $h \to 0$. $\alpha$ has a strong tangent at $t = t_0 \in I$ if the line determined by $\alpha(t_0 + h)$ and $\alpha(t_0 + k)$ exists as $h, k \to 0$.
+	
+	Show that $\alpha(t) = (t^3, t^2), t \in \R$ has a weak, but not strong, tangent at $t = 0$. Show that if $\alpha \colon I \to \R^n$ is of class $C^1$ and is regular at $t = t_0$, then it has a strong tangent at $t = t_0$. Show that the curve given by
+	\begin{gather*}
+		\alpha(t) = \begin{cases}
+			(t^2, t^2), \quad t > 0 \\
+			(t^2, -t^2), \quad t \leq 0
+		\end{cases}
+	\end{gather*}
+	is of class $C^1$ but not of class $C^2$.
+	
+	To find the weak tangent of $\alpha(t) = (t^3, t^2)$, let $v_h = \alpha(0 + h) - \alpha(0) = (h^3, h^2) = h^2(h, 1)$, so as $h \to 0$, the line $\ell_h(s) = sv_h + \alpha(0) = sv_h$ approaches $\ell(s) = s(0, 1)$. Now, let  $v_{h,k} = \alpha(0 + h) - \alpha(0 + k) = (h^3, h^2) - (k^3, k^2) = (h^3 - k^3, h^2 - k^2) = (h - k) \cdot (h^2 + hk + k^2, h + k)$. Consider two cases, $k = h/2$ and $k = -h$. In the first case, $k = h/2$, it is equivalent to the weak case, and so
+	\begin{gather*}
+		\ell_{h, k, 1}(s) = sv_{h,k} + \alpha(h) = s (h - k) \cdot (h^2 + hk + k^2, h + k) + (h^3, h^2) \\
+		= \dfrac{sh^2}{2} \cdot \left( \dfrac{7h}{4}, \dfrac{3}{2} \right) + (h^3, h^2) = sh^2 \cdot \left( \dfrac{7h}{8}, \dfrac{3}{4} \right) + (h^3, h^2)
+	\end{gather*}
+	In the second case, $k = -h$, we have
+	\begin{gather*}
+		\ell_{h, k, 2}(s) = sv_{h,k} + \alpha(h) = s (h - k) \cdot (h^2 + hk + k^2, h + k) + (h^3, h^2) \\
+		= 2sh \cdot (h^2, 0) + (h^3, h^2) = sh^2 \cdot (2h, 0) + (h^3, h^2)
+	\end{gather*}
+	Comparing the two direction vectors, we see that $\left( \dfrac{7h}{8}, \dfrac{3}{4} \right) \neq (2h, 0)$, meaning these two lines point in different directions.
+	
+	Suppose that $\alpha \colon I \to \R^n$ is of class $C^1$ and is regular at $t = t_0$. Then $\alpha'(t)$ exists and $\alpha'(t_0) \neq 0$. Without loss of generality, let $k < h$. Define $v_{h, k} = \alpha(t_0 + h) - \alpha(t_0 + k)$. Recall from the fundamental theorem of calculus that
+	\begin{gather*}
+		\alpha(t_0 + h) - \alpha(t_0 + k) = \int_{t_0 + k}^{t_0 + h} \alpha'(t) dt
+	\end{gather*}
+	Rewriting $v_{h, k}$
+	\begin{gather*}
+		v_{h, k} = (h - k) \cdot \dfrac{1}{h - k} \int_{t_0 + k}^{t_0 + h} \alpha'(t) dt
+	\end{gather*}
+	Employing the second fundamental theorem of calculus and the definition of the derivative
+	\begin{gather*}
+		\alpha'(t) = \lim_{h,k \to 0} \left( \dfrac{1}{h - k} \cdot \int_{t_0 + k}^{t_0 + h} \alpha'(t) dt \right)
+	\end{gather*}
+	and so $v_{h, k} \approx (h - k) \cdot \alpha'(t)$. Therefore, $\alpha$ has a strong tangent at $t = t_0$.
+
+	Given  $\alpha \colon \R \to \R^2$ defined by
+	\begin{gather*}
+		\alpha(t) = \begin{cases}
+			(t^2, t^2), \quad t > 0 \\
+			(t^2, -t^2), \quad t \leq 0
+		\end{cases}
+	\end{gather*}
+	It is clearly continuous everywhere including at $t = 0$ since $\alpha(0) = (0, 0)$, so it is in $C^0$. The derivative $\alpha'(t)$ is
+	\begin{gather*}
+		\alpha'(t) = \begin{cases}
+			(2t, 2t), \quad t > 0 \\
+			(2t, -2t), \quad t \leq 0
+		\end{cases}
+	\end{gather*}
+	$\alpha'(t)$ is continuous everywhere including at $t = 0$ since $\alpha'(0) = (0, 0)$, so it is in $C^1$. The second derivative $\alpha''(t)$ is
+	\begin{gather*}
+		\alpha''(t) = \begin{cases}
+			(2, 2), \quad t > 0 \\
+			(2, -2), \quad t \leq 0
+		\end{cases}
+	\end{gather*}
+	Now, at $t = 0$, $\alpha''(0) = (2, -2)$, but it is not continuous at $t = 0$, so it is not in $C^2$.
+	
+	\subsubsection*{Exercise 8}
+	Let $\alpha \colon I \to \R^n$ be a differentiable curve and let $[a, b] \subset I$ be a closed interval. For every partition
+	\begin{gather*}
+		a = t_0 < t_1 < \cdots < t_n = b
+	\end{gather*}
+	of $[a, b]$, consider the sum $\sum_{i = 1}^n |\alpha(t_i) - \alpha(t_{i - 1})| = l(\alpha, P)$, where $P$ stands for the given partition. The norm $|P|$ of a partition $P$ is defined as
+	\begin{gather*}
+		|P| = \max (t_i - t_{i - 1}) \qquad i = 1, \cdots, n
+	\end{gather*}
+	Prove that given $\epsilon > 0$ there exists $\delta > 0$ such that if $|P| < \delta$ then
+	\begin{gather*}
+		\left| \int_a^b |\alpha'(t)|dt - l(\alpha, P) \right| < \epsilon
+	\end{gather*}
+	
+	First, prove that $|\alpha(m) - \alpha(n)| \leq (m - n) \cdot |\alpha'(k)|$ for some $k \in (n, m)$. Let $\phi(t) = (\alpha(m) - \alpha(n)) \cdot \alpha(t)$. We know that
+	\begin{gather*}
+		\phi(m) - \phi(n) = (\alpha(m) - \alpha(n)) \cdot \alpha(m) - (\alpha(m) - \alpha(n)) \cdot \alpha(n) \\ 
+		= (\alpha(m) - \alpha(n)) \cdot (\alpha(m) - \alpha(n)) \\
+		= \left| \alpha(m) - \alpha(n) \right|^2
+	\end{gather*}
+	We also know from the mean value theorem that
+	\begin{gather*}
+		\phi(m) - \phi(n) = \phi'(k) (m - n)
+	\end{gather*}
+	for some $k \in (n, m)$. Since $\phi'(k) = (\alpha(m) - \alpha(n)) \cdot \alpha'(k)$
+	\begin{gather*}
+		\left| \alpha(m) - \alpha(n) \right|^2 = (m - n) (\alpha(m) - \alpha(n)) \cdot \alpha'(k) 
+	\end{gather*}
+	The Cauchy-Schwarz inequality gives the inequality
+	\begin{gather*}
+		(\alpha(m) - \alpha(n)) \cdot \alpha'(k)  \leq \left| \alpha(m) - \alpha(n) \right| \left| \alpha'(k) \right|
+	\end{gather*}
+	Therefore, we have
+	\begin{gather*}
+		\left| \alpha(m) - \alpha(n) \right|^2 \leq (m - n) \left| \alpha(m) - \alpha(n) \right| \left| \alpha'(k) \right|
+	\end{gather*}
+	When $\alpha(m) \neq \alpha(n)$
+	\begin{gather*}
+		\left| \alpha(m) - \alpha(n) \right| \leq (m - n) \left| \alpha'(k) \right|
+	\end{gather*}
+	This equation is trivially true when $\alpha(m) = \alpha(n)$. This completes the initial proof that $|\alpha(m) - \alpha(n)| \leq (m - n) \cdot |\alpha'(k)|$ for some $k \in (n, m)$.
+	
+	From here, we know that $l(\alpha, P)$ satisfies
+	\begin{gather*}
+		l(\alpha, P) = \sum_{i = 1}^n |\alpha(t_i) - \alpha(t_{i - 1})| \leq \sum_{i = 1}^n (t_i - t_{i - 1}) \left| \alpha'(t_i^*) \right|
+	\end{gather*}
+		
+	This is nothing more than the Riemann sum of $\alpha'$ with respect to the partition $P$. We know that by the definition of the Riemann integral, for every $\epsilon > 0$, there exists $\delta > 0$ such that if $|P| < \delta$ then
+	\begin{gather*}
+		\left| \sum_{i = 1}^n (t_i - t_{i - 1}) \left| \alpha'(t_i^*) \right| - \int_{t_0}^{t_n} |\alpha'(t)| dt \right| < \epsilon
+	\end{gather*}
+	This completes the proof (which is not that rigorous, but this is my personal notes, so who cares).
+	
+	\subsubsection*{Exercise 9}
+	Let $\alpha \colon I \to \R^n$ be a curve in $C^0$. Using a similar method from above, give a reasonable definition of the arc length. Then show that regardless of any reasonable definition of the arc length of a curve $\alpha$ in $C^0$, that the parameterized curve $\alpha: [0, 1] \to \R^2$ given by $\alpha(t) = (t, t \sin (\pi/t))$ if $t \neq 0$ and $\alpha(0) = (0, 0)$.
+	
+	Recall that the length of a differentiable curve $\alpha$ on the interval $[a, b]$ is
+	\begin{gather*}
+		L(\alpha, [a, b]) = \lim_{|P| \to 0} l(\alpha, P)
+	\end{gather*}
+	
+	This formulation is analogous to the construction of the Riemann integral. However, an alternative formulation can be used, analogous to the construction of the Darboux integral
+	\begin{gather*}
+		L(\alpha, [a, b]) = \sup_{P} l(\alpha, P) = \sup_{P} \sum_{i = 1}^{n} \left| \alpha(t_i) - \alpha(t_{i - 1}) \right|
+	\end{gather*}
+	
+	This reformulation is equivalent to the previous one, as if the limit does indeed exist, then the limit point is equivalent to the supremum. Roughly, the outline of the proof for the equivalence uses the triangle inequality, where if partition $Q$ is a refinement of $P$, then 
+	\begin{gather*}
+		l(\alpha, P) = \sum_{i = 1}^{n} |\alpha(t_i) - \alpha(t_{i - 1})| \leq  \sum_{k = 1}^{m} |\alpha(s_k) - \alpha(s_{k - 1})| = l(\alpha, Q)
+	\end{gather*}
+	and as the norm of the refinements of $P$ decreases, the limit monotonically increases. Thus, take the reformulation as the result.
+	
+	With this reformulation, we can show that for the parameterized curve $\alpha: [0, 1] \to \R^2$
+	\begin{align*}
+		\alpha(t) = \begin{cases}
+			(t, t \sin (\pi/t)) \qquad &t \neq 0 \\
+			(0, 0) \qquad &t = 0
+		\end{cases}
+	\end{align*}
+	there is a particular partition one can construct to show that the length does not exist as the corresponding sum diverges to infinity. Consider the partition $P = \{1/n : n \geq 1\}$. Note that $\alpha(t)$ crosses the $x$ axis whenever $t \sin(\pi/t) = 0$ or
+	\begin{gather*}
+		\pi/t = \pi m \quad m \in \mathbb{Z} \\ 
+	\end{gather*}
+	so on the edges of the interval $[1/(n + 1), 1/n]$, $\alpha(1/(n + 1)) = (1/(n + 1), 0)$ and $\alpha(1/n) = (1/n, 0)$. Furthermore, there are no other zeroes within this interval. The maximum (or minimum) of the function occurs when $t \sin(\pi/t) = \pm 1$, equivalently $\cos(\pi/t) = 0$ or
+	\begin{gather*}
+		\pi/t = \pi \left( m + \dfrac{1}{2} \right) \quad m \in \mathbb{Z} \\ 
+	\end{gather*}
+	and so self-evidently, the maximum (or minimum) of $\alpha$ on the interval is at $t = 1/(n + 1/2)$, $\alpha(1/(n + 1/2)) = (1/(n + 1/2), \pm 1/(n + 1/2))$. The sum of the distances between $\alpha(1/(n + 1))$ and $\alpha(1/(n + 1/2))$ and $\alpha(1/(n + 1/2))$ and $\alpha(1/n)$ serves as a lower bound to the true length of $\alpha(t)$ on the interval $[1/(n + 1), 1/n]$, i.e
+	\begin{gather*}
+		\int_{1/(n + 1)}^{1/n} |\alpha'(t)| dt \geq \left| \alpha \left( \dfrac{1}{n + 1} \right) - \alpha \left( \dfrac{1}{n + 1/2} \right) \right| + \left| \alpha \left( \dfrac{1}{n + 1/2} \right) - \alpha \left( \dfrac{1}{n} \right) \right|
+	\end{gather*}
+	For the first term,
+	\begin{gather*}
+		\left| \alpha \left( \dfrac{1}{n + 1} \right) - \alpha \left( \dfrac{1}{n + 1/2} \right) \right| = \sqrt{ \left( \dfrac{1}{n + 1} - \dfrac{1}{n + 1/2} \right)^2 + \left( \dfrac{1}{n + 1/2} \right)^2 } \\
+		\geq \dfrac{1}{n + 1/2}
+	\end{gather*}
+	Likewise for the second term,
+		\begin{gather*}
+		\left| \alpha \left( \dfrac{1}{n + 1/2} \right) - \alpha \left( \dfrac{1}{n} \right) \right| = \sqrt{ \left( \dfrac{1}{n + 1/2} - \dfrac{1}{n} \right)^2 + \left( \dfrac{1}{n + 1/2} \right)^2 } \\
+		\geq \dfrac{1}{n + 1/2}
+	\end{gather*}
+	Therefore,
+	\begin{gather*}
+		\int_{1/(n + 1)}^{1/n} |\alpha'(t)| dt \geq \dfrac{2}{n + 1/2}
+	\end{gather*}
+	With this, we get that
+	\begin{gather*}
+		\int_{1/N}^{1} |\alpha'(t)| dt = \sum_{n = 1}^{N - 1} \int_{1/(n + 1)}^{1/n} |\alpha'(t)| dt \geq \sum_{n = 1}^{N - 1} \dfrac{2}{n + 1/2} \geq 2 \sum_{n = 1}^{N} \dfrac{1}{n + 1}
+	\end{gather*}
+	so as $N \to \infty$, $l(\alpha, P) \to \infty$
+	
+	\subsubsection*{Exercise 10}
+	Let $\alpha \colon I \to \R^n$ be a parameterized curve. Let $[a, b] \subset I$ and set $\alpha(a) = p$, $\alpha(b) = q$. Show that for any constant vector $v$ satisfying $|v| = 1$
+	\begin{gather*}
+		(q - p) \cdot v = \int_a^b (\alpha'(t) \cdot v) dt \leq \int_a^b |\alpha'(t)| dt
+	\end{gather*}
+	Set $v = \dfrac{q - p}{|q - p|}$ and show that
+	\begin{gather*}
+		|\alpha(b) - \alpha(a)| \leq \int_a^b |\alpha'(t)| dt
+	\end{gather*}
+	
+	We know that
+	\begin{gather*}
+		\int_a^b ( \alpha'(t) \cdot v ) dt = \int_a^b \left( \sum_{i = 1}^{n} \dfrac{\partial \alpha_i}{\partial t} v_i \right) dt = \sum_{i = 1}^{n} \left( \int_a^b \dfrac{\partial \alpha_i}{\partial t} v_i \right) dt \\
+		= \sum_{i = 1}^{n} v_i \left( \int_a^b \dfrac{\partial \alpha_i}{\partial t} dt \right) = \sum_{i = 1}^{n} v_i \left( \alpha_i(b) - \alpha_i(a) \right) \\
+		= \sum_{i = 1}^{n} v_i \alpha_i(b) - \sum_{i = 1}^{n} v_i \alpha_i(a) = \left( \alpha(b) - \alpha(a) \right) \cdot v = (q - p) \cdot v
+	\end{gather*}
+	We also know that
+	\begin{gather*}
+		\alpha'(t) \cdot v = |\alpha'(t)| |v| \cos \theta
+	\end{gather*}
+	where $\theta$ is the angle between $\alpha'(t)$ and $v$. This quantity thus maximized when $v$ points in the same direction as $\alpha'(t)$. Thus
+	\begin{gather*}
+		\int_a^b \left( \alpha'(t) \cdot v \right) dt \leq \int_a^b \left( \alpha'(t) \cdot \dfrac{\alpha'(t)}{|\alpha'(t)|} \right) dt = \int_a^b \dfrac{\alpha'(t) \cdot \alpha'(t)}{|\alpha'(t)|} dt = \int_a^b |\alpha'(t)| dt
+	\end{gather*}
+	
+	Now clearly, if $v = \dfrac{q - p}{|q - p|}$ then
+	\begin{gather*}
+		(q - p) \cdot v = (q - p) \cdot \dfrac{q - p}{|q - p|} = |q - p| = |\alpha(b) - \alpha(a)|
+	\end{gather*}
+	resulting in
+	\begin{gather*}
+		|\alpha(b) - \alpha(a)| \leq \int_a^b |\alpha'(t)| dt
+	\end{gather*}
+	
+	
+	\subsection*{Section 4}
+	\subsubsection*{Definition}
+	Two ordered basis $e = {e_i}$ and $f = {f_i}$ of the same vector space $V$ have the same orientation if for the corresponding matrix detailing the transformation from one basis to the other has a positive determinant. Denote this relation by $e ~ f$. Some properties we can conclude are
+	\begin{gather*}
+		e \sim e \\
+		e \sim f \implies f \sim e \\
+		e \sim f, f \sim g \implies e \sim g \\
+	\end{gather*}
+	Thus this relation defines an equivalence class. Because the determinant can only ever be positive or negative, then there are only ever two elements in this equivalence class.
+	
+	We define an orientation of V to be an element of this equivalence class. There are thus only two orientations, and fixing one arbitrarily makes the other the opposite orientation. In the case of $V = \R^3$, the natural ordering of the standard basis $e_1 = (1, 0, 0)$, $e_2 = (0, 1, 0)$, $e_3 = (0, 0, 1)$, is taken to have positive orientation. We can see from here that the ordering $e_1$, $e_3$, and $e_2$ has negative orientation, and the ordering $e_2$, $e_3$, and $e_1$ has positive orientation.
+	
+	\subsubsection*{Definition}
+	For two vectors $u, v \in \R^3$, the vector product $u \wedge v$ is the unique vector satisfying
+	\begin{gather*}
+		(u \wedge v) \cdot w = \det(u, v, w) \quad \forall w \in \R^3
+	\end{gather*}
+	
+	From this definition, as well as the canonical definition of vectors expressed in standard basis, we get that
+	\begin{gather*}
+		u \wedge v = \begin{vmatrix} u_2 & u_3 \\ v_2 & v_3 \end{vmatrix} e_1 -
+		\begin{vmatrix} u_1 & u_3 \\ v_1 & v_3 \end{vmatrix} e_2 +
+		\begin{vmatrix} u_1 & u_2 \\ v_1 & v_2 \end{vmatrix} e_3
+	\end{gather*}
+	In $\R^3$, the vector product is also known as the cross product.
+	
+	Furthermore, we have that
+	\begin{gather*}
+		(u \wedge v) \cdot (x \wedge y) = \begin{vmatrix}
+			u \cdot x & v \cdot x \\
+			u \cdot y & v \cdot y
+		\end{vmatrix}
+	\end{gather*}
+	which leads to
+	\begin{gather*}
+		|u \wedge v|^2 = |u|^2|v|^2 (1 - \cos \theta)
+	\end{gather*}
+	
+	\subsubsection*{Exercise 1}
+	Determine the orientation of the basis $\{(1, 3), (4, 2)\}$ in $\R^2$ and $\{(1, 3, 5), (2, 3, 7), (4, 8, 3)\}$ in $\R^3$
+	
+	Recall that the standard basis was by definition positively oriented, meaning that any nondegenerate transformation of the standard basis to produce a new one that has a positive determinant still retains the same orientation.
+	
+	In the case of $\{(1, 3), (4, 2)\}$, the transformation
+	\begin{gather*}
+		T \left( v \right) = \begin{bmatrix}
+			1 & 4 \\
+			3 & 2
+		\end{bmatrix} v
+	\end{gather*}
+	maps from the standard basis to it. The determinant is $\det(T) = -10$, meaning this basis has a negative orientation.
+	
+	In the case of $\{(1, 3, 5), (2, 3, 7), (4, 8, 3)\}$, the transformation
+	\begin{gather*}
+		T \left( v \right) = \begin{bmatrix}
+			1 & 2 & 4 \\
+			3 & 3 & 8 \\
+			5 & 7 & 3
+		\end{bmatrix} v
+	\end{gather*}
+	maps from the standard basis to it. The determinant is $\det(T) = 39$, meaning this basis has a positive orientation.
+	
+	\subsubsection*{Exercise 2}
+	A plane in $\R^3$ is given by $ax + by + cz + d = 0$. Show that the vector $v = (a, b, c)$ is perpendicular to the plane and that $|d|/\sqrt{a^2 + b^2 + c^2}$ measures the distance from the plane to the origin.
+	
+	Consider two points on the plane $p_1 = (x_1, y_1, z_1)$ and $p_2 = (x_2, y_2, z_2)$. These points satisfy
+	\begin{gather*}
+		ax_1 + by_1 + cz_1 + d = 0 \\
+		ax_2 + by_2 + cz_2 + d = 0
+	\end{gather*}
+	and the difference is
+	\begin{gather*}
+		a(x_1 - x_2) + b(y_1 - y_2) + c(z_1 - z_2) = 0
+	\end{gather*}
+	or equivalently
+	\begin{gather*}
+		(a, b, c) \cdot (x_1 - x_2, y_1 - y_2, z_1 - z_2) = (a, b, c) \cdot (p_1 - p_2)
+	\end{gather*}
+	Since the choice of $p_1$ and $p_2$ were arbitrary, $p_1 - p_2$ represents any potential vector that is parallel to the plane, and since $(a, b, c)$ is orthogonal to $p_1 - p_2$, $(a, b, c)$ is orthogonal to the plane.
+	
+	The shortest line segment from the plane to the origin is on the line perpendicular to the plane. The line containing this line segment is defined by
+	\begin{gather*}
+		x = at, y = bt, z = ct
+	\end{gather*}
+	and the point on the line where it intersects the plane is at
+	\begin{gather*}
+		a(at) + b(bt) + c(ct) + d = 0 \\
+		t = -\dfrac{d}{a^2 + b^2 + c^2} 
+	\end{gather*}
+	and the corresponding point is
+	\begin{gather*}
+		\left( -\dfrac{ad}{a^2 + b^2 + c^2}, -\dfrac{bd}{a^2 + b^2 + c^2}, -\dfrac{cd}{a^2 + b^2 + c^2} \right)
+	\end{gather*}
+	Now, the distance between this point and the origin is
+	\begin{gather*}
+		\sqrt{ \dfrac{a^2d^2 + b^2d^2 + c^2d^2}{(a^2 + b^2 + c^2)^2} } = \dfrac{|d|}{\sqrt{a^2 + b^2 + c^2}}
+	\end{gather*}
+
+	\subsubsection*{Exercise 3}
+	Determine the angle of intersection of the two planes $5x + 3y + 2z - 4 = 0$ and $3x + 4y - 7z = 0$.
+	
+	The normal vectors perpendicular to the planes are $(5, 3, 2)$ and $(3, 4, -7)$. Projecting onto a two-dimensional view the planes in such a way that the intersecting line collapses to the point, we see that the planes as well as specifically placed normal vectors arrange in such a manner as to produce a quadrilateral (specifically a kite). Two angles are $\pi/2$, and the angle between the two normal vectors satisfies
+	\begin{gather*}
+		(5, 3, 2) \cdot (3, 4, -7) = 2 \sqrt{703} \cos \theta \\
+		\cos \theta = \dfrac{13}{2 \sqrt{703}}
+	\end{gather*}
+	Notably, the angle of intersection of the two planes $\phi$ satisfies $\cos \phi = \cos \theta$. The corresponding angle is $1.323$ rad.
+	
+	\subsubsection*{Exercise 4}
+	Given two planes $a_ix + b_iy + c_iz + d_i = 0, \quad i = 1, 2$, prove that a necessary and sufficient condition for the planes to be parallel is
+	\begin{gather*}
+		\dfrac{a_1}{a_2} = \dfrac{b_1}{b_2} = \dfrac{c_1}{c_2}
+	\end{gather*}
+	where the convention is made that a zero in the denominator results in a corresponding zero in the numerator.
+	
+	This condition with this convention is equivalent to the following three conditions
+	\begin{gather*}
+		a_1 = \lambda a_2 \\
+		b_1 = \lambda b_2 \\
+		c_1 = \lambda c_2
+	\end{gather*}
+	
+	Suppose that the two planes are parallel. Since they are parallel, they are also perpendicular to the same normal line. The normal vector for the first plane is given by $n_1 = (a_1, b_1, c_1)$ and the normal vector for the second plane is given by $n_2 = (a_2, b_2, c_2)$, and as these normal vectors are collinear, it satisfies
+	\begin{gather*}
+		n_1 = \lambda n_2 \implies (a_1, b_1, c_1) = \lambda (a_2, b_2, c_2)
+	\end{gather*}
+	for some $\lambda \neq 0$. This is nothing more than
+	\begin{gather*}
+		(a_1, b_1, c_1) = (\lambda a_2, \lambda b_2, \lambda c_2)
+	\end{gather*}
+	thus completing the proof.
+	
+	Now suppose that two planes have coefficients which relate to one another in this manner
+	\begin{gather*}
+		\dfrac{a_1}{a_2} = \dfrac{b_1}{b_2} = \dfrac{c_1}{c_2}
+	\end{gather*}
+	This is equivalent to 
+	\begin{gather*}
+		a_1 = \lambda a_2 \\
+		b_1 = \lambda b_2 \\
+		c_1 = \lambda c_2
+	\end{gather*}
+	for some $\lambda \neq 0$. Collecting the terms, we get $(a_1, b_1, c_1) = (\lambda a_2, \lambda b_2, \lambda c_2)$. Clearly, $(a_1, b_1, c_1)$ is the normal vector corresponding to the plane $a_1x + b_1y + c_1z + d_1 = 0$. The other vector $(\lambda a_2, \lambda b_2, \lambda c_2) = \lambda (a_2, b_2, c_2)$ is a multiple of the vector $(a_2, b_2, c_2)$, the normal vector corresponding to the plane $a_2x + b_2y + c_2z + d_2 = 0$.
+	
+	Since both normal vectors are parallel to each other, they are each perpendicular to both planes, meaning the planes are parallel to each other.
+	
+	\subsubsection*{Exercise 5}
+	Show that the equation of a plane passing through three noncollinear points $p_1 = (x_1, y_1, z_1)$, $p_2 = (x_2, y_2, z_2)$, and $p_3 = (x_3, y_3, z_3)$ satisfies
+	\begin{gather*}
+		\left( (p - p_1) \wedge (p - p_2) \right) \cdot (p - p_3) = 0
+	\end{gather*}
+	where $p = (x, y, z)$ is an arbitrary point on the plane.
+	
+	Intuitively, we can see that the vectors $(p - p_1)$, $(p - p_2)$, and $(p - p_3)$ lie on the plane in an arbitrary manner, and so by taking the vector product of two of them, $\left( (p - p_1) \wedge (p - p_2) \right)$, we get a new vector perpendicular to the plane. We also know that any other vector on the plane is perpendicular to this new vector, and since two orthogonal vectors $u$ and $v$ satisfies $u \cdot v = 0$, we have
+	\begin{gather*}
+		\left( (p - p_1) \wedge (p - p_2) \right) \cdot (p - p_3) = 0
+	\end{gather*}
+	
+	Now verifying it is a plane. On the right hand side, expand the inner part
+	\begin{gather*}
+		(p - p_1) \wedge (p - p_2) = (p \wedge p) - (p \wedge p_2) - (p_1 \wedge p) + (p_1 \wedge p_2) \\
+		= (p \wedge p_1) - (p \wedge p_2) + (p_1 \wedge p_2)
+	\end{gather*}
+	Then distribute out the dot product. Recall that $(v \wedge u) \cdot v = 0$
+	\begin{gather*}
+		\left( (p \wedge p_1) - (p \wedge p_2) + (p_1 \wedge p_2) \right) \cdot (p - p_3) \\
+		= (p_1 \wedge p_2) \cdot p - \left( (p \wedge p_1) \cdot p_3 - (p \wedge p_2) \cdot p_3 + (p_1 \wedge p_2) \cdot p_3 \right) \\
+		= p \cdot (p_1 \wedge p_2) - \left( p_3 \cdot (p \wedge p_1) - p_3 \cdot (p \wedge p_2) + p_3 \cdot (p_1 \wedge p_2) \right)
+	\end{gather*}	
+	Using the cyclic property of the vector product $a \cdot (b \wedge c) = c \cdot (a \wedge b) = b \cdot (c \wedge a)$, we have the following
+	\begin{gather*}
+		p \cdot (p_1 \wedge p_2) - \left( p \cdot (p_1 \wedge p_3) - p \cdot (p_2 \wedge p_3) + p_3 \cdot (p_1 \wedge p_2) \right) = 0
+	\end{gather*}
+	Rearranging and collecting the terms, we get
+	\begin{gather*}
+		p \cdot (p_1 \wedge p_2 - p_1 \wedge p_3 + p_2 \wedge p_3) = p_3 \cdot (p_1 \wedge p_2)
+	\end{gather*}
+	We see here that $p_1 \wedge p_2 - p_1 \wedge p_3 + p_2 \wedge p_3$ clearly defines a constant vector $n$, and $p_3 \cdot (p_1 \wedge p_2)$ is a constant $d$ as well, meaning
+	\begin{gather*}
+		p \cdot n = d
+	\end{gather*}
+	This is a linear function which defines a plane, thus completing the verification.
+	
+	\subsubsection*{Exercise 6}
+	Given two nonparallel planes $a_ix + b_iy + c_iz + d_i = 0, \quad i = 1, 2$, show that their line of intersection may be parameterized as
+	\begin{gather*}
+		x - x_0 = u_1t \\
+		y - y_0 = u_2t \\
+		z - z_0 = u_3t
+	\end{gather*}
+	where $(x_0, y_0, z_0)$ is a point on the intersection and $u = (u_1, u_2, u_3)$ is the vector product $u = n_1 \wedge n_2, n_i = (a_i, b_i, c_i), i = 1, 2$.
+	
+	We could attempt to find the intersection of the plane simply by brute forcing it and solving the system of equations. Alternatively, we could look at the negative space, the restrictions itself which bind the plane.
+
+	Given the two planes $a_ix + b_iy + c_iz + d_i = 0, \quad i = 1, 2$, shifting this plane so that it crosses the origin (setting $d_i = 0$) reveals that the vectors on each of the plane are restricted to two dimensions, and so the intersection of the planes (as they are nonparallel) is restricted to a sole dimension.
+	
+	As each of the planes are restricted to two dimensions, there exists a vector which only moves in the dimension that the plane cannot (the normal vector). Let $n_1$ be the normal of the first plane, and let $n_2$ be the normal of the second plane. Finally, from here, we know that $n_1 \wedge n_2$ is perpendicular to both $n_1$ and $n_2$, and so it is parallel to both planes as well.
+	
+	Now consider the line of intersection of the nonparallel planes. This plane is restricted to a single dimension, but it must be parallel to both planes. And since we have shown that $n_1 \wedge n_2$ is also parallel to both planes, the line of intersection is collinear to $n_1 \wedge n_2$.
+	
+	Finally, we simply need a point from the line of intersection to get the equation for the line $(x_0, y_0, z_0)$. With this, we have that every point $(x, y, z)$ of the intersecting line must satisfy
+	\begin{gather*}
+		(x, y, z) = t (n_1 \wedge n_2) + (x_0, y_0, z_0) \\
+		(x, y, z) = t (u_1, u_2, u_3) + (x_0, y_0, z_0)
+	\end{gather*}
+	and this is equivalent to
+	\begin{gather*}
+		x - x_0 = u_1t \\
+		y - y_0 = u_2t \\
+		z - z_0 = u_3t
+	\end{gather*}
+	
+	\subsubsection*{Exercise 7}
+	Show that a necessary and sufficient condition for the plane $ax + by + cz + d = 0$ and the line $x - x_0 = u_1t$, $y - y_0 = u_2t$, $z - z_0 = u_3t$ to be parallel is
+	\begin{gather*}
+		au_1 + bu_2 + cu_3 = 0
+	\end{gather*}
+	
+	Suppose that the plane and the line is parallel. Then the normal vector $(a, b, c)$ of the plane is perpendicular to the vector $(u_1, u_2, u_3)$ spanning the line. Thus
+	\begin{gather*}
+		(a, b, c) \cdot (u_1, u_2, u_3) = 0 \\
+		au_1 + bu_2 + cu_3 = 0
+	\end{gather*}
+	or $au_1 + bu_2 + cu_3 = 0$
+	
+	Now suppose that a plane $ax + by + cz + d = 0$ and a line $x - x_0 = u_1t$, $y - y_0 = u_2t$, $z - z_0 = u_3t$ satisfies
+	\begin{gather*}
+		au_1 + bu_2 + cu_3 = 0
+	\end{gather*}
+	Clearly, $(a, b, c) \cdot (u_1, u_2, u_3) = 0$, and so the line $x - x_0 = u_1t$, $y - y_0 = u_2t$, $z - z_0 = u_3t$ is perpendicular to the vector $(a, b, c)$. But the vector is also perpendicular to the plane $ax + by + cz + d = 0$. And so the line and the parallel is parallel to each other.
+	
+	\subsubsection*{Exercise 8}
+	Prove that the distance $\rho$ between the nonparallel lines
+	\begin{gather*}
+		x - x_0 = u_1t, y - y_0 = u_2t, z - z_0 = u_3t \\
+		x - x_1 = v_1\tau, y - y_1 = v_2\tau, z - z_1 = v_3\tau
+	\end{gather*}
+	is given by
+	\begin{gather*}
+		\rho = \dfrac{|(u \wedge v) \cdot r|}{|u \wedge v|}
+	\end{gather*}
+	where $u = (u_1, u_2, u_3)$, $v = (v_1, v_2, v_3)$, and $r = (x_0 - x_1, y_0 - y_1, z_0 - z_1)$
+	
+	In the case where the lines intersect, this equation is trivially true. So suppose that these lines are skewed. For an arbitrary point $p_0 = (a_0, b_0, c_0)$ on the first line and $p_1 = (a_1, b_1, c_1)$ on the second line, the distance between them is given by
+	\begin{gather*}
+		d^2 = f(t, \tau) = (a_0 - a_1)^2 + (b_0 - b_1)^2 + (c_0 - c_1)^2
+	\end{gather*}
+	where
+	\begin{gather*}
+		a_0 - a_1 = (u_1t - v_1\tau) + (x_0 - x_1) \\
+		b_0 - b_1 = (u_2t - v_2\tau) + (y_0 - y_1) \\
+		c_0 - c_1 = (u_3t - v_3\tau) + (z_0 - z_1)
+	\end{gather*}
+	
+	To minimize the distance, the points $p_0$ and $p_1$ are chosen such that the following conditions are satisfied
+	\begin{gather*}
+		\dfrac{\partial f}{\partial t} = 0, \quad \dfrac{\partial f}{\partial \tau} = 0
+	\end{gather*}
+	Solving for the conditions
+	\begin{gather*}
+		\dfrac{\partial f}{\partial t} = 2 (a_0 - a_1) u_1 + 2 (b_0 - b_1) u_2 + 2 (c_0 - c_1) u_3 \\
+		= 2 (a_0 - a_1, b_0 - b_1, c_0 - c_1) \cdot u = 2 (p_0 - p_1) \cdot u = 0 
+	\end{gather*}
+	and
+	\begin{gather*}
+		\dfrac{\partial f}{\partial \tau} = 2 (a_0 - a_1) \cdot -v_1 + 2 (b_0 - b_1) \cdot -v_2 + 2 (c_0 - c_1) \cdot -v_3 \\
+		= -2 (a_0 - a_1, b_0 - b_1, c_0 - c_1) \cdot v = -2 (p_0 - p_1) \cdot v = 0 
+	\end{gather*}
+	
+	What these conditions tell us is that the line $p_0p_1$ is orthogonal to both lines, and as the span of $u$ and $v$ is two dimensional, it leaves on dimension remaining for $p_0p_1$, given by the vector $u \wedge v$. The line $p_0p_1$ thus satisfies
+	\begin{gather*}
+		(x, y, z) - m = (u \wedge v)s
+	\end{gather*}
+	for some point $m$ on the line $p_0p_1$. Thus
+	\begin{gather*}
+		p_0 - m = (u \wedge v)s_0 \\
+		p_1 - m = (u \wedge v)s_1
+	\end{gather*}
+	which results in
+	\begin{gather*}
+		p_0 - p_1 = (s_0 - s_1) (u \wedge v)
+	\end{gather*}
+	We also know that
+	\begin{gather*}
+		p_0 - p_1 = ut - v\tau + (x_0 - x_1, y_0 - y_1, z_0 - z_1) = ut - v\tau + r
+	\end{gather*}
+	To get rid of the two terms on the right hand side involving $u$ and $v$, take the dot product of the equation with $u \wedge v$
+	\begin{gather*}
+		(p_0 - p_1) \cdot (u \wedge v) = (ut - v\tau + r) \cdot (u \wedge v) \\
+		= ut \cdot (u \wedge v) - v\tau \cdot (u \wedge v) + r \cdot (u \wedge v) = r \cdot (u \wedge v)
+	\end{gather*}
+	We know that $|a \cdot b| = |a||b| \cos \theta$, where $\theta$ is the angle between $a$ and $b$. Since $u \wedge v$ and $p_0 - p_1$ are collinear, the angle between them is zero, and so
+	\begin{gather*}
+		|(p_0 - p_1) \cdot (u \wedge v)| = |p_0 - p_1| |u \wedge v|
+	\end{gather*}
+	Thus $|p_0 - p_1| |u \wedge v| = |r \cdot (u \wedge v)|$ or
+	\begin{gather*}
+		|p_0 - p_1| = \dfrac{|r \cdot (u \wedge v)|}{|u \wedge v|}
+	\end{gather*}
+	
+	\subsubsection*{Exercise 9}
+	Determine the angle of intersection of the plane $3x + 4y + 7z + 8 = 0$
+	and the line $x - 2 = 3t$, $y - 3 = 5t$, $z - 5 = 9t$.
+	
+	The normal vector of the plane is $(3, 4, 7)$ and the vector parallel to the line is $(3, 5, 9)$. The angle between these two vectors is
+	\begin{gather*}
+		|(3, 4, 7) \cdot (3, 5, 9)| = |(3, 4, 7)| |(3, 5, 9)| \cos \phi \\
+		\cos \phi = \dfrac{92}{\sqrt{8510}}
+	\end{gather*}
+	$\phi = 0.07359$ rad or $\phi = 4.216^\circ$. Therefore, the angle between the plane and the line is $\theta = \pi/2 - \phi = 1.49721$ rad or $\theta = 85.784^\circ$
+	
+	\subsubsection*{Exercise 10}
+	Show that for two vectors $u, v \in \R^2$, the signed area of the parallelogram generated by it is given by
+	\begin{gather*}
+		A = \begin{vmatrix}
+			u_1 & u_2 \\
+			v_1 & v_2
+		\end{vmatrix}
+	\end{gather*}
+	
+	Recall that the area of a triangle can be given if the lengths of two line segments $a, b$ as well as the angle $\theta$ between them is known
+	\begin{gather*}
+		A = \dfrac{1}{2} ab \sin \theta
+	\end{gather*}
+	
+	Therefore, the area of the corresponding parallelogram is
+	\begin{gather*}
+		A = ab \sin \theta
+	\end{gather*}
+	
+	In this case, $u$ be one side and $v$ be the other, and let $\theta$ be the angle between them. We know that
+	\begin{gather*}
+		\cos \theta = \dfrac{u \cdot v}{|u||v|}
+	\end{gather*}
+	and so
+	\begin{gather*}
+		\sin^2 \theta = 1 - \cos^2 \theta = \dfrac{|u|^2|v|^2 - (u \cdot v)^2}{|u|^2|v|^2}
+	\end{gather*}
+	
+	Therefore, the area of the parallelogram generated by $u$ and $v$ is
+	\begin{gather*}
+		A^2 = (ab \sin \theta)^2 = |u|^2|v|^2 \cdot \dfrac{|u|^2|v|^2 - (u \cdot v)^2}{|u|^2|v|^2} \\
+		= |u|^2|v|^2 - (u \cdot v)^2 = (u \cdot u) (v \cdot v) - (v \cdot u) (u \cdot v) \\ \\
+		=
+		\begin{vmatrix}
+			u \cdot u & v \cdot u \\
+			u \cdot v & v \cdot v
+		\end{vmatrix}
+	\end{gather*}
+	Recall that
+	\begin{gather*}
+		\begin{bmatrix}
+			u \cdot u & v \cdot u \\
+			u \cdot v & v \cdot v
+		\end{bmatrix}
+		=
+		\begin{bmatrix} u_1 & u_2 \\ v_1 & v_2 \end{bmatrix}
+		\begin{bmatrix} u_1 & v_1 \\ u_2 & v_2 \end{bmatrix}
+	\end{gather*}
+	and that $\det(AA^T) = \det(A)\det(A^T) = \det(A)^2$. Therefore, 
+	\begin{gather*}
+		A^2 = 
+		\begin{vmatrix}
+			u \cdot u & v \cdot u \\
+			u \cdot v & v \cdot v
+		\end{vmatrix}
+		=
+		\begin{vmatrix} u_1 & u_2 \\ v_1 & v_2 \end{vmatrix}^2
+	\end{gather*}
+	and so
+	\begin{gather*}
+		A = \begin{vmatrix} u_1 & u_2 \\ v_1 & v_2 \end{vmatrix}
+	\end{gather*}
+	
+	\subsubsection*{Exercise 11}
+	Show that the volume V of a parallelepiped generated by three linearly independent vectors $u, v, w \in \R^3$ is given by $V = |(u \wedge v) \cdot w|$. Furthermore, show that
+	\begin{gather*}
+		V^2 = 
+		\begin{vmatrix}
+			u \cdot u & u \cdot v & u \cdot w \\
+			v \cdot u & v \cdot v & v \cdot w \\
+			w \cdot u & w \cdot v & w \cdot w
+		\end{vmatrix}
+	\end{gather*}
+	
+	Recall that the volume of an parallelepiped is the area of the base times the height ($V = Ah$). The area of the base is $A = |u \wedge v|$, and the height $h$ is given by
+	\begin{gather*}
+		\dfrac{h}{|w|} = \cos \theta
+	\end{gather*}
+	where $\theta$ is the angle between $w$ and $u \wedge v$, given by
+	\begin{gather*}
+		\cos \theta = \dfrac{w \cdot (u \wedge v)}{|w||u \wedge v|}
+	\end{gather*}
+	Therefore,
+	\begin{gather*}
+		\dfrac{h}{|w|} = \dfrac{(u \wedge v) \cdot w}{|w||u \wedge v|} \\ \\
+		h = \dfrac{(u \wedge v) \cdot w}{|u \wedge v|}
+	\end{gather*}
+	and so $V = Ah = (u \wedge v) \cdot w$.
+	
+	From the definition of the vector product
+	\begin{gather*}
+		(u \wedge v) \cdot w = \det(u, v, w) =
+		\begin{vmatrix}
+			u_1 & u_2 & u_3 \\
+			v_1 & v_2 & v_3 \\
+			w_1 & w_2 & w_3
+		\end{vmatrix}
+	\end{gather*}
+	Recall that
+	\begin{gather*}
+		\begin{bmatrix}
+			u \cdot u & u \cdot v & u \cdot w \\
+			v \cdot u & v \cdot v & v \cdot w \\
+			w \cdot u & w \cdot v & w \cdot w
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			u_1 & u_2 & u_3 \\
+			v_1 & v_2 & v_3 \\
+			w_1 & w_2 & w_3
+		\end{bmatrix}
+		\begin{bmatrix}
+			u_1 & v_1 & w_1 \\
+			u_2 & v_2 & w_2 \\
+			u_3 & v_3 & w_3 \\
+		\end{bmatrix}
+		\\ =
+		\begin{bmatrix}
+			u_1 & u_2 & u_3 \\
+			v_1 & v_2 & v_3 \\
+			w_1 & w_2 & w_3
+		\end{bmatrix}
+		\begin{bmatrix}
+			u_1 & u_2 & u_3 \\
+			v_1 & v_2 & v_3 \\
+			w_1 & w_2 & w_3
+		\end{bmatrix}^T
+	\end{gather*}
+	and so $V^2$ is
+	\begin{gather*}
+		V^2 = \det(u, v, w)^2 = 
+		\begin{vmatrix}
+			u_1 & u_2 & u_3 \\
+			v_1 & v_2 & v_3 \\
+			w_1 & w_2 & w_3
+		\end{vmatrix}^2
+		= 
+		\begin{vmatrix}
+			u \cdot u & u \cdot v & u \cdot w \\
+			v \cdot u & v \cdot v & v \cdot w \\
+			w \cdot u & w \cdot v & w \cdot w
+		\end{vmatrix}
+	\end{gather*}
+	
+	\subsubsection*{Exercise 12}
+	Given the vectors $v \neq 0$ and $w$, show that there exists a vector $u$ such that $u \wedge v = w$ if and only if $v$ is orthogonal to $w$.
+	
+	Suppose that there does exist such a vector $u$ such that $u \wedge v = w$. Then $w \cdot u = (u \wedge v) \cdot v = \det(u, v, v) = 0$, and so $w$ is orthogonal to $v$.
+	
+	To show the converse, suppose that $w$ and $v$ are orthogonal to each other, i.e. $w \cdot v = 0$. Let $u_1 = k_1(w \wedge v)$ for a yet to be determined $k_1$. Then
+	\begin{gather*}
+		u_1 \wedge v = k_1(w \wedge v) \wedge v = k_1 (v \wedge (v \wedge w)) = k_1 ((v \cdot w)v - (v \cdot v)w) = -k_1 |v|^2 w
+	\end{gather*}
+	and so if we let $k_1 = -1/|v|^2$, 
+	\begin{gather*}
+		u_1 \wedge v = -\dfrac{1}{|v|^2} (w \wedge v) \wedge v = \dfrac{1}{|v|^2} v \wedge (w \wedge v) = \dfrac{1}{|v|^2} (w(v \cdot v) - v(v \cdot w)) \\
+		= \dfrac{1}{|v|^2} (w |v|^2 - 0) = w
+	\end{gather*}
+	
+	It is possible to construct another vector $u_2 \neq u_1$ such that $u_2 \wedge v = w$, and this is because countless directions can be chosen as long as $u_2$ is scaled properly and it and $v$ spans the two dimensions that $w$ does not.
+	
+	Constructing a more general example, consider $u_g = k_g (a(w \wedge v) + bv)$. Clearly $u_g$ lies on the plane created by the span of $u_1$ and $v$. Observe that
+	\begin{gather*}
+		u_2 \wedge v = k_g(a(w \wedge v) + bv) \wedge v = ak_g(w \wedge v) \wedge v + bk_g (v \wedge v) \\
+		= ak_g (v \wedge (v \wedge w)) = ak_g ((v \cdot w)v - (v \cdot v)w) = -ak_g |v|^2 w
+	\end{gather*}
+	and so if we let $k_2 = -1/a|v|^2$,
+	\begin{gather*}
+		u_2 \wedge v = -\dfrac{1}{a|v|^2} (a(w \wedge v) + bv) \wedge v = -\dfrac{a}{a|v|^2} (w \wedge v) \wedge v - \dfrac{b}{a|v|^2} v \wedge v \\
+		= -\dfrac{1}{|v|^2} (v \wedge (v \wedge w)) = -\dfrac{1}{|v|^2} ((v \cdot w)v - (v \cdot v)w) = \dfrac{v \cdot v}{|v|^2} w = w
+	\end{gather*}
+	
+	\subsubsection*{Exercise 13}
+	Let $u(t) = (u_1(t), u_2(t))$ and $v(t) = (v_1(t), v_2(t))$ be differentiable maps from the interval $(a, b)$ into $\R^3$. If the derivatives $u'(t)$ and $v'(t)$ satisfy the conditions
+	\begin{gather*}
+		u'(t) = au(t) + bv(t), \qquad v'(t) = cu(t) - av(t)
+	\end{gather*}
+	where $a$, $b$, and $c$ are constants, show that $u(t) \wedge v(t)$ is a constant vector.
+	
+	Let $f(t) = u(t) \wedge v(t)$. Then $f'(t) = u'(t) \wedge v(t) + u(t) \wedge v'(t)$. Note that
+	\begin{gather*}
+		u'(t) \wedge v(t) = (au(t) + bv(t)) \wedge v(t) \\
+		= a u(t) \wedge v(t) - b v(t) \wedge v(t) = a u(t) \wedge v(t)
+	\end{gather*}
+	and
+	\begin{gather*}
+		u(t) \wedge v'(t) = u(t) \wedge (cu(t) - av(t)) \\
+		= c u(t) \wedge u(t) - a u(t) \wedge v(t) = - a u(t) \wedge v(t)
+	\end{gather*}
+	and so
+	\begin{gather*}
+		f'(t) = a u(t) \wedge v(t) - a u(t) \wedge v(t) = 0
+	\end{gather*}
+	From the fundamental theorem of calculus, $f(t) = u(t) \wedge v(t) = c$ for some $c \in \R$.
+	
+	\subsubsection*{Exercise 14}
+	Find all unit vectors orthogonal to $(2, 2, 1)$ and parallel to the plane determined by the points $(0, 0, 0), (1, -2, 1), (-1, 1, 1)$.
+	
+	Any vector $v$ orthogonal to $(2, 2, 1)$ has to satisfy $v \cdot (2, 2, 1)$, and if it is parallel to the plane determined by those points, it must be perpendicular to the normal vector of the plane.
+	
+	Two vectors that lie on the plane are $(1, -2, 1)$ and $(-1, 1, 1)$, and so vector product produces the normal vector of the plane.
+	\begin{gather*}
+		(1, -2, 1) \wedge (-1, 1, 1) = 
+		\begin{vmatrix}
+			-2 & 1 \\
+			1 & 1
+		\end{vmatrix} e_1 - 
+		\begin{vmatrix}
+			1 & 1 \\
+			-1 & 1
+		\end{vmatrix} e_2 + 
+		\begin{vmatrix}
+			1 & -2 \\
+			-1 & 1
+		\end{vmatrix} e_3 \\
+		= (-3, -2, -1)
+	\end{gather*}
+	
+	We have two conditions, $v \cdot (2, 2, 1) = 0$ and $v \cdot (-3, -2, -1) = 0$.
+	\begin{gather*}
+		2v_1 + 2v_2 + v_3 = 0 \\
+		-3v_1 - 2v_2 - v_3 = 0
+	\end{gather*}
+	From here, we immediately note that $v_1 = 0$, and so $v_3 = -2v_2$. Any unit vector satisfying the conditions has to be of the form $(0, t, -2t)$.
+	\begin{gather*}
+		|(0, t, -2t)| = 1 \implies t = \pm \dfrac{\sqrt{5}}{5}
+	\end{gather*}
+	
+	The unit vectors orthogonal to $(2, 2, 1)$ and parallel to the plane determined by the points $(0, 0, 0), (1, -2, 1), (-1, 1, 1)$ are
+	\begin{gather*}
+		\left( 0, \dfrac{\sqrt{5}}{5}, - \dfrac{2\sqrt{5}}{5} \right) \qquad \left( 0, -\dfrac{\sqrt{5}}{5}, \dfrac{2\sqrt{5}}{5} \right)
+	\end{gather*}
+	
+	
+	\subsection*{Section 5}
+	While a curve $\alpha$ can be parameterized by an arbitrary parameter $t$, another way to parameterize it is with the arc length $s$. What this means is that for any curve $\alpha \colon I = (a, b) \to \R^3$, $|\alpha'(s)| = 1$, i.e. the tangent vector $\alpha'(s)$ is always a unit vector.
+	
+	The reason why one would prefer this parametrization over the alternative parametrizations is because it removes arbitrary parametrization. We could have for example, replaced the parameter $t$ with the parameter $u^3$, related by $t(u) = u^3$ and adjusted every equation dependent on $t$ to have been dependent on $u$ instead. By using a parametrization dependent on the curve itself, we have a standard to reference. Furthermore, there are quantities associated with the curve that become easier to understand with this parametrization.
+	
+	\subsubsection*{Definition}
+	Let $\alpha \colon I \to \R^3$ be a curve parameterized by arc length $s \in I$. The number $|\alpha''(s)| = k(s)$ is called the curvature of $\alpha$ at $s$. \\
+	
+	A straight line $\alpha(s) = us + v$, where $u, v$ are constant vectors (with $|u| = 1$), has curvature $k = |\alpha''(s)| = 0$, and any curve with curvature $k = 0$ is a straight line.
+	
+	Note that a change in the orientation results in the change in the direction, that is, if $\beta(-s) = \alpha(s)$, then
+	\begin{gather*}
+		\beta(t) = \alpha(-t) \\
+		\dfrac{d \beta}{d t} (t) = \dfrac{d}{d t} \alpha(-t) = -\alpha'(-t) \\
+		\dfrac{d \beta}{d (-s)} (-s) = -\alpha'(s) = -\dfrac{d \alpha}{d s} (s)
+	\end{gather*}
+	Thus $|\alpha''(s)|$ remains invariant under a change in orientation.
+	
+	\subsubsection*{Definition}
+	At points where $k(s) \neq 0$, there is a unit vector $n(s)$ in the direction of $\alpha''(s)$ given by $\alpha''(s) = k(s)n(s)$. We know that $|\alpha'(s)| = 1$ and so $|\alpha'(s)|^2 = \alpha'(s) \cdot \alpha'(s) = 1$. Differentiating with respect to $s$, we get
+	\begin{gather*}
+		2 \alpha'(s) \cdot \alpha''(s) = 0
+	\end{gather*}
+	and so $n(s)$ is normal to $\alpha'(s)$ and is called the normal vector at $s$. The plane determined by the unit tangent and normal vectors $\alpha'(s)$ and $n(s)$ is called the osculating plane at $s$.
+	
+	For now, denote the unit tangent vector as $t(s) = \alpha'(s)$. The unit vector $b(s) = t(s) \wedge n(s)$ is known as the binormal vector at $s$, and it is normal to the osculating plane. Thus, $|b'(s)|$ measures the rate of change of the neighboring osculating planes with the osculating plane at $s$, i.e. how rapidly the curve pulls away from the osculating plane at $s$, in a neighborhood of $s$.
+	
+	Since $|b| = 1$, $|b|^2 = b \cdot b = 1$ and so $\dfrac{d}{ds} (b \cdot b) = 2b \cdot b' = 0$, i.e. $b$ is orthogonal to $b'$. Likewise, since $|t| = 1$ and $|n| = 1$, $t$ is orthogonal to $t'$ and $n$ is orthogonal to $n'$. We thus have three equations
+	\begin{gather*}
+		t \cdot t' = 0, \quad n \cdot n' = 0, \quad b \cdot b' = 0
+	\end{gather*}
+	Furthermore, note that since $t = \alpha'$, $n = \dfrac{\alpha''}{k}$, and $|a'| = 1$
+	\begin{gather*}
+		\dfrac{d}{ds}(\alpha' \cdot \alpha') = 2 (\alpha' \cdot \alpha'') = 0 \\
+		2 (t \cdot kn) = 2k (t \cdot n) = 0
+	\end{gather*}
+	and so $t$ is orthogonal to $n$. And as $b$ is orthogonal to both $t$ and $n$ by definition, we have the orthonormal set $\{t, n, b\}$.
+	
+	Observe that
+	\begin{gather*}
+		b' = t' \wedge n + t \wedge n'
+	\end{gather*}
+	and since $t' = kn$, $b' = t \wedge n'$. We know that $b'$ is orthogonal to $b$ (i.e $b' \cdot b = 0$) and it is orthogonal to $t$ (which we just shown), and so, $b'$ is parallel to $n$, the last remaining basis. Thus, we may write
+	\begin{gather*}
+		b'(s) = \tau(s) n(s)
+	\end{gather*}
+	for some function $\tau(s)$.
+	
+	\subsubsection*{Definition}
+	Let $\alpha \colon I \to \R^3$ be a curve parameterized by arc length $s \in I$ such that $\alpha''(s) \neq 0$, $s \in I$. The number $\tau(s)$ defined by $b'(s) = \tau(s) n(s)$ is called the torsion of $\alpha$ at $s$. \\
+	
+	If $\alpha$ is a plane curve (i.e. $\alpha(I)$ lies on a plane), then the oscillating plane for all points is one and the same, meaning $\tau = 0$. Conversely, if $\tau = 0$ (and $k \neq 0$), we have that $b(s) = c_1$, and therefore
+	\begin{gather*}
+		\dfrac{d}{ds} (\alpha(s) \cdot b(s)) = \alpha'(s) \cdot b(s) + \alpha(s) \cdot b'(s) = t(s) \cdot b(s) = 0
+	\end{gather*}
+	It follows that $\alpha(s) \cdot b(s) = \alpha(s) \cdot c_1  = c_2$, meaning that $\alpha(s)$ is contained in the plane normal to $c_1$.
+	
+	We know that $n = b \wedge t$ since $t \wedge b = t \wedge (t \wedge n) = t(t \cdot n) - n(t \cdot t)$ and since $t \cdot t = 1$ and $n \cdot t = 0$, $t \wedge b = 0t -n = -n$. From here, note that
+	\begin{gather*}
+		n' = b' \wedge t + b \wedge t' = (\tau n) \wedge t + b \wedge (kn) = -\tau (t \wedge n) - k(n \wedge b)
+	\end{gather*}
+	We know that
+	\begin{gather*}
+		n \wedge b = n \wedge (t \wedge n) = t(n \cdot n) - n(n \cdot t) = t
+	\end{gather*}
+	and so
+	\begin{gather*}
+		n' = -\tau b - k t
+	\end{gather*}
+	The three formulas
+	\begin{gather*}
+		t' = kn \\
+		n' = -\tau b - k t \\
+		b' = \tau n
+	\end{gather*}
+	are also known as the Frenet formulas. The inverse of the curvature $R = \dfrac{1}{k}$ is called the radius of curvature at $s$. 
+	
+	Intuitively, we can think of a curve in $\R^3$ as being obtained from a straight line by bending (curvature) and twisting (torsion). If we believe this, we come to the following conjecture, which is that $k$ and $\tau$ completely describes the local behaviour of the curve. This ultimately leads to the following theorem
+	
+	\subsubsection*{Fundamental Theorem of the Local Theory of Curves}
+	Given differentiable functions $k(s) > 0$ and $\tau(s), s \in I$, there exists a regular parameterized curve $\alpha \colon I \to \R^3$ such that $s$ is the arc length, $k(s)$ is the curvature, and $\tau(s)$ is the torsion of $\alpha$. Moreover, any curve $\beta$ satisfying the same conditions, differs from $\alpha$ by a rigid motion; that is, there exists an orthogonal linear map $\rho$ of $\R^3$, with positive determinant, and a vector $c$ such that $\beta = \rho \circ \alpha + c$
+	
+	The proof of this theorem the existence and uniqueness of solutions is beyond me right now. However, the proof of uniqueness up to rigid motions is easily done.
+	
+	First note that arc length, curvature, and torsion are invariant under rigid motion. The proof of it is trivial.
+	
+	Assume two curves $\alpha = \alpha(s)$ and $\bar{\alpha} = \bar{\alpha}(s)$ satisfy the conditions $k(s) = \bar{k}(s)$ and $\tau(s) = \bar{\tau}(s)$ for $s \in I$. Let $t_0, n_0, b_0$ and $\bar{t_0}, \bar{n_0}, \bar{b_0}$ be the Frenet trihedron at $s = s_0$ corresponding to $\alpha$ and $\bar{\alpha}$ respectively. There is obviously a rigid motion which takes $\bar{\alpha}$ into $\alpha$ and $\bar{t_0}, \bar{n_0}, \bar{b_0}$ into $t_0, n_0, b_0$.
+	
+	The reason we make this mapping is that we want to establish that the local behaviour of $\alpha$ and $\bar{\alpha}$ is identical to each other, so that a slight change in $s$ would produce identical outcomes.
+	
+	The Frenet trihedrons $t_0, n_0, b_0$ and $\bar{t_0}, \bar{n_0}, \bar{b_0}$ satisfy
+	\begin{align*}
+		t' &= kn \qquad &\bar{t}' = k\bar{n} \\
+		n' &= -kt - \tau b \qquad &\bar{n}' = -k\bar{t} - \tau \bar{b} \\
+		b' &= \tau n \qquad &\bar{b}' = \tau \bar{n}
+	\end{align*}
+	
+	To capture all local behaviour, and to see if they deviate, define a function
+	\begin{gather*}
+		f(s) = \dfrac{1}{2} \left( |t - \bar{t}|^2 + |n - \bar{n}|^2 + |b - \bar{b}|^2 \right)
+	\end{gather*}
+	The derivative with respect to $s$ is
+	\begin{gather*}
+		\dfrac{df}{ds} = 
+		\left\langle t - \bar{t}, t' - \bar{t}' \right\rangle + 
+		\left\langle b - \bar{b}, b' - \bar{b}' \right\rangle + 
+		\left\langle n - \bar{n}, n' - \bar{n}' \right\rangle \\
+		= 
+		\left\langle t - \bar{t}, kn - k\bar{n} \right\rangle + 
+		\left\langle b - \bar{b}, \tau n - \tau \bar{n} \right\rangle + 
+		\left\langle n - \bar{n}, (-kt - \tau b) - (-k\bar{t} - \tau \bar{b}) \right\rangle \\
+		=
+		k \left\langle t - \bar{t}, n - \bar{n} \right\rangle + 
+		\tau \left\langle b - \bar{b}, n - \bar{n} \right\rangle +
+		\left\langle n - \bar{n}, -kt + k\bar{t} \right\rangle + 
+		\left\langle n - \bar{n}, -\tau b + \tau \bar{b} \right\rangle \\
+		= 
+		k \left\langle t - \bar{t}, n - \bar{n} \right\rangle + 
+		\tau \left\langle b - \bar{b}, n - \bar{n} \right\rangle -
+		k \left\langle n - \bar{n}, t - \bar{t} \right\rangle - 
+		\tau \left\langle n - \bar{n}, b - \bar{b} \right\rangle \\
+		= 0
+	\end{gather*}
+	Since the derivative is zero, there is no difference in local behaviour. It follows that $t(s) = \bar{t}(s), n(s) = \bar{n}(s), b(s) = \bar{b}(s)$. And since $\alpha'(s) = t = \bar{t} = \bar{\alpha}'(s)$, we get $\dfrac{d}{ds} \left( \alpha - \bar{\alpha} \right) = 0$. Thus, $\alpha(s) = \bar{\alpha}(s) + a$, where $a$ is a constant vector.
+	
+	\subsubsection*{Some Remarks}
+	Given a regular parameterized curve $\beta \colon I \to \R^3$ (not parameterized by the arc length, with $q$), it is possible to obtain a curve $\alpha \colon I \to \R^3$ parameterized by the arc length with the same trace as $\beta$. 
+	
+	The way one does this is by noting that we can describe a change in coordinates in the following manner
+	\begin{gather*}
+		s = s(t) = \int_{t_0}^t |\beta'(q)| dq, \qquad t, t_0 \in I
+	\end{gather*}
+	As $\beta$ is regular, $ds/dq = |\beta'(q)| \neq 0$, and so $s = s(q)$ has a differentiable inverse $q = q(s)$ for $s \in s(I) = J$. Now set $\alpha = \beta \circ t : J \to \R^3$. We note that $\alpha(J) = \beta(t(J)) = \beta(I)$ so $\alpha$ has the same trace as $\beta$. We also note that $|\alpha'(s)| = |\beta'(t) \cdot dt/ds| = 1$. Thus $\alpha$ has the same trace as $\beta$ and is parameterized by arc length.
+	
+	\subsubsection*{Some Remarks 2}
+	If we want to incorporate orientation in our definition of the $k(s)$, the current definition is inadequate, as it states $k(s) = |\alpha''(s)|$. We define a positive orientation on the osculating plane by having $\{ t(s), n(s) \}$ be the same orientation as $\{ e_1, e_2 \}$. With this, we redefine $k(s)$ by	
+	\begin{gather*}
+		\dfrac{dt}{ds} = kn
+	\end{gather*}
+	We have been implicitly using this redefinition, such as when $\alpha''(s) = k(s) n(s)$, but this redefinition points towards a definition of curvature which does not depend on the arc length parametrization. More formally, let $\beta : I \to \R^3$ be a regular parameterized curve with an arbitrary parameter $q$ and let $\alpha : J \to \R^3$ be the corresponding parametrization via arc length. The definition $s = s(q)$ found earlier admits an inverse $q = q(s)$ and so
+	\begin{gather*}
+		\beta(q) = \alpha(s(q)) \iff \alpha(s) = \beta(q(s))
+	\end{gather*}
+	Thus, we define the curvature of $\beta$ at $q$ as being the curvature of $\alpha$ at $s$, i.e.
+	\begin{gather*}
+		k_{\beta}(q) = k_{\alpha}(s)
+	\end{gather*}
+	We can also define the tangent, normal, and binormal vectors of $\beta$ at $q$ as being the tangent, normal, and binormal vectors of $\alpha$ at $s$
+	\begin{gather*}
+		t_{\beta}(q) = t_{\alpha}(s) \\
+		n_{\beta}(q) = n_{\alpha}(s) \\
+		b_{\beta}(q) = b_{\alpha}(s)
+	\end{gather*}
+	From here, we have
+	\begin{gather*}
+		\dfrac{dt_{\beta}}{dq} = \dfrac{dt_{\alpha}}{ds} \dfrac{ds}{dq}
+		= \left( k_{\alpha}n_{\alpha} \right) \dfrac{ds}{dq}
+		= \left( k_{\beta}n_{\beta} \right) \dfrac{ds}{dq}
+	\end{gather*}
+	Do Carmo abuses the notation, using $\alpha$ to represent both curves. It was extremely maddening to keep this in mind though, so in my case, I decided to employ $\beta$ to represent the arbitrary parametrization. In the future, use $\bar{\alpha}$ rather than $\alpha$ or $\beta$ to indicate it is a curve with the same trace as $\alpha$.
+	
+	\subsubsection*{Exercise 1}
+	Given the parameterized curve
+	\begin{gather*}
+		\alpha(s) = \left( a \cos \left( \dfrac{s}{c} \right), a \sin \left( \dfrac{s}{c} \right), \dfrac{bs}{c} \right), \qquad s \in \R 
+	\end{gather*}
+	where $c^2 = a^2 + b^2$. Show that the parameter $s$ is the arc length. Determine the curvature and torsion of $\alpha$. Determine the osculating plane of $\alpha$. Show that the lines containing $n(s)$ and passing through $\alpha(s)$ meet at the $z$ axis under a constant angle equal to $\pi/2$. Show that tangent lines to $\alpha$ make a constant angle with the $z$ axis.
+	
+	To show the parameter $s$ is the arc length, show the magnitude of the unit tangent vector is 1. We know that $\alpha'(s)$ is
+	\begin{gather*}
+		\alpha'(s) = \left( -\dfrac{a}{c} \sin \left( \dfrac{s}{c} \right), \dfrac{a}{c} \cos \left( \dfrac{s}{c} \right), \dfrac{b}{c} \right)
+	\end{gather*}
+	and so 
+	\begin{gather*}
+		|\alpha'(s)| = \sqrt{ \dfrac{a^2}{c^2} + \dfrac{b^2}{c^2} } = 1.
+	\end{gather*}
+	
+	The curvature and torsion of $\alpha$ is given by $k(s)$ and $\tau(s)$. Recall that $k(s) = |\alpha''(s)|$ so
+	\begin{gather*}
+		\alpha''(s) = \left( -\dfrac{a}{c^2} \cos \left( \dfrac{s}{c} \right), -\dfrac{a}{c^2} \sin \left( \dfrac{s}{c} \right), 0 \right)
+	\end{gather*}
+	and so
+	\begin{gather*}
+		k(s) = \sqrt{ \dfrac{a^2}{c^4} } = \dfrac{|a|}{c^2}
+	\end{gather*}
+	We know that $t(s) = \alpha'(s)$ and $n(s) = \dfrac{\alpha''(s)}{k(s)}$, which is just
+	\begin{gather*}
+		t(s) = \left( -\dfrac{a}{c} \sin \left( \dfrac{s}{c} \right), \dfrac{a}{c} \cos \left( \dfrac{s}{c} \right), \dfrac{b}{c} \right) \\
+		n(s) = \left( -\dfrac{a}{|a|} \cos \left( \dfrac{s}{c} \right), -\dfrac{a}{|a|} \sin \left( \dfrac{s}{c} \right), 0 \right)
+	\end{gather*}
+	The binormal vector $b(s) = t(s) \wedge n(s)$ is
+	\begin{gather*}
+		b(s) = \left(
+		\begin{vmatrix}
+			t_2 & t_3 \\
+			n_2 & n_3
+		\end{vmatrix}, 
+		-\begin{vmatrix}
+			t_1 & t_3 \\
+			n_1 & n_3
+		\end{vmatrix},
+		\begin{vmatrix}
+			t_1 & t_2 \\
+			n_1 & n_2
+		\end{vmatrix}
+		\right) \\
+		= \left(
+		\dfrac{ab}{|a|c} \sin \left( \dfrac{s}{c} \right),
+		-\dfrac{ab}{|a|c} \cos \left( \dfrac{s}{c} \right),
+		\dfrac{a^2}{|a|c}
+		\right)
+	\end{gather*}
+	and so the derivative $b'(s)$ is
+	\begin{gather*}
+		b'(s) 
+		= \left(
+		\dfrac{ab}{|a|c^2} \cos \left( \dfrac{s}{c} \right),
+		\dfrac{ab}{|a|c^2} \sin \left( \dfrac{s}{c} \right),
+		0
+		\right)
+	\end{gather*}
+	Thus, the torsion $\tau(s)$, defined by $b'(s) = \tau(s) n(s)$ is $\tau(s) = - \dfrac{b}{c^2}$.
+	
+	The osculating plane is generated by the vectors $t(s)$ and $n(s)$ and so is normal to $b(s)$. The equation for the osculating plane at point $\alpha(s)$ is
+	\begin{gather*}
+		\left( (p_1, p_2, p_3) - \alpha(s) \right) \cdot b(s) = 0
+	\end{gather*}
+	where $(p_1, p_2, p_3)$ is a point on the plane.
+	
+	The line containing $n(s)$ and passing through $\alpha(s)$ is given by
+	\begin{gather*}
+		\ell_{n,s}(u) = u n(s) + \alpha(s)
+	\end{gather*}
+	This line intersects at the $z$ axis when $x = 0$ and $y = 0$, i.e. when
+	\begin{gather*}
+		-\dfrac{au}{|a|} \cos \left( \dfrac{s}{c} \right) + a \cos \left( \dfrac{s}{c} \right) = 0 \\
+		-\dfrac{au}{|a|} \sin \left( \dfrac{s}{c} \right) + a \sin \left( \dfrac{s}{c} \right) = 0
+	\end{gather*}
+	Simplifying and rearranging terms, we get $u = -|a|$. Therefore, the line $\ell_{n,s}(u)$ does indeed intersect with the $z$ axis. Now, we solely have to find the angle of the vectors encoding the direction. For $\ell_{n,s}$, that is $n(s)$ and for the $z$ axis, that is $(0, 0, 1)$. Therefore,
+	\begin{gather*}
+		\cos \theta = \dfrac{n(s) \cdot (0, 0, 1)}{|n(s)||(0, 0, 1)|} = 0
+	\end{gather*}
+	and so $\theta = \pi/2$.
+	
+	The tangent lines of $\alpha$ is given by
+	\begin{gather*}
+		\ell_{t,s}(u) = ut(s) + \alpha(s)
+	\end{gather*}
+	This line does not always intersect, so the angle it makes with the $z$ axis can only be understood with respect to the direction vectors $t(s)$ and $(0, 0, 1)$.
+	\begin{gather*}
+		\cos \theta = \dfrac{t(s) \cdot (0, 0, 1)}{|t(s)||(0, 0, 1)|} = \dfrac{b}{c}
+	\end{gather*}
+	and so $\theta = \arccos \left(\dfrac{b}{c}\right)$.
+	
+	\subsubsection*{Exercise 2}
+	Show that the torsion $\tau$ of $\alpha$ is given by
+	\begin{gather*}
+		\tau(s) = - \dfrac{ (\alpha'(s) \wedge \alpha''(s)) \cdot \alpha'''(s) }{ |k(s)|^2 }
+	\end{gather*}
+	
+	Recall that $b = t \wedge n$, $a'' = kn$, and $a' = t$. Therefore, $b = t \wedge n = \alpha' \wedge (\alpha'' / k) = (\alpha' \wedge \alpha'') / k$ and
+	\begin{gather*}
+		b' = \dfrac{\alpha' \wedge \alpha'''}{k} - \dfrac{k'(\alpha' \wedge \alpha'')}{k^2}
+	\end{gather*}
+	However, we also know that $b' = \tau n = \tau (\alpha'' / k)$ and so 
+	\begin{gather*}
+		\tau \left( \dfrac{\alpha''}{k} \right) = \dfrac{\alpha' \wedge \alpha'''}{k} - \dfrac{k'(\alpha' \wedge \alpha'')}{k^2} \\
+		\tau \alpha'' \cdot \alpha'' = (a' \wedge \alpha''') \cdot \alpha''  - \dfrac{k'}{k} (\alpha' \wedge \alpha'') \cdot \alpha'' \\
+		\tau (kn \cdot kn) = (\alpha'' \wedge \alpha') \cdot \alpha''' \\
+		\tau k^2 (n \cdot n) = - (\alpha' \wedge \alpha'') \cdot \alpha''' \\
+		\tau = - \dfrac{(\alpha' \wedge \alpha'') \cdot \alpha'''}{k^2}
+	\end{gather*}
+	
+	\subsubsection*{Exercise 3}
+	Let $\alpha(I) \subset \R^2$ be a parameterized curve, and assume that $k(s) \neq 0, \forall s$ (that is, $k(s) > 0, \forall s$ or $k(s) < 0, \forall s$). Transport the vectors $t(s)$ parallel to themselves so that their origins coincide with the origin of $\R^2$. The endpoints of $t(s)$ describe a parameterized curve $s \to t(s)$ called the indicatrix of tangents of $\alpha$. Let $\theta(s)$ be the angle from $e_1$ to $t(s)$ in the orientation of $\R^2$. Prove that the indicatrix of tangents is a regular parameterized curve, and that $dt/ds = (d\theta/ds)n$, i.e. $k = d\theta/ds$.
+	
+	
+	Since $\forall s, k(s) \neq 0, |n(s)| = 1$ and $t'(s) = k(s)n(s)$, we that $|t'(s)| = |k(s)||n(s)| = |k(s)| > 0$ for all $s \in I$. Therefore, $t(s)$ is a regular parameterized curve.
+	
+	To show that $dt/ds = (d\theta/ds)n$, first recall that $t$ is orthogonal to $n$ since $t \cdot n = 0$. The indicatrix lies on the unit circle since both $t$ and $n$ are transported to the origin. That means if $t$ makes an angle $\theta$ at $s$, then $n$ makes the angle $\theta + \pi/2$. On a circle, the tangent vector is perpendicular to the circle at that point, and so the rate of change in the tangent vector of the circle is equivalent to the rate of change of the angle and the direction it is pointing in.
+	
+	Formally, we write
+	\begin{gather*}
+		t(s) = \left( \cos \theta(s), \sin \theta(s) \right) \\
+		n(s) = \left( \cos \left( \theta(s) + \pi/2 \right), \sin \left( \theta(s) + \pi/2 \right) \right)
+		= \left( -\sin \theta(s), \cos \theta(s) \right)
+	\end{gather*}
+	Then 
+	\begin{gather*}
+		\dfrac{dt}{ds} = \left( -\sin \theta(s) \cdot \dfrac{d\theta}{ds}, \cos \theta(s) \cdot \dfrac{d\theta}{ds} \right) \\
+		= \dfrac{d\theta}{ds} \cdot \left( -\sin \theta(s), \cos \theta(s) \right)
+		= \dfrac{d\theta}{ds} n
+	\end{gather*}
+	and so $k = \dfrac{d\theta}{ds}$
+	
+	\subsubsection*{Exercise 4}
+	Assume that all normals of a parameterized curve pass through a fixed point. Show that the trace of the curve is contained in a circle.
+	
+	Let $C$ be the fixed point, and let $\alpha(s)$ be an arbitrary point on the curve. If we want to show that trace of the curve is contained in a circle, we have to show that $|C - \alpha(s)| = r$ for some constant $r$.
+	
+	We know that
+	\begin{gather*}
+		|C - \alpha(s)|^2 = (C - \alpha(s)) \cdot (C - \alpha(s)) = C \cdot C - 2C \cdot \alpha(s) + \alpha(s) \cdot \alpha(s)
+	\end{gather*}
+	and so
+	\begin{gather*}
+		\dfrac{d}{ds} |C - \alpha(s)|^2 = -2C \cdot \alpha'(s) + 2\alpha(s) \cdot \alpha'(s) = -2(C - \alpha(s)) \cdot \alpha'(s)
+	\end{gather*}
+	Recall, however, that all normals of the parameterized curve passes through this fixed point. That means $C - \alpha(s)$ is parallel to $n(s)$ (i.e. $C - \alpha(s) = c_1 n(s)$ for some $c \neq 0$) and so
+	\begin{gather*}
+		-2(C - \alpha(s)) \cdot \alpha'(s) = -2c_1 n(s) \cdot \alpha'(s) = -2c_1 n(s) \cdot t(s) = 0
+	\end{gather*}
+	Therefore, $|C - \alpha(s)|^2$ is constant, $|C - \alpha(s)|^2 = r^2$ and so $|C - \alpha(s)| = r$.
+	
+	\subsubsection*{Exercise 5}
+	A regularized parameter curve $\alpha$ has the property that all its tangent lines pass through a fixed point. Show that the trace of $\alpha$ is a straight line. If the curve was not regular, does this still hold?
+	
+	We know that if every tangent line passes through a point $C$, and if $\alpha$ is regular (i.e. $\alpha'(s) \neq 0$), then $C - \alpha(s)$ is parallel to $\alpha'(s)$ or
+	\begin{gather*}
+		C - \alpha(s) = c_1(s) \alpha'(s)
+	\end{gather*}
+	Differentiating this with respect to $s$
+	\begin{gather*}
+		-\alpha'(s) = c_1'(s) \alpha'(s) + c_1(s) \alpha''(s) \\
+		-\alpha'(s) \left( c_1'(s) + 1 \right) = c_1(s) \alpha''(s) \\
+		\alpha''(s) = -\dfrac{c_1'(s) + 1}{c_1(s)} \alpha'(s)
+	\end{gather*}
+	Recall that since $|\alpha'(s)| = 1$
+	\begin{gather*}
+		\alpha''(s) \cdot \alpha'(s) = 0
+	\end{gather*}
+	The two conditions imply that $\alpha''(s)$ is both perpendicular and parallel to $\alpha'(s)$, but this is only possible if $\alpha''(s) = 0$, but that in turn implies $k(s) = 0$. The only curve with a curvature of 0 is a line.
+	
+	If the curve was not regular, we would not be able to conclude that $\alpha''(s) = 0$ and thus $k(s) = 0$ since it could also be the case that $\alpha'(s) = 0$.
+	
+	\subsubsection*{Exercise 6}
+	A translation by a vector $v$ in $\R^3$ is the map $A : \R^3 \to \R^3$ given by $A(p) = p + v$, for $p \in \R^3$. A linear map $\rho : \R^3 \to \R^3$ is an orthogonal transformation when $\rho u \cdot \rho v = u \cdot v$ for all vectors $u, v \in \R^3$. A rigid motion in $\R^3$ is a composition of translation with orthogonal transofrmation with positive determinant (the last condition preserving orientation).
+	
+	Show that the norm of a vector and the angle $\theta$ between two vectors $0 \leq \theta \leq \pi$, are invariant under orthogonal transformations with positive determinant. Show that the vector product of two vectors is invariant under orthogonal transformations with positive determinants (and determine if it is still invariant if the assumption of positive determinant is dropped). Show that the arc length, curvature, and torsion of a parameterized curve are invariant under rigid motions.
+	
+	Let $u, v \in \R^3$ and let $\rho : \R^3 \to \R^3$ be an orthogonal transformation. We know that $|\rho u|^2 = \rho u \cdot \rho u = u \cdot u = |u|^2$ and so the norm of a vector is invariant under orthogonal transformation with positive determinant. Furthermore,
+	\begin{gather*}
+		\cos \theta_{after} = \dfrac{\rho u \cdot \rho v}{|\rho u||\rho v|} = \dfrac{u \cdot v}{|u||v|} = \cos \theta_{before}
+	\end{gather*}
+	and so the angle after transformation is equivalent to the angle before transformation.
+	
+	Consider two vectors that have been transformed by an orthogonal transformation with positive determinant $\rho u, \rho v \in \R^3$. We know that since the determinant is positive, the kernel of $\rho$ is zero, meaning that it is bijective. That means any vector in $\R^3$ is of the form $\rho w$ and that there exists a unique $w$ that it maps back into. Now consider
+	\begin{gather*}
+		(\rho u \wedge \rho v) \cdot \rho w = \det (\rho u, \rho v, \rho w)
+	\end{gather*}
+	Recall that as $\rho : \R^3 \to \R^3$ is a linear transformation, it can be expressed as a matrix $A_{\rho}$, and so
+	\begin{gather*}
+		\det (\rho u, \rho v, \rho w) = \det (A_{\rho} u, A_{\rho} v, A_{\rho} w) = (\det A_{\rho}) \det(u, v, w) = (\det \rho) \det(u, v, w)
+	\end{gather*}
+	which gets us $\det (\rho u, \rho v, \rho w) = (\det \rho) \det(u, v, w)$. To simplify this a bit more, note that as $\rho$ is an orthogonal transformation with positive determinant, $\det \rho = 1$ and so
+	\begin{gather*}
+		(\rho u \wedge \rho v) \cdot \rho w = (u \wedge v) \cdot w
+	\end{gather*}
+	We know that since $\rho$ is bijective, there exists $z \in \R^3$ such that $\rho z = \rho u \wedge \rho v$. Furthermore, we know that $\rho z \cdot \rho w = z \cdot w$. Thus
+	\begin{gather*}
+		z \cdot w = (u \wedge v) \cdot w
+	\end{gather*}
+	or $z = u \wedge v$. But that means $\rho (u \wedge v) = \rho u \wedge \rho v$.
+	
+	Without the assumption of positive determinant, the vector product wouldn't remain invariant. Instead, if $\rho$ was an orthogonal transformation with negative determinant (i.e. $\det \rho = -1$), then $\rho (u \wedge v) = - (\rho u \wedge \rho v)$.
+	
+	Let $\alpha : I = (a, b) \to \R^3$ be a curve parameterized by arc length. Let $A : \R^3 \to \R^3$ be a translation defined as $A(p) = p + v$ for some constant vector $v \in \R^3$, and let $\rho : \R^3 \to \R^3$ be an orthogonal transformation with positive determinant.
+	
+	Let $M : \R^3 \to \R^3$, given by $M = A \circ \rho$. $M$ is clearly a rigid motion. Applying the rigid motion to $\alpha$ creates a new curve $\beta$ given by $\beta(t) = M \circ \alpha(t) = \rho \alpha(t) + v$, and so taking the derivative with respect to $t$, we get
+	\begin{gather*}
+		\beta'(t) = \rho \alpha'(t)
+	\end{gather*}
+	We know from functional analysis that the operator norm of an orthonormal transformation is one, and so $|\rho \alpha'(t)| = \norm{\rho} |\alpha'(t)| = |\alpha'(t)|$. From here, we get
+	\begin{gather*}
+		\int_a^b |\beta'(t)| dt = \int_a^b |\alpha'(t)| dt
+	\end{gather*}
+	The arc length is preserved under rigid motion.
+	
+	We can parameterize both $\beta$ and $\alpha$ by their arc lengths, so consider this parametrization for now. Consider the curvature of $\beta$, $k_{\beta}(s)$
+	\begin{gather*}
+		k_{\beta}(s) = |\beta''(s)| = |\rho \alpha''(s)| = |\alpha''(s)| = k_{\alpha}(s)
+	\end{gather*}
+	Curvature is invariant under rigid motion. Now consider the torsion of $\beta$, $\tau_{\beta}(s)$
+	\begin{gather*}
+		\tau_{\beta}(s)
+		= - \dfrac{ ( \beta'(s) \wedge \beta''(s) ) \cdot \beta'''(s) }{ k_{\beta}(s)^2 }
+		= -\dfrac{ ( \rho \alpha'(s) \wedge \rho \alpha''(s) ) \cdot \rho \alpha'''(s) }{ k_{\alpha}(s)^2 } \\
+		= -\dfrac{ \rho ( \alpha'(s) \wedge \alpha''(s) ) \cdot \rho \alpha'''(s) }{ k_{\alpha}(s)^2 }
+		= -\dfrac{ ( \alpha'(s) \wedge \alpha''(s) ) \cdot \alpha'''(s) }{ k_{\alpha}(s)^2 } \\
+		= \tau_{\alpha}(s)
+	\end{gather*}
+	Torsion is invariant under rigid motion.
+	
+	\subsubsection*{Exercise 7}
+	Let $\alpha : I \to \R^2$ be a regular parameterized plane curve (with arbitrary parametrization $q$), and define $n = n(q)$ and $k = k(q)$ in such a way that $dt/ds = k(s) n(s)$ (i.e. when we reparametrize the curve). Assume that $k(q) \neq 0$ for $q \in I$. Then the following curve
+	\begin{gather*}
+		\beta(q) = \alpha(q) + \dfrac{1}{k(q)} n(q), \qquad q \in I
+	\end{gather*}
+	is know as the evolute of $\alpha$. Show that the tangent at $q$ of the evolute of $\alpha$ is the normal of $\alpha$ at $q$. Consider the two normal lines of $\alpha$ at two neighboring points $q_1, q_2, q_1 \neq q_2$. Let $q_1$ approach $q_2$ and show that the intersection points of the two normals converge to a point on the trace of the evolute of $\alpha$.
+	
+	First note that the definition of $k(q)$ and $n(q)$ makes it so that regardless of the parametrization, it behaves nicely, so that if we were to parameterize it via arc length, we still get
+	\begin{gather*}
+		\beta(s) = \alpha(s) + \dfrac{1}{k(s)} n(s)
+	\end{gather*}
+	For convenience, we are going to employ Liebniz's notation
+	\begin{gather*}
+		\dfrac{d\beta}{ds} = \dfrac{d\alpha}{ds} + \left( - \dfrac{1}{k^2} \dfrac{dk}{ds} \right) n + \dfrac{1}{k} \dfrac{dn}{ds} \\
+		= t + \left( - \dfrac{1}{k^2} \dfrac{dk}{ds} \right) n + \dfrac{1}{k} (-kt) \\
+		= \left( - \dfrac{1}{k^2} \dfrac{dk}{ds} \right) n
+	\end{gather*}
+	and so $\beta'(q)$ is scaled factor of $n(q)$. To finally show that the tangent line at $q$ of $\beta$ is indeed the normal line, we need to show that they coincide. Note that the normal line at $q$ of $\alpha$ is given by
+	\begin{gather*}
+		\ell_{q,\alpha}(u) = \alpha(q) + un(q)
+	\end{gather*}
+	and when $u = 1/k(q)$, $\ell_{q,\alpha}(u)$ is the point $\beta(q)$. Thus the two lines are one and the same.
+	
+	The two normal lines of $\alpha$ at two neighboring points $q_1, q_2, q_1 \neq q_2$ are
+	\begin{gather*}
+		\ell_{q_1,\alpha}(u) = \alpha(q_1) + un(q_1) \\
+		\ell_{q_2,\alpha}(v) = \alpha(q_2) + vn(q_2)
+	\end{gather*}
+	The lines intersect when
+	\begin{gather*}
+		un(q_1) - vn(q_2) = \alpha(q_2) - \alpha(q_1)
+	\end{gather*}
+	We can cancel some terms out by noting that the tangent is orthogonal to the normal.
+	\begin{gather*}
+		( un(q_1) - vn(q_2) ) \cdot t(q_2) = ( \alpha(q_2) - \alpha(q_1) ) \cdot t(q_2) \\
+		un(q_1) \cdot t(q_2) = ( \alpha(q_2) - \alpha(q_1) ) \cdot t(q_2) \\
+		u = \dfrac{( \alpha(q_2) - \alpha(q_1) ) \cdot t(q_2)}{n(q_1) \cdot t(q_2)}
+	\end{gather*}
+	We know that as $q_1 \to q_2$,
+	\begin{gather*}
+		\alpha(q_2) - \alpha(q_1) \approx (q_2 - q_1) t(q_2)
+	\end{gather*}
+	and so $( \alpha(q_2) - \alpha(q_1) ) \cdot t(q_2) \approx q_2 - q_1$. Likewise,
+	\begin{gather*}
+		n(q_1) - n(q_2) \approx (q_1 - q_2) n'(q_2) \\
+		= (q_1 - q_2) \left( -k(q_2) t(q_2) - \tau(q_2) b(q_2) \right) = -(q_1 - q_2) k(q_2) t(q_2) \\
+		n(q_1) \approx n(q_2) + (q_2 - q_1) k(q_2) t(q_2)
+	\end{gather*}
+	and so $n(q_1) \cdot t(q_2) \approx (q_2 - q_1) k(q_2) $
+	Combining these leads to
+	\begin{gather*}
+		\dfrac{( \alpha(q_2) - \alpha(q_1) ) \cdot t(q_2)}{n(q_1) \cdot t(q_2)}
+		\approx \dfrac{q_2 - q_1}{(q_2 - q_1) k(q_2)} = \dfrac{1}{k(q_2)}
+	\end{gather*}
+	
+	\subsubsection*{Exercise 8}
+	The trace of a parameterized curve $\alpha(q) = \left( q, \cosh(q) \right), q \in \R$ is known as a catenary. Show that the signed curve of the catenary is
+	\begin{gather*}
+		k(q) = \dfrac{1}{\cosh^2(q)}
+	\end{gather*}
+	and show that the evolute of the catenary is
+	\begin{gather*}
+		\beta(q) = \left( t - \sinh(q) \cosh(q), 2 \cosh(q) \right)
+	\end{gather*}
+	
+	Start with reparametrizing the curve on the basis of arc length. To do this, first find the arc length $s$ as a function of $q$
+	\begin{gather*}
+		s(q) = \int_0^q \sqrt{ 1 + \sinh^2(u) } du = \int_0^q \cosh(u) du = \sinh(q)
+	\end{gather*}
+	Then express $q$ as a parameter of $s$
+	\begin{gather*}
+		q(s) = \sinh^{-1} (s)
+	\end{gather*}
+	Expressing $\alpha$ in terms of the parameter $s$, we get
+	\begin{gather*}
+		\alpha(q(s)) = \left( \sinh^{-1} (s), \sqrt{1 + s^2} \right)
+	\end{gather*}
+	The unit tangent vector is
+	\begin{gather*}
+		t(s) = \left( \dfrac{1}{\sqrt{1 + s^2}}, \dfrac{s}{\sqrt{1 + s^2}} \right)
+	\end{gather*}
+	and the unit normal vector is
+	\begin{gather*}
+		n(s) = \dfrac{t'(s)}{|t'(s)|} = (1 + s^2) \left( -\dfrac{s}{(1 + s^2)^{3/2}}, \dfrac{1}{(1 + s^2)^{3/2}} \right) \\
+		= \left( -\dfrac{s}{ \sqrt{1 + s^2} }, \dfrac{1}{ \sqrt{1 + s^2} } \right) 
+	\end{gather*}
+	Recall that $dt/ds = k(s)n(s)$, and so
+	\begin{gather*}
+		k(s) = \dfrac{1}{1 + s^2}
+	\end{gather*}
+	Plugging in $s = s(q)$, we have
+	\begin{gather*}
+		k(q) = \dfrac{1}{1 + \sinh^2(q)} = \dfrac{1}{\cosh^2(q)}
+	\end{gather*}
+
+	To find the evolute of $\alpha$, $\beta$, recall that
+	\begin{gather*}
+		\beta(s) = \alpha(s) + \dfrac{1}{k(s)} n(s)
+	\end{gather*}
+	Plugging in the equations, we get
+	\begin{gather*}
+		\beta(s) = \left( \sinh^{-1} (s), \sqrt{1 + s^2} \right) + (1 + s^2) \left( -\dfrac{s}{ \sqrt{1 + s^2} }, \dfrac{1}{ \sqrt{1 + s^2} } \right) \\
+		= \left( \sinh^{-1} (s), \sqrt{1 + s^2} \right) + \left( -s \sqrt{1 + s^2} , \sqrt{1 + s^2} \right) \\
+		= \left( \sinh^{-1} (s) - s \sqrt{1 + s^2}, 2 \sqrt{1 + s^2} \right)
+	\end{gather*}
+	Reparametrizing $\beta(s)$ back into its original coordinate $q$ via $s = s(q) = \sinh(q)$, we get
+	\begin{gather*}
+		\beta(s(q)) = (q - \sinh(q) \cosh(q), 2 \cosh(q))
+	\end{gather*}
+	
+	% We start formally deliminating the various functions with different parametrization yet describe the same curve here
+	
+	\subsubsection*{Exercise 9}
+	Given a differentiable function $k(s), s \in I$, show that the parameterized plane curve having $k(s) = k$ as curvature is given by
+	\begin{gather*}
+		\alpha(s) = \left( \int \cos \theta(s) ds + a, \int \sin \theta(s) ds + b \right)
+	\end{gather*}
+	where
+	\begin{gather*}
+		\theta(s) = \int k(s) ds + \phi
+	\end{gather*}
+	
+	Since we're dealing with a plane curve, the torsion is zero, $\tau(s) = 0$. Therefore, we have the following two equations
+	\begin{gather*}
+		t'(s) = k(s) n(s) \\
+		n'(s) = -k(s) t(s)
+	\end{gather*}
+	These two equations suggest a trigonometric relationship. Indeed, using integration by parts, we see that
+	\begin{gather*}
+		t(s) = \int t'(s) ds = \int k(s) n(s) ds \\
+		= \left( \int k(s) ds \right) n(s) - \left( \int \left( \int k(s) ds \right) n'(s) ds \right)
+	\end{gather*}
+	For ease, let $\theta(s) = \int k(s) ds$. Then
+	\begin{gather*}
+		t(s) = \theta(s) n(s) - \left( \int \theta(s) n'(s) ds \right)
+	\end{gather*}
+	We also get $n'(s) = -\theta'(s) t(s)$ and $t'(s) = \theta'(s) n(s)$. Now use integration on parts for the second identity.
+	\begin{gather*}
+		\int \theta(s) n'(s) ds = - \int \theta(s) \theta'(s) t(s) ds \\
+		= - \theta(s)^2 t(s) + \left( \int \theta(s) \theta'(s) t(s) ds + \int \theta(s)^2 t'(s) ds \right) \\
+		= - \theta(s)^2 t(s) + \left( -\int \theta(s) n'(s) ds + \int \theta(s)^2 t'(s) ds \right)
+	\end{gather*}
+	We see here that
+	\begin{gather*}
+		2 \int \theta(s) n'(s) ds = - \theta(s)^2 t(s) + \int \theta(s)^2 t'(s) ds \\ \\
+		\int \theta(s) n'(s) ds = - \dfrac{1}{2} \left( \theta(s)^2 t(s) - \int \theta(s)^2 t'(s) ds \right)
+	\end{gather*}
+	Use integration by parts again on the the next portion as well
+	\begin{gather*}
+		\int \theta(s)^2 t'(s) ds = \int \theta(s) \theta'(s) n(s) ds \\
+		= \theta(s)^3 n(s) - \left( \int 2\theta(s)^2 \theta'(s) n(s) ds + \int \theta(s)^3 n'(s)  ds \right) \\
+		= \theta(s)^3 n(s) - \left( 2\int \theta(s)^2 t'(s) ds + \int \theta(s)^3 n'(s) ds \right)
+	\end{gather*}
+	Now we see that
+	\begin{gather*}
+		3 \int \theta(s)^2 t'(s) ds = \theta(s)^3 n(s) - \int \theta(s)^3 n'(s) ds \\ \\
+		\int \theta(s)^2 t'(s) ds = \dfrac{1}{3} \left( \theta(s)^3 n(s) - \int \theta(s)^3 n'(s) ds \right)
+	\end{gather*}
+	We might speculate the following identities
+	\begin{gather*}
+		\int \theta(s)^{2q - 1} n'(s) ds = - \dfrac{1}{2q} \left( \theta(s)^{2q} t(s) - \int \theta(s)^{2q} t'(s) ds \right) \\ \\
+		\int \theta(s)^{2q} t'(s) ds = \dfrac{1}{2q + 1} \left( \theta(s)^{2q + 1} n(s) - \int \theta(s)^{2q + 1} n'(s) ds \right)
+	\end{gather*}
+	We have shown the base case. Now suppose that these two identities hold up to $2r - 1$ and $2r$. For the case $2r + 1$, we have
+	\begin{gather*}
+		\int \theta(s)^{2r + 1} n'(s) ds = - \theta(s)^{2r + 2}t(s) + \left( \int (2r + 1) \theta(s)^{2r + 1} \theta'(s) t(s) ds + \int \theta(s)^{2r + 2} t'(s) ds \right) \\
+		= - \theta(s)^{2r + 2}t(s) + \left( - \int (2r + 1) \theta(s)^{2r + 1} n'(s)  ds + \int \theta(s)^{2r + 2} t'(s) ds \right)
+	\end{gather*}
+	Collecting the terms, we have
+	\begin{gather*}
+		(2r + 2) \int \theta(s)^{2r + 1} n'(s) ds = - \theta(s)^{2r + 2}t(s) + \int \theta(s)^{2r + 2} t'(s) ds \\ \\
+		\int \theta(s)^{2r + 1} n'(s) ds = -\dfrac{1}{2r + 2} \left( \theta(s)^{2r + 2}t(s) - \int \theta(s)^{2r + 2} t'(s) ds \right)
+	\end{gather*}
+	For the case $2r + 2$, we have
+	\begin{gather*}
+		\int \theta(s)^{2r + 2} t'(s) ds = \theta(s)^{2r + 3}n(s) - \left( \int (2r + 2) \theta(s)^{2r + 2} \theta'(s) n(s) ds + \int \theta(s)^{2r + 3} n'(s) ds \right) \\
+		= \theta(s)^{2r + 3}n(s) - \left( \int (2r + 2) \theta(s)^{2r + 2} t'(s) ds + \int \theta(s)^{2r + 3} n'(s) ds \right)
+	\end{gather*}
+	Collecting the terms, we have
+	\begin{gather*}
+		(2r + 3) \int \theta(s)^{2r + 2} t'(s) ds = \theta(s)^{2r + 3}n(s) - \int \theta(s)^{2r + 3} n'(s) ds \\ \\
+		\int \theta(s)^{2r + 2} t'(s) ds = \dfrac{1}{2r + 3} \left( \theta(s)^{2r + 3}n(s) - \int \theta(s)^{2r + 3} n'(s) ds \right)
+	\end{gather*}
+	Therefore, we can express $t(s)$ as
+	\begin{gather*}
+		t(s) = \theta(s) n(s) - \left( \int \theta(s) n'(s) ds \right) \\
+		= \theta(s) n(s) + \dfrac{\theta(s)^2 t(s)}{2} - \dfrac{1}{2} \left( \int \theta(s)^2 t'(s) ds \right) \\
+		= \theta(s) n(s) + \dfrac{\theta(s)^2 t(s)}{2} - \dfrac{\theta(s)^3 n(s)}{3!} + \dfrac{1}{3} \left( \int \theta(s)^3 n'(s) ds \right) \\
+		= \theta(s) n(s) + \dfrac{\theta(s)^2 t(s)}{2} - \dfrac{\theta(s)^3 n(s)}{3!} -  \dfrac{\theta(s)^4 n(s)}{4!} + \dfrac{1}{4} \left( \int \theta(s)^4 t'(s) ds \right)
+	\end{gather*}
+	Grouping the $n(s)$ terms and $t(s)$ terms, we see that
+	\begin{gather*}
+		t(s) = \left( \theta(s) - \dfrac{\theta(s)^3}{3!} + \dfrac{\theta(s)^5}{5!} - \cdots \right) n(s) + \left( \dfrac{\theta(s)^2}{2!} - \dfrac{\theta(s)^4}{4!} + \dfrac{\theta(s)^6}{6!} \cdots \right) t(s)
+	\end{gather*}
+	And so
+	\begin{gather*}
+		t(s) = \sin \theta(s) n(s) + \left( 1 - \cos \theta(s) \right) t(s)
+	\end{gather*}
+	
+	\textit{This isn't quite the answer I was looking for. Looking more deeply into it, it is a contradiction as it indicates that $t(s)$ is parallel to $n(s)$, which cannot be true if $t(s) \cdot n(s) = 0$ and $|t(s)| = |n(s)| = 1$. Investigating more deeper, it turns out that integration by parts does not hold for both scalar and vector functions of a particular variable, as it fails to account for all the various directions of the vector functions. This particular problems requires the result of Exercise 3. }
+	
+	Recall that $k(s) = \theta'(s)$ and so
+	\begin{gather*}
+		\theta(s) = \int k(s) ds + \phi
+	\end{gather*}
+	Furthermore, recall that the indicatrix of tangents is given by
+	\begin{gather*}
+		t(s) = \left( \cos \theta(s), \sin \theta(s) \right)
+	\end{gather*}
+	Therefore
+	\begin{gather*}
+		\alpha(s) = \left( \int \cos \theta(s) ds, \int \sin \theta(s) ds \right) + (a, b) \\
+		= \left( \int \cos \theta(s) ds + a, \int \sin \theta(s) ds + b \right)
+	\end{gather*}
+	
+	\subsubsection*{Exercise 10}
+	Consider the map
+	\begin{align*}
+		\alpha(q) = \begin{cases}
+			\left( q, 0, e^{-1/q^2} \right), \quad &q > 0 \\
+			\left( q, e^{-1/q^2}, 0 \right), \quad &q < 0 \\
+			\left( 0, 0, 0 \right), \quad &q = 0
+		\end{cases}
+	\end{align*}
+	Show that $\alpha$ is a differentiable curve. Show that $\alpha$ is regular for all $q$ and that the curvature $k(q) \neq 0$, for $q \neq 0, q \neq \pm \sqrt{2/3}$, and $k(0) = 0$. Show that the limit of the osculating plane as $q \to 0, q > 0$ is the plane $y = 0$ but that the limit of the osculating plane as $q \to 0, q < 0$ is the plane $z = 0$ (implying that the normal vector is discontinuous at $q = 0$). Show that $\tau$ can be defined so that $\tau \equiv 0$, even though $\alpha$ is not a plane curve.
+
+	We know that
+	\begin{gather*}
+		\alpha'(q) = \begin{cases}
+			\left( 1, 0, e^{-1/q^2} \cdot 2/q^3 \right), \quad &q > 0 \\
+			\left( 1, e^{-1/q^2} \cdot 2/q^3, 0 \right), \quad &q < 0
+		\end{cases}
+	\end{gather*}
+	We see clearly that $|\alpha'(q)| > 1$ for all $q \neq 0$, and if we stipulate $\alpha'$ be continuous, we have $\alpha'(0) = (1, 0, 0)$. In fact, with this, we know have that
+	\begin{gather*}
+		| \alpha'(q) | = \begin{cases}
+			\dfrac{ e^{-1/q^2} }{ |q^3| } \sqrt{ q^6 e^{2/q^2} + 4 }, \quad &q \neq 0 \\ \\
+			1, \quad &q = 0
+		\end{cases}
+	\end{gather*}
+	and so
+	\begin{gather*}
+		t(q) = \begin{cases}
+			\left( \dfrac{q^3 e^{1/q^2} }{ \sqrt{ q^6 e^{2/q^2} + 4 } }, 0, \dfrac{2}{ \sqrt{ q^6 e^{2/q^2} + 4 } } \right), \quad &q > 0
+			\\ \\
+			\left( \dfrac{-q^3 e^{1/q^2} }{ \sqrt{ q^6 e^{2/q^2} + 4 } }, \dfrac{-2}{ \sqrt{ q^6 e^{2/q^2} + 4 } }, 0 \right), \quad &q < 0
+		\end{cases}
+	\end{gather*}
+	Notice that $\sqrt{ q^6 e^{2/q^2} + 4 } > 2$ for $q \neq 0$, meaning that $t(q)$ is regular there, and as $q$ approaches zero from either side, $t(q) = (1, 0, 0)$. Thus $\alpha$ is regular for all $q$.
+	
+	To get the curvature, first make a $u$ substitution $u = q^3 e^{1/q^2}$. Then
+	\begin{gather*}
+		t(q(u)) = \begin{cases}
+			\left( \dfrac{ u }{ \sqrt{ u^2 + 4 } }, 0, \dfrac{2}{ \sqrt{ u^2 + 4 } } \right), \quad &u > 0
+			\\ \\
+			\left( \dfrac{-u }{ \sqrt{ u^2 + 4 } }, \dfrac{-2}{ \sqrt{ u^2 + 4 } }, 0 \right), \quad &u < 0
+		\end{cases}
+	\end{gather*}
+	In the next exercise, it is shown that the derivative of the inverse function is just the inverse of the derivative of the original function, allowing us to get
+	\begin{gather*}
+		\dfrac{dt}{dq} \dfrac{dq}{du} = \dfrac{dt}{du} \implies \dfrac{dt}{dq} = \dfrac{dt}{du} \left( \dfrac{dq}{du} \right)^{-1} = \dfrac{dt}{du} \dfrac{du}{dq}
+	\end{gather*}
+	Clearly
+	\begin{gather*}
+		\dfrac{dt}{du} = \begin{cases}
+			\left( \dfrac{ 4 }{ ( u^2 + 4 )^{3/2} }, 0, \dfrac{ 2u }{ ( u^2 + 4 )^{3/2} } \right), \quad &u > 0
+			\\ \\
+			\left( \dfrac{ 4 }{ ( u^2 + 4 )^{3/2} }, \dfrac{ -2u }{ ( u^2 + 4 )^{3/2} }, 0 \right), \quad &u < 0
+		\end{cases}
+	\end{gather*}
+	and clearly
+	\begin{gather*}
+		\dfrac{du}{dq} = e^{1/q^2} (3q^2 - 2)
+	\end{gather*}
+	Notice that when $q = \pm \sqrt{2/3}$, $du/dq = 0$ and when $q = 0$, $du/dq$ is undefined. Therefore, when $q \neq 0$ and $q \neq \pm \sqrt{2/3}$, $du/dq \neq 0$.
+	
+	To figure out the value of $t'(q)$ as $q \to 0$, first express it all in terms of $q$
+	\begin{gather*}
+		\dfrac{dt}{dq} = \begin{cases}
+			\left( \dfrac{ 4 e^{1/q^2} (3q^2 - 2) }{ ( q^6 e^{2/q^2} + 4 )^{3/2} }, 0, \dfrac{ 2 e^{2/q^2} q^3(3q^2 - 2) }{ ( q^6 e^{2/q^2} + 4 )^{3/2} } \right), \quad &q > 0
+			\\ \\
+			\left( \dfrac{ 4 e^{1/q^2} (3q^2 - 2) }{ ( q^6 e^{2/q^2} + 4 )^{3/2} }, \dfrac{ -2 e^{2/q^2} q^3(3q^2 - 2) }{ ( q^6 e^{2/q^2} + 4 )^{3/2} }, 0 \right), \quad &q < 0
+		\end{cases}
+	\end{gather*}
+	Notice that as $q \to 0$
+	\begin{gather*}
+		4 e^{1/q^2} (3q^2 - 2) \sim - 8 e^{1/q^2} \\
+		( q^6 e^{2/q^2} + 4 )^{3/2} \sim q^9 e^{3/q^2} \\
+		2e^{2/q^2} q^3(3q^2 - 2) \sim - 4 q^3 e^{2/q^2}
+	\end{gather*}
+	so
+	\begin{gather*}
+		\dfrac{dt}{dq} \approx \begin{cases}
+			\left( \dfrac{ -8 }{ q^9 } e^{-2/q^2}, 0, \dfrac{ -4 }{ q^6 } e^{-1/q^2} \right), \quad &q > 0
+			\\ \\
+			\left( \dfrac{ -8 }{ q^9 } e^{-2/q^2}, \dfrac{ 4 }{ q^6 } e^{-1/q^2}, 0 \right), \quad &q < 0
+		\end{cases}
+	\end{gather*}
+	The exponential decays faster than the inverse of $q$ grows, and so $dt/dq \to (0, 0, 0)$ from both ends. Therefore, $k(0) = 0$.
+	
+	To find the osculating plane, we need to find the binormal vector, which is the vector product of the unit tangent and normal vectors. We already have the unit tangent vector, and the unit normal vector is given by $n(q) = t'(q)/|t'(q)|$. We already know $t'(q)$ and so
+	\begin{gather*}
+		\left| \dfrac{dt}{dq} \right|^2 = \dfrac{16 e^{2/q^2} (3q^2 - 2)^2 + 4 e^{4/q^2} q^6 (3q^2 - 2)^2 }{ ( q^6 e^{2/q^2} + 4 )^3 } \\
+		= \dfrac{ 4 e^{2/q^2} (3q^2 - 2)^2 }{ ( q^6 e^{2/q^2} + 4 )^2 } \\ \\
+		\left| \dfrac{dt}{dq} \right| = \dfrac{ 2 e^{1/q^2} |3q^2 - 2| }{ ( q^6 e^{2/q^2} + 4 ) }
+	\end{gather*}
+	for all $q \in \R$, and so
+	\begin{gather*}
+		n(q) = \dfrac{t'(q)}{|t'(q)|} = \begin{cases}
+			\left( \dfrac{ 2(3q^2 - 2) }{ |3q^2 - 2| \sqrt{ q^6 e^{2/q^2} + 4 } }, 0, \dfrac{ e^{1/q^2}q^3(3q^2 - 2) }{ |3q^2 - 2| \sqrt{ q^6 e^{2/q^2} + 4 } } \right), \quad &q > 0
+			\\ \\
+			\left( \dfrac{ 2(3q^2 - 2) }{ |3q^2 - 2| \sqrt{ q^6 e^{2/q^2} + 4 } }, \dfrac{ -e^{1/q^2}q^3(3q^2 - 2) }{ |3q^2 - 2| \sqrt{ q^6 e^{2/q^2} + 4 } }, 0 \right), \quad &q < 0
+		\end{cases}
+	\end{gather*}
+	This result can further be split into the case where $q < -\sqrt{2/3}$, $-\sqrt{2/3} < q < 0$, $0 < q < \sqrt{2/3}$, and $q > \sqrt{2/3}$
+	\begin{gather*}
+		n(q) = \dfrac{t'(q)}{|t'(q)|} = \begin{cases}
+			\left( \dfrac{ 2 }{ \sqrt{ q^6 e^{2/q^2} + 4 } }, 0, \dfrac{ e^{1/q^2}q^3 }{ \sqrt{ q^6 e^{2/q^2} + 4 } } \right), \quad &q > \sqrt{2/3}
+			\\ \\
+			\left( \dfrac{ -2 }{ \sqrt{ q^6 e^{2/q^2} + 4 } }, 0, \dfrac{ -e^{1/q^2}q^3 }{ \sqrt{ q^6 e^{2/q^2} + 4 } } \right), \quad &0 < q < \sqrt{2/3}
+			\\ \\
+			\left( \dfrac{ -2 }{ \sqrt{ q^6 e^{2/q^2} + 4 } }, \dfrac{ e^{1/q^2}q^3 }{ \sqrt{ q^6 e^{2/q^2} + 4 } }, 0 \right), \quad &-\sqrt{2/3} < q < 0 \\ \\
+			\left( \dfrac{ 2 }{ \sqrt{ q^6 e^{2/q^2} + 4 } }, \dfrac{ -e^{1/q^2}q^3 }{ \sqrt{ q^6 e^{2/q^2} + 4 } }, 0 \right), \quad &q < -\sqrt{2/3}
+		\end{cases}
+	\end{gather*}
+	We are only interested in the behavior of the curve as $q \to 0$ from either end, so only consider unit normal vectors where $-\sqrt{2/3} < q < 0$ and $0 < q < \sqrt{2/3}$. Making the $u$ substitution $u = q^3 e^{1/q^2}$, we have
+	\begin{gather*}
+		n(q(u)) = \begin{cases}
+			\left( \dfrac{ -2 }{ \sqrt{ u^2 + 4 } }, 0, \dfrac{ -u }{ \sqrt{ u^2 + 4 } } \right), \quad &0 < q < \sqrt{2/3}
+			\\ \\
+			\left( \dfrac{ -2 }{ \sqrt{ u^2 + 4 } }, \dfrac{ u }{ \sqrt{ u^2 + 4 } }, 0 \right), \quad &-\sqrt{2/3} < q < 0
+		\end{cases}
+	\end{gather*}
+	Here, we see then that for $q > 0$,
+	\begin{gather*}
+		b(q(u)) = t(q(u)) \wedge n(q(u)) = \begin{vmatrix}
+			4/\sqrt{u^2 + 4} & 0 & 2/\sqrt{u^2 + 4} \\
+			-2/\sqrt{u^2 + 4} & 0 & -u/\sqrt{u^2 + 4} \\
+			e_1 & e_2 & e_3
+		\end{vmatrix} \\
+		= \left( 0, \dfrac{u^2 - 4}{u^2 + 4}, 0 \right) = \left( 0, \dfrac{q^6 e^{2/q^2} - 4}{q^6 e^{2/q^2} + 4}, 0 \right)
+	\end{gather*}
+	and for $q < 0$,
+	\begin{gather*}
+		b(q(u)) = t(q(u)) \wedge n(q(u)) = \begin{vmatrix}
+			-4/\sqrt{u^2 + 4} & -2/\sqrt{u^2 + 4} & 0 \\
+			2/\sqrt{u^2 + 4} & u/\sqrt{u^2 + 4} & 0\\
+			e_1 & e_2 & e_3
+		\end{vmatrix} \\
+		= \left( 0, 0, \dfrac{4 - u^2}{u^2 + 4} \right) = \left( 0, 0, \dfrac{4 - q^6 e^{2/q^2}}{q^6 e^{2/q^2} + 4} \right)
+	\end{gather*}
+	
+	Finally, the equation for the osculating plane at some point $q$ is $\left( p - (q, 0, e^{-1/q^2}) \right) \cdot b(q) = 0$ when $q > 0$ and $\left( p - (q, e^{-1/q^2}, 0) \right) \cdot b(q) = 0$ when $q < 0$
+	\begin{gather*}
+		(x - q) b(q)_1 + (y - 0) b(q)_2 + (z - e^{-1/q^2}) b(q)_3 = 0, \quad q > 0 \\
+		(x - q) b(q)_1 + (y - e^{-1/q^2}) b(q)_2 + (z - 0) b(q)_3 = 0, \quad q < 0
+	\end{gather*}
+	As $q \to 0, q > 0$, $b(q) \to (0, 1, 0)$, and as $q \to 0, q < 0$, $b(q) \to (0, 0, -1)$, so the limit of the osculating plane as $q$ approaches zero from the positive end is $y = 0$ and the limit as it approaches zero from the negative end is $z = 0$.
+	
+	For the final part, recall that $b' = \tau n$, but notice that $b$ has zero components where $n$ does not, while $n$ has zero components where $b$ does not. Therefore, $b' \cdot n = 0$, but this is only possible if $b' \equiv 0$, i.e. $\tau \equiv 0$.
+
+	\subsubsection*{Exercise 11}
+	A plane curve in polar coordinates is often given by $\rho = \rho(\theta), a \leq \theta \leq b$. Show that the arc length is 
+	\begin{gather*}
+		\int_a^b \sqrt{ \rho^2 + (\rho')^2 } d\theta
+	\end{gather*}
+	and show that the curvature is
+	\begin{gather*}
+		k(\theta) = \dfrac{ 2(\rho')^2 - \rho \rho'' + \rho^2 }{ \left( (\rho')^2 + \rho^2 \right)^{3/2} }
+	\end{gather*}
+
+	Recall that with rectangular coordinates, the distance between two points $(x_1, y_1)$ and $(x_2, y_2)$ is given by
+	\begin{gather*}
+		d = \sqrt{ (x_2 - x_1)^2 + (y_2 - y_1)^2 }
+	\end{gather*}
+	Therefore, the length of a portion of the curve satisfying the equations $x = x(t)$ and $y = y(t)$ from an interval of time $[t_0, t_1]$ is
+	\begin{gather*}
+		\int_{t_0}^{t_1} \sqrt{ x'(t)^2 + y'(t)^2 } dt
+	\end{gather*}
+	Furthermore, recall that
+	\begin{gather*}
+		x(t) = \rho(\theta(t)) \cos \theta(t) \\
+		y(t) = \rho(\theta(t)) \sin \theta(t)
+	\end{gather*}
+	and so taking the derivative with respect to time, we have
+	\begin{gather*}
+		x'(t) = \rho'(\theta(t)) \cos \theta(t) \theta'(t) - \rho(\theta(t)) \sin \theta(t) \theta'(t) \\
+		y'(t) = \rho'(\theta(t)) \sin \theta(t) \theta'(t) + \rho(\theta(t)) \cos \theta(t) \theta'(t) 
+	\end{gather*}
+	Adding the squares of both equations
+	\begin{gather*}
+		x'(t)^2 = \theta'(t)^2 \left( \left( \rho'(\theta(t)) \cos \theta(t) \right)^2 + \left( \rho(\theta(t)) \sin \theta(t) \right)^2 - 2 \rho(\theta(t)) \rho'(\theta(t)) \sin \theta(t) \cos \theta(t) \right)
+		\\
+		y'(t)^2 = \theta'(t)^2 \left( \left( \rho'(\theta(t)) \sin \theta(t) \right)^2 + \left( \rho(\theta(t)) \cos \theta(t) \right)^2 + 2 \rho(\theta(t)) \rho'(\theta(t)) \sin \theta(t) \cos \theta(t) \right)
+		\\
+		x'(t)^2 + y'(t)^2 = \theta'(t)^2 \left( \rho'(\theta(t))^2 + \rho(\theta(t))^2 \right)
+	\end{gather*}
+	Therefore, the length of the curve can also be expressed by
+	\begin{gather*}
+		\int_{t_0}^{t_1} \theta'(t) \sqrt{ \rho'(\theta(t))^2 + \rho(\theta(t))^2 } dt
+	\end{gather*}
+	Making a $\theta$ substitution, $\theta = \theta(t)$, we have $a = \theta(t_0)$ and $b = \theta(t_1)$, and so the length is
+	\begin{gather*}
+		\int_a^b \sqrt{ (\rho')^2 + \rho^2 } d\theta
+	\end{gather*}
+	
+	To establish the equation for the curvature, we need to first parameterize by the arc length. Fortunately, most of the heavy lifting was done in the first part, and so
+	\begin{gather*}
+		s(\theta) = \int_{\theta_0}^{\theta} \sqrt{ (\rho'(\psi))^2 + \rho(\psi)^2 } d\psi
+	\end{gather*}
+	We also know that to find $\theta$ from $s$, we need a function $\theta(s)$ that accepts an arc length as a parameter. Fortunately, there is a natural choice in this matter, $\theta(s) = s^{-1}(s)$ and so
+	\begin{gather*}
+		(s^{-1})'(s(\theta)) s'(\theta) = 1 \\
+		(s^{-1})'(s(\theta)) = \dfrac{1}{s'(\theta)}
+	\end{gather*}
+	This allows us to say
+	\begin{gather*}
+		\dfrac{d\theta}{ds} = \left( \dfrac{ds}{d\theta} \right)^{-1}
+	\end{gather*}
+	Similarly, from the chain rule, we know that
+	\begin{gather*}
+		\dfrac{d}{ds} = \dfrac{d\theta}{ds} \dfrac{d}{d\theta}
+	\end{gather*} 
+	As $\alpha(s(\theta)) = (x(\theta), y(\theta)) = (\rho(\theta) \cos \theta, \rho(\theta) \sin \theta)$, where $\alpha$ is the arc length parametrization, we get that
+	\begin{gather*}
+		\left| \alpha''(s) \right| = \sqrt{ \left( \dfrac{d^2x}{ds^2} \right)^2 + \left( \dfrac{d^2y}{ds^2} \right)^2 }
+	\end{gather*}
+	We have that
+	\begin{gather*}
+		\dfrac{d^2y}{ds^2} = \dfrac{d}{ds} \left( \dfrac{d\theta}{ds} \dfrac{dy}{d\theta} \right)
+		= \dfrac{d}{d\theta} \left( \dfrac{d\theta}{ds} \dfrac{dy}{d\theta} \right) \dfrac{d\theta}{ds}
+		= \dfrac{d}{d\theta} \left( \dfrac{dy}{d\theta} \dfrac{1}{ds/d\theta} \right) \dfrac{1}{ds/d\theta} \\
+		= \left( \dfrac{d^2y}{d\theta^2} \dfrac{1}{ds/d\theta} + \dfrac{dy}{d\theta} \dfrac{-1}{(ds/d\theta)^2} \dfrac{d^2s}{d\theta^2} \right) \dfrac{1}{ds/d\theta} \\
+		= \dfrac{ (d^2y/d\theta^2)(ds/d\theta) - (dy/d\theta)(d^2s/d\theta^2) }{ (ds/d\theta)^3 } \\
+		= \dfrac{y''(\theta) s'(\theta) - y'(\theta) s''(\theta)}{ (s'(\theta))^3 }
+	\end{gather*}
+	Likewise
+	\begin{gather*}
+		\dfrac{d^2x}{ds^2} = \dfrac{x''(\theta) s'(\theta) - x'(\theta) s''(\theta)}{ (s'(\theta))^3 }
+	\end{gather*}
+	and so
+	\begin{gather*}
+		\dfrac{d^2x}{ds^2} + \dfrac{d^2y}{ds^2} = \dfrac{1}{(s')^6} \left[ (x'')^2(s')^2 - 2x'' x's''s' + (x')^2(s'')^2 + (y'')^2(s')^2 - 2y'' y's''s' + (y')^2(s'')^2  \right] \\
+		= \dfrac{1}{(s')^6} \left[ \left( (x'')^2 + (y'')^2 \right)(s')^2 - 2(x'' x' + y''y')s''s' + \left( (x')^2 + (y')^2 \right)(s'')^2 \right]
+	\end{gather*}
+	We know that
+	\begin{gather*}
+		(x')^2 + (y')^2 = (\rho')^2 + (\rho)^2 = (s')^2
+	\end{gather*}
+	and
+	\begin{gather*}
+		(x'')^2 + (y'')^2 = (\rho'' - \rho)^2 + 4(\rho')^2
+	\end{gather*}
+	and
+	\begin{gather*}
+		x''x' + y''y' = \rho'\rho'' + \rho\rho'
+	\end{gather*}
+	Recall that
+	\begin{gather*}
+		s'' = \dfrac{1}{2} \left( (\rho')^2 + \rho^2 \right)^{-1/2} \left( 2 \rho'\rho'' + 2 \rho \rho' \right) = \dfrac{\rho'\rho'' + \rho\rho'}{s'}
+	\end{gather*}
+	and so $x''x' + y''y' = s''s'$. With all of this, we have that
+	\begin{gather*}
+		\dfrac{d^2x}{ds^2} + \dfrac{d^2y}{ds^2} = \dfrac{1}{(s')^6} \left[ \left( (\rho'' - \rho)^2 + 4(\rho')^2 \right)(s')^2 - 2(s''s')s''s' + (s')^2(s'')^2 \right] \\
+		= \dfrac{\left( (\rho'' - \rho)^2 + 4(\rho')^2 \right)(s')^2 - (s'')^2(s')^2}{(s')^6}
+	\end{gather*}
+	The numerator is
+	\begin{gather*}
+		\left( (\rho'' - \rho)^2 + 4(\rho')^2 \right)(s')^2 - (s'')^2(s')^2 = \left( (\rho'')^2 - 2\rho\rho'' + \rho^2 + 4(\rho')^2 \right) \left( (\rho')^2 + \rho^2 \right) \\
+		- \left( (\rho')^2(\rho'')^2 + 2\rho(\rho')^2\rho'' + \rho^2(\rho')^2 \right)
+		= -4 \rho \rho'' (\rho')^2 + 4 (\rho')^4 + \rho^2 (\rho'')^2 - 2 \rho^3 \rho'' + \rho^4 + 4 \rho^2(\rho')^2 \\
+		= (\rho^2 + 2(\rho')^2 - \rho\rho'')^2
+	\end{gather*}
+	Thus
+	\begin{gather*}
+		\left| \alpha''(s) \right| = \sqrt{ \left( \dfrac{d^2x}{ds^2} \right)^2 + \left( \dfrac{d^2y}{ds^2} \right)^2 } = \dfrac{ \rho^2 + 2(\rho')^2 - \rho\rho'' }{ \left( (\rho')^2 + \rho^2 \right)^{3/2} }
+	\end{gather*}
+
+	\subsubsection*{Exercise 12 [TO BE WORKED ON]}
+	Let $\alpha : I \to \R^3$ be a regular arbitrarily parametrized curve and let $\beta : J \to \R^3$ be a reparametrization of $\alpha(I)$ by the arc length $s = s(q)$, measured from $q_0 \in I$. Let $q = q(s)$ be the inverse of $s$. Show that
+	\begin{gather*}
+		\dfrac{dq}{ds} = \dfrac{1}{|\alpha'(q)|}, \qquad \dfrac{d^2q}{ds^2} = - \dfrac{\alpha'(q) \cdot \alpha''(q)}{ |\alpha'(q)|^4 }
+	\end{gather*}
+	Show that the curvature of $\alpha$ at $q \in I$ is
+	\begin{gather*}
+		k(q) = \dfrac{|\alpha'(q) \wedge \alpha''(q)|}{ |\alpha'(q)|^3 }
+	\end{gather*}
+	and that the torsion of $\alpha$ at $q \in I$ is
+	\begin{gather*}
+		\tau(q) = - \dfrac{(\alpha'(q) \cdot \alpha''(q)) \cdot \alpha'''(q)}{ |\alpha'(q) \cdot \alpha''(q)|^2 }
+	\end{gather*}
+	
+	We know that
+	\begin{gather*}
+		s(q) = \int_{q_0}^q |\alpha'(t)|dt
+	\end{gather*}
+	and so by the fundamental theorem of calculus
+	\begin{gather*}
+		\dfrac{ds}{dq} = |\alpha'(q)|
+	\end{gather*}
+	Therefore,
+	\begin{gather*}
+		\dfrac{dq}{ds} = \dfrac{1}{|\alpha'(q)|}
+	\end{gather*}
+	From calculus, we know that
+	\begin{gather*}
+		\dfrac{d^2q}{ds^2} = \dfrac{d}{ds} \left( \dfrac{dq}{ds} \right)
+		= \dfrac{d}{dq} \left( \dfrac{dq}{ds} \right) \dfrac{dq}{ds}
+		= \dfrac{d}{dq} \left( \dfrac{1}{|\alpha'(q)|} \right) \dfrac{1}{|\alpha'(q)|} \\
+		= \dfrac{ -1 }{ |\alpha'(q)|^3 } \left( \dfrac{d}{dq} |\alpha'(q)| \right)
+		= \dfrac{ -1 }{ |\alpha'(q)|^3 } \left( \dfrac{\alpha'(q)}{|\alpha'(q)|} \cdot \alpha''(q) \right) = -\dfrac{\alpha'(q) \cdot \alpha''(q)}{ |\alpha'(q)|^4 }
+	\end{gather*}
+	
+	The relationship between $\alpha$ and $\beta$ is given by $\alpha(q) = \beta(s(q))$ (or equivalently $\alpha(q(s)) = \beta(s)$ ). The unit tangent vector of $\beta$ at interval $q \in I$ coincides with the unit tangent vector of $\beta$ at $s \in J$, i.e. $t_{\alpha}(q) = t_{\beta}(s(q))$ (or equivalently $t_{\alpha}(q(s)) = t_{\beta}(s)$ ). Similarly, $k_{\alpha}(q) = k_{\beta}(s(q))$ and $n_{\alpha}(q) = n_{\beta}(s(q))$ (or $k_{\alpha}(q(s)) = k_{\beta}(s)$ and $n_{\alpha}(q(s)) = n_{\beta}(s)$). 
+
+	Now consider the following. As $\alpha(q) = \beta(s(q))$
+	\begin{gather*}
+		\dfrac{d\alpha}{dq} = \dfrac{d\beta}{ds} \dfrac{ds}{dq} = |\alpha'(q)| t_{\beta}(s)
+	\end{gather*}
+	and
+	\begin{gather*}
+		\dfrac{d^2\alpha}{dq^2} = \dfrac{d}{dq} \left( |\alpha'(q)| t_{\beta}(s) \right)
+		= \dfrac{\alpha'(q) \cdot \alpha''(q)}{|\alpha'(q)|} t_{\beta}(s) + |\alpha'(q)| \dfrac{d}{dq} (t_{\beta}(s)) \\
+		= \dfrac{\alpha'(q) \cdot \alpha''(q)}{|\alpha'(q)|} t_{\beta}(s) + |\alpha'(q)| \dfrac{d}{ds} (t_{\beta}(s)) \dfrac{ds}{dq} \\
+		= \dfrac{\alpha'(q) \cdot \alpha''(q)}{|\alpha'(q)|} t_{\beta}(s) + |\alpha'(q)|^2 \left( k_{\beta}(s) n_{\beta}(s) \right)
+	\end{gather*}
+	Taking the vector product $\alpha'(q) \wedge \alpha''(q)$, we get
+	\begin{gather*}
+		\alpha'(q) \wedge \alpha''(q) = \dfrac{d\alpha}{dq} \wedge \dfrac{d^2\alpha}{dq^2} \\
+		= \left( |\alpha'(q)| t_{\beta}(s) \right) \wedge \left( \dfrac{\alpha'(q) \cdot \alpha''(q)}{|\alpha'(q)|} t_{\beta}(s) + |\alpha'(q)|^2 \left( k_{\beta}(s) n_{\beta}(s) \right) \right) \\
+		= |\alpha'(q)|^3 \left( t_{\beta}(s) \wedge \left( k_{\beta}(s) n_{\beta}(s) \right) \right) = |\alpha'(q)|^3 k_{\beta}(s) b_{\beta}(s) = |\alpha'(q)|^3 k_{\alpha}(q) b_{\alpha}(q)
+	\end{gather*}
+	Therefore,
+	\begin{gather*}
+		\left| \alpha'(q) \wedge \alpha''(q) \right| = |\alpha'(q)|^3 \left| k_{\alpha}(q) b_{\alpha}(q) \right| \\
+		k_{\alpha}(q) = \dfrac{ \left| \alpha'(q) \wedge \alpha''(q) \right| }{ |\alpha'(q)|^3}
+	\end{gather*}
+	Finally, to get torsion, consider
+	\begin{gather*}
+		\dfrac{d^3\alpha}{dq^3} = \dfrac{d}{dq} \left( \dfrac{\alpha'(q) \cdot \alpha''(q)}{|\alpha'(q)|} t_{\beta}(s) \right) + \dfrac{d}{dq} \left( |\alpha'(q)|^2 \left( k_{\beta}(s) n_{\beta}(s) \right) \right) \\
+		= \left[ \dfrac{d}{dq} \left( \dfrac{\alpha'(q) \cdot \alpha''(q)}{|\alpha'(q)|} \right) t_{\beta}(s) + \dfrac{\alpha'(q) \cdot \alpha''(q)}{|\alpha'(q)|} \dfrac{ds}{dq} \dfrac{d}{ds}(t_{\beta}(s)) \right] \\
+		+ \left[ \dfrac{d}{dq} \left( |\alpha'(q)|^2 \right) k_{\beta}(s) n_{\beta}(s) + |\alpha'(q)|^2 \dfrac{ds}{dq} \dfrac{d}{ds} \left( k_{\beta}(s) n_{\beta}(s) \right) \right]
+	\end{gather*}
+	Evaluating the entire derivative would be massively tedious work; fortunately, a clever trick can eliminate most of the issue. Notice that $\alpha'(q) \wedge \alpha''(q) = \left( |\alpha'(q)|^3 k_{\alpha}(q) \right) b_{\alpha}(q)$, i.e. the vector product is a factor of the binormal vector $b_{\alpha}(q) = b_{\beta}(s)$. Using the fact that $b \cdot t = 0$ and $b \cdot n = 0$, we can disregard the $t_{\beta}(s)$ and $n_{\beta}(s)$ terms in $\alpha'''(q)$ by taking the dot product. With this, we have
+	\begin{gather*}
+		\dfrac{d^3\alpha}{dq^3} = t_{\beta}(s) \left[ \dfrac{d}{dq} \left( \dfrac{\alpha'(q) \cdot \alpha''(q)}{|\alpha'(q)|} \right) - |\alpha'(q)|^2 k_{\beta}(s)^2 \dfrac{ds}{dq} \right] \\
+		+ n_{\beta}(s) \left[ k_{\beta}(s) \dfrac{ds}{dq} \dfrac{\alpha'(q) \cdot \alpha''(q)}{|\alpha'(q)|} + \dfrac{d}{dq} \left( |\alpha'(q)|^2 \right) k_{\beta}(s) + |\alpha'(q)|^2 k_{\beta}'(s) \dfrac{ds}{dq} \right] \\
+		+ b_{\beta}(s) \left[ - |\alpha'(q)|^2 k_{\beta}(s) \tau_{\beta}(s) \dfrac{ds}{dq} \right]
+	\end{gather*}
+	Taking the dot product with $\alpha'(q) \wedge \alpha''(q)$, we get
+	\begin{gather*}
+		\left( \alpha'(q) \wedge \alpha''(q) \right) \cdot \alpha'''(q) 
+		= b_{\beta}(s) \left( |\alpha'(q)|^3 k_{\beta}(s) \right) \cdot b_{\beta}(s) \left( - |\alpha'(q)|^2 k_{\beta}(s) \tau_{\beta}(s) \dfrac{ds}{dq} \right) \\
+		= \left( -|\alpha'(q)|^5 k_{\beta}(s)^2 \right)  \left( \tau_{\beta}(s) |\alpha'(q)| \right) \\
+		= -|\alpha'(q)|^6 \cdot \dfrac{|\alpha'(q) \wedge \alpha''(q)|^2 }{|\alpha'(q)|^6} \left( \tau_{\beta}(s) \right)
+	\end{gather*}
+	and so
+	\begin{gather*}
+		\tau_{\beta}(s) = \tau_{\alpha}(q) = -\dfrac{\left( \alpha'(q) \wedge \alpha''(q) \right) \cdot \alpha'''(q) }{|\alpha'(q) \wedge \alpha''(q)|^2}
+	\end{gather*}
+	
+	% Comment this out since while it is accurate, we still have to show that \alpha' and \alpha'' is perpendicular to each other. 
+\comment{
+	The chain rule tells us that
+	\begin{gather*}
+		\dfrac{dt_{\alpha}}{dq} = \dfrac{dt_{\beta}}{ds} \dfrac{ds}{dq}
+		= \left( k_{\beta}(s) n_{\beta}(s) \right) \dfrac{ds}{dq}
+		= \left( k_{\alpha}(q) n_{\alpha}(q) \right) \dfrac{ds}{dq}
+	\end{gather*}
+	We know that
+	\begin{gather*}
+		\dfrac{dt_{\alpha}}{dq} = \dfrac{\alpha''(q)}{|\alpha'(q)|} - \dfrac{\alpha'(q)}{|\alpha'(q)|^2} \left( \dfrac{\alpha'(q) \cdot \alpha''(q)}{|\alpha'(q)|} \right) \\
+		= \dfrac{ |\alpha'(q)|^2 \alpha''(q) - (\alpha'(q) \cdot \alpha''(q)) \alpha'(q) }{|\alpha'(q)|^3} \\
+		= \dfrac{ \alpha''(q) (\alpha'(q) \cdot \alpha'(q)) - \alpha'(q) (\alpha'(q) \cdot \alpha''(q)) }{|\alpha'(q)|^3} \\
+		= \dfrac{ \alpha'(q) \wedge (\alpha''(q) \wedge \alpha'(q)) }{|\alpha'(q)|^3}
+	\end{gather*}
+	and that
+	\begin{gather*}
+		n_\alpha(q) = \dfrac{dt_{\alpha}/dq}{|dt_{\alpha}/dq|}
+	\end{gather*}
+	Therefore,
+	\begin{gather*}
+		k_{\alpha}(q) \dfrac{ds}{dq} = \left| \dfrac{dt_{\alpha}}{dq} \right| \\
+		k_{\alpha}(q)  = \left| \dfrac{dt_{\alpha}}{dq} \right| \dfrac{dq}{ds} = \dfrac{ \left| \alpha'(q) \wedge (\alpha''(q) \wedge \alpha'(q)) \right| }{|\alpha'(q)|^2}
+	\end{gather*}
+}
+
+	Recall from an earlier exercise that
+	\begin{gather*}
+		k(\theta) = \dfrac{ \rho^2 + 2(\rho')^2 - \rho\rho'' }{ \left( (\rho')^2 + \rho^2 \right)^{3/2} }
+	\end{gather*}
+	We know that $x(t(\theta)) = \rho(\theta) \cos \theta$, $y(t(\theta)) = \rho(\theta) \sin \theta$, and 
+	\begin{gather*}
+		\dfrac{dk}{dt} = \dfrac{dk}{d\theta} \dfrac{d\theta}{dt}
+	\end{gather*}
+	
+	\subsubsection*{Exercise 13}
+	Assume that $\tau(s) \neq 0$ and $k'(s) \neq 0$ for all $s \in I$. Show that a necessary and sufficient condition for $\alpha(I)$ to lie on the sphere is that
+	\begin{gather*}
+		R^2 + (R')^2T^2 = C
+	\end{gather*}
+	for some constant $c$, where $R = 1/k$, $T = 1/\tau$, and $R'$ is the derivative of $R$ with respect to $s$.
+	
+	Suppose that the curve $\alpha(I)$ lies entirely on a sphere. That means for all $s \in I$, $|\alpha(s)| = r$, and so
+	\begin{gather*}
+		\dfrac{d}{ds} \left( |\alpha(s)| \right) = \dfrac{\alpha(s) \cdot \alpha'(s)}{|\alpha(s)|} = 0 \\
+		\alpha(s) \cdot \alpha'(s) = 0
+	\end{gather*}
+	Since $|\alpha(s)| = r \neq 0$ and $|\alpha'(s)| = 1$, we have that $\alpha$ and $\alpha'$ are perpendicular to each other, and as $t(s) = \alpha'(s)$, $\alpha(s)$ lies on the plane perpendicular to it. Therefore, $\alpha(s) = c_1(s) b(s) + c_2(s) n(s)$. From here, we see that
+	\begin{gather*}
+		\alpha'(s) = t(s) = c_1'(s) b(s) + c_1(s) b'(s) + c_2'(s) n(s) + c_2(s) n'(s) \\
+		= \left( c_1'(s) - c_2(s) \tau(s) \right) b(s) + \left( c_1(s) \tau(s) + c_2'(s) \right) n(s) + \left( -c_2(s) k(s) \right) t(s)
+	\end{gather*}
+	Rearranging some terms, we have
+	\begin{gather*}
+		\left( 1 + c_2(s) k(s) \right) t(s) = \left( c_1'(s) - c_2(s) \tau(s) \right) b(s) + \left( c_1(s) \tau(s) + c_2'(s) \right) n(s)
+	\end{gather*}
+	But this is only possible if each of the coefficients corresponding to $t(s)$, $b(s)$, and $n(s)$ are zero, meaning
+	\begin{gather*}
+		1 + c_2(s) k(s) = 0 \\
+		c_1'(s) - c_2(s) \tau(s) = 0 \\
+		c_1(s) \tau(s) + c_2'(s) = 0
+	\end{gather*}
+	First note that for the first equation to hold, the curvature can never be zero and so
+	\begin{gather*}
+		c_2(s) = -\dfrac{1}{k(s)}
+	\end{gather*}
+	Differentiating it gets
+	\begin{gather*}
+		c_2'(s) = \dfrac{k'(s)}{k(s)^2}
+	\end{gather*}
+	Plugging it into the third equation gets
+	\begin{gather*}
+		c_1(s) = \dfrac{k'(s)}{k(s)^2 \tau(s)}
+	\end{gather*}
+	Since $|\alpha(s)| = |c_1(s)b(s) + c_2(s)n(s)| = r$,
+	\begin{gather*}
+		|\alpha(s)|^2 = c_1(s)^2 + c_2(s)^2 = \dfrac{1}{k(s)^2} + \dfrac{k'(s)^2}{k(s)^4 \tau(s)^2} = r^2		
+	\end{gather*}
+	Let $R(s) = 1/k(s)$ and let $T(s) = 1/\tau(s)$. Then $R'(s) = -k'(s)/k(s)^2$ and
+	\begin{gather*}
+		R(s)^2 + (R'(s))^2 T(s)^2 = r^2
+	\end{gather*}
+	
+	Now suppose that we are given the following equation
+	\begin{gather*}
+		R(s)^2 + (R'(s))^2 T(s)^2 = C
+	\end{gather*}
+	where $C$ is some constant, $R(s) = 1/k(s)$, $T(s) = 1/\tau(s)$, $k'(s) \neq 0$, and $\tau(s) \neq 0$. Consider the following equation $m(s) = \alpha(s) - c_1(s)b(s) - c_2(s)n(s)$, where $c_1$ and $c_2$ were the same equations as before. Then
+	\begin{gather*}
+		m(s) = \alpha(s) - \dfrac{k'(s)}{k(s)^2 \tau(s)} b(s) + \dfrac{1}{k(s)} n(s) \\
+		= \alpha(s) - R'(s)T(s)b(s) + R(s) n(s)
+	\end{gather*}
+	Taking the derivative, we see that
+	\begin{gather*}
+		m'(s) = \alpha'(s) - \left( (R'(s)T(s))' b(s) + R'(s) T(s) b'(s) \right) + \left( R'(s) n(s) + R(s) n'(s) \right) \\
+		= t(s) - \left( (R'(s)T'(s) + R''(s)T(s)) b(s) + R'(s) T(s) \tau(s) n(s) \right) \\
+		+ \left( R'(s) n(s) + R(s) ( -k(s)t(s) - \tau(s) b(s) ) \right) \\
+		= \left( 1 - R(s)k(s) \right) t(s)
+		+ \left( -R'(s) T(s) \tau(s) + R'(s) \right) n(s) \\
+		+ \left( -R'(s)T'(s) - R''(s)T(s) - R(s) \tau(s) \right) b(s) \\
+		= (1 - 1)t(s) + (-1 + 1) n(s) - \left( R'(s)T'(s) + R''(s)T(s) + R(s) \tau(s) \right) b(s) \\
+		= - \left( R'(s)T'(s) + R''(s)T(s) + R(s) \tau(s) \right) b(s)
+	\end{gather*}
+	Our assumption of $R(s)^2 + (R'(s))^2 T(s)^2$ being constant results in
+	\begin{gather*}
+		2 R(s) R'(s) + 2 R'(s) R''(s) T(s)^2 + 2 (R'(s))^2 T(s) T'(s) = 0 \\
+		\dfrac{2 R'(s)}{ T(s) } \left( R(s)\tau(s) + R''(s)T(s) + R'(s) T'(s) \right) = 0
+	\end{gather*}
+	Since $k(s)$ exists for all $s \in I$, $R'(s) \neq 0$, and so
+	\begin{gather*}
+		 R(s)\tau(s) + R''(s)T(s) + R'(s) T'(s) = 0
+	\end{gather*}
+	Therefore, $m'(s) = 0$, and so $m(s)$ is a fixed point. Now note that
+	\begin{gather*}
+		\left| \alpha(s) - m(s) \right|^2 = \left| R'(s) T(s) b(s) - R(s) n(s) \right|^2 = \left( R'(s) T(s) \right)^2 + \left( R(s) \right)^2 = C
+	\end{gather*} 
+	and so $m(s)$ is the the fixed point that is a constant distance from all points on the curve, i.e. the curve $\alpha$ lies on a sphere.
+	
+\end{document}

@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+
+\title{Notes on "Topology and Geometry" by Bredon}
+%
+\author{Kevin Sony}
+\date{Spring 2026}
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\newcommand{\betabar}{\bar{\beta}}
+\newcommand{\kbar}{\bar{k}}
+\newcommand{\R}{\mathbb{R}}
+
+\begin{document}
+	
+	\maketitle
+	
+	\section{Metric Spaces}
+	
+	\subsection{Definition of Metric Space}
+	A metric space is a set $X$ with a function $d: X \times X \to \R$ called the metric that satisfies the following properties
+	\begin{enumerate}
+		\item $d(x, y) \geq 0$ for all $x, y \in X$
+		\item $d(x, y) = d(y, x)$ for all $x, y \in X$
+		\item $d(x, z) \leq d(x, y) + d(y, z)$ for all $x, y, z \in X$
+	\end{enumerate}
+	The $\epsilon$ ball about a point $x \in X$ is defined to 
+	\begin{gather*}
+		B_{\epsilon}(x) = \{ p \in X, d(x, p) < \epsilon \}
+	\end{gather*}
+	
+	\subsection{Proposition}
+	A function $f : X \to Y$ between metric spaces is continuous if and only if $f^{-1}(U)$ is open in $X$ for each open subset $U$ of $Y$.
+	\\ \\
+	\noindent \textit{Proof:}
+	Suppose that $f$ is continuous and $U$ is an open subset of $Y$. Let $f(x) \in U$. Since $U$ is an open set, then there exists an open ball $B_{\epsilon}(f(x))$ that is completely contained in $U$. Recall that the a function is continuous if for an arbitrary $\epsilon > 0$, there exists a $\delta > 0$ such that $d_X(x_1, x_2) < \delta$ implies $d_Y(f(x_1), f(x_2)) < \epsilon$. Now consider a point $y_1 = f(x_1) \in B_{\epsilon}(f(x))$. Clearly, $d_Y(y, y_1) = d_Y(f(x), f(x_1)) < \epsilon$ and so $d_X(x_1, x_2) < \delta$, and so there exists a $\delta$ ball about $x \in X$, $B_{\delta}(x)$, and clearly $B_{\delta}(x) \subset f^{-1}(U)$, so $f^{-1}(U)$ is open in $X$.
+	
+	To show the converse, suppose that $f^{-1}(U)$ is open in $X$ for each open subset $U$ of $Y$. Consider any point $y = f(x)$ and an $epsilon > 0$. The corresponding $\epsilon$ ball is $B_{\epsilon}(y)$. From the assumption, we know there is a corresponding open set $f^{-1} (B_{\epsilon}(y))$. Furthermore, we know that $x \in f^{-1} (B_{\epsilon}(y))$ and so we can deduce that there exists an open $\delta$ ball contained entirely within this set, i.e. $B_{\delta}(x) \subset f^{-1} (B_{\epsilon}(y))$. We thus conclude that for the $\epsilon > 0$, there exists a $\delta > 0$ such that for any point $p \in B_{\delta}(x)$, $f(p) \in B_{\epsilon}(y)$, which is the definition of continuity of $f$.
+	
+	\subsection{Proposition}
+	If $d_1$ and $d_2$ are metrics on the same set $X$ which satisfy the condition that for any two points $x, y \in X$ and $\epsilon > 0$, there is a $\delta > 0$ such that
+	\begin{gather*}
+		d_1(x, y) < \delta \implies d_2(x, y) < \epsilon \\
+		d_2(x, y) < \delta \implies d_1(x, y) < \epsilon
+	\end{gather*}
+	then the metrics define the same open set on $X$.
+	\\ \\
+	\noindent \textit{Proof:}
+	Suppose the given condition holds for two metrics $d_1$ and $d_2$. We want to show that an open set on one of the metric spaces, say $U \subset (X, d_1)$, is also open on the other metric space. We know that since $U$ is open in $(X, d_1)$, there exists an open ball $B_{\epsilon}(u) \subset U$ defined by $d_1$ for some point $u \in U$. This means that for every point $p \in B_{\epsilon}(u)$, $d_1(p, u) < \epsilon$. From the condition, we know that for a given $\epsilon > 0$, there must exist a $\delta > 0$ such that $d_2(p, u) < \delta \implies d_1(p, u) < \epsilon$, i.e. that the open ball $B_{\delta}(u)$ defined by $d_2$ is contained in $U$. This thus holds for every point $u \in U$. Therefore, $U$ is open in $(X, d_2)$.
+	
+	\subsection*{Problems}
+	
+	\subsubsection*{Problem 1}
+	Consider the set $C[0, 1]$ of continuous real functions on $[0, 1]$. Show that
+	\begin{gather*}
+		d(f, g) = \int_0^1 |f(x) - g(x)| dx
+	\end{gather*}
+	defines a metric on $C[0, 1]$. Does this still hold if continuity is weakened to integrability .
+	
+	We clearly see that $|f(x) - g(x)| \geq 0$ for $f, g \in C[0, 1]$ and $x \in [0, 1]$ and so
+	\begin{gather*}
+		d(f, g) \geq 0
+	\end{gather*}
+	Similarly, $|f(x) - g(x)| = |g(x) - f(x)|$ and so
+	\begin{gather*}
+		d(f, g) = d(g, f)
+	\end{gather*}
+	Now, consider $f, g, h \in C[0, 1]$. Recall that for a point $x \in [0, 1]$, $|f(x) - g(x)| \leq |f(x) - h(x)| + |h(x) - g(x)|$ and so
+	\begin{gather*}
+		d(f, g) \leq d(f, h) + d(h, g)
+	\end{gather*}
+	Thus, $d$ defines a metric on $C[0, 1]$.
+	
+	Now consider the set of Riemann integrable functions, $R[0, 1]$. Let $f, g, h \in R[0, 1]$. We know that the Lebesgue’s criterion states that a function $f$ is Riemann integrable if and only if the measure of the set of its discontinuities $\mu(D_f)$ is zero.
+
+	Consider $m = f - g$. We know clearly that $D_f$ and $D_g$ have measure zero, and we also know that $D_m \subset D_f \cup D_g$ meaning $\mu(D_m) = 0$. Therefore, $m$ is Riemann integrable and
+	\begin{gather*}
+		d(f, g) = \int_0^1 |f(x) - g(x)| dx = \int_0^1 |m(x)| dx \geq 0
+	\end{gather*}
+	It is self evident that for $f, g \in R[0, 1]$, $d(f, g) = d(g, f)$. Finally, via similar construction as in the first case, we know that the new functions $m = f - g$, $n = f - h$ and $p = h - g$ are also Riemann integrable and so $d(f, g) \leq d(f, h) + d(h, g)$.
+	
+	\textit{Checking this online, it turns out the definition of the metric space given actually defines a pseudometric space. This is because two distinct functions $f, g$ can still result in $d(f, g) = 0$}
+	
+	\subsubsection*{Problem 2}
+	If $X$ is a metric space and $x_0 \in X$, show that $f: X \to \R$ given by $f(x) = d(x, x_0)$ is continuous.
+	
+	From the triangle inequality, we know that for the points $x, y, x_0 \in \R$, $d(x, x_0) \leq d(x, y) + d(y, x_0)$ and $d(y, x_0) \leq d(y, x) + d(x, x_0)$ and so $d(x, y) \geq |d(y, x_0) - d(x, x_0)|$, i.e. $|f(x) - f(y)| < d(x, y)$. Thus, $f$ is Lipschitz continuous.
+	
+	\subsubsection*{Problem 3}
+	If $A$ is a subset of a metric space $X$, define a function $f : X \to \R$ given by $f(x) = d(x, A) = \inf \{ d(x, y) | y \in A \}$. Show that $d$ is continuous.
+	
+	
+	\section{Section 2}
+	
+
+\end{document}
