@@ -92,10 +92,59 @@
 	From the triangle inequality, we know that for the points $x, y, x_0 \in \R$, $d(x, x_0) \leq d(x, y) + d(y, x_0)$ and $d(y, x_0) \leq d(y, x) + d(x, x_0)$ and so $d(x, y) \geq |d(y, x_0) - d(x, x_0)|$, i.e. $|f(x) - f(y)| < d(x, y)$. Thus, $f$ is Lipschitz continuous.
 	
 	\subsubsection*{Problem 3}
-	If $A$ is a subset of a metric space $X$, define a function $f : X \to \R$ given by $f(x) = d(x, A) = \inf \{ d(x, y) | y \in A \}$. Show that $d$ is continuous.
+	If $A$ is a subset of a metric space $X$, define a function $f : X \to \R$ given by $f(x) = d(x, A) = \inf_{y \in A} d(x, y)$. Show that $f$ is continuous.
 	
+	From the definition, we have that
+	\begin{gather*}
+		|f(x) - f(y)| = |d(x, A) - d(y, A)|
+	\end{gather*}
+	where
+	\begin{gather*}
+		d(x, A) = \inf_{a_x \in A} d(x, a_x) \\
+		d(y, A) = \inf_{a_y \in A} d(y, a_y)
+	\end{gather*}
+	Notice that $d(x, A) \leq d(x, a)$ for some arbitrary point $a \in A$, and likewise that $d(y, A) \leq d(y, a)$ for some $a \in A$, and so 
+	\begin{gather*}
+		|d(x, A) - d(y, A)| \leq |d(x, a) - d(y, a)|
+	\end{gather*}
+	for some arbitrary $a \in A$
 	
-	\section{Section 2}
+	The triangle inequality states that $d(m, p) \leq d(m, n) + d(n, p)$, for some arbitrary points $m, n, p \in X$
+	\begin{gather*}
+		d(m, p) \leq d(m, n) + d(n, p) \implies d(m, p) - d(m, n) \leq d(n, p) \\
+		d(m, n) \leq d(m, p) + d(p, n) \implies d(m, n) - d(m, p) \leq d(p, n)
+	\end{gather*}
+	Therefore, $|d(m, n) - d(m, p)| \leq d(n, p)$ for arbitrary points $m, n, p \in X$. With that in mind, we have that $|d(x, a) - d(y, a)| \leq d(x, y)$. Therefore, $|f(x) - f(y)| \leq d(x, y)$, and so $f$ is Lipschitz continuous.
+	
+	\section{Topological Spaces}
+	Sometimes, we would like to study spaces spaces without regard to metric, and since the things to study involve open sets, we introduce the concept of the topological space.
+	
+	\subsection{Definition of Topological Space}
+	A topological space is a set $X$ together with a collection of subsets of $X$ called open sets such that
+	\begin{enumerate}
+		\item the intersection of two open sets is open
+		\item the union of any collection of open sets is open
+		\item the empty set $\emptyset$ and the whole space $X$ is open
+	\end{enumerate}
+	A set $C$ is called closed if $X - C$ is open.
+	
+	\subsection{Definition of Continuity on Topological Spaces}
+	If $X$ and $Y$ are topological spaces and $f: X \to Y$ is a function, then $f$ is said to be continuous if $f^{-1}(U)$ is open for every open set $U \subset Y$.
+	\\ \\
+	\noindent
+	It follows from this definition and the definition of closed sets that $f$ is continuous if and only if $f^{-1}(C)$ is closed for every closed set $C \subset Y$.
+	\\
+	\noindent \textit{Proof:}
+	Suppose that $f: X \to Y$ is continuous. Clearly then $f^{-1}(U)$ is open for every open set $U \subset Y$. By definition of closed sets, we can generate every closed set by $C = Y - U$. The final step is to show that $f^{-1}(C)$ is closed. To show this, we first must show that $f^{-1}(Y - U) = X - f^{-1}(U)$. To do this, suppose to the contrary that this was not the case, i.e. either there exists an element $x$ both in $f^{-1}(U)$ and $f^{-1}(Y - U)$, or there exists an element not in either one of them. Consider the first scenario. If $x \in f^{-1}(U)$ and $x \in f^{-1}(Y - U)$, then $f(x) \in U$ and $f(x) \in Y - U$, a contradiction. Now consider the second scenario. If $x \notin f^{-1}(U)$ and $x \notin f^{-1}(Y - U)$, then $f(x) \notin U$ and $f(x) \notin Y - U$, which is also a contradiction. Thus, $f^{-1}(Y - U) = X - f^{-1}(U)$, and since $f^{-1}(U)$ is open, $f^{-1}(Y - U) = f^{-1}(C)$ is closed. This completes the proof.
+	
+	\subsection{Definition of Neighborhoods}
+	If $X$ is a topological space and $x \in X$, then a set $N$ is called a neighborhood of $x$ in $X$ if there exists an open set $U \subset N$ such that $x \in N$.
+	
+	\subsection{Definition of Neighborhood Basis}
+	If $X$ is a topological space and $x \in X$, then a collection $B_x$ of subsets of $X$ containing $x$ is called a neighborhood basis at $x$ in $X$ if each neighborhood of $x$ in $X$ contains some element of $B_x$ and each element of $B_x$ is a neighborhood of $x$.
+	
+	\\
+	\noindent
 	
 
 \end{document}

@@ -2119,4 +2119,203 @@
 	\end{gather*} 
 	and so $m(s)$ is the the fixed point that is a constant distance from all points on the curve, i.e. the curve $\alpha$ lies on a sphere.
 	
+	\subsubsection*{Exercise 14}
+	Let $\alpha : (a, b) \to \R^2$ be a regular parameterized plane curve. Assume there exists $q_0 \in (a, b)$ such that the distance $|\alpha(q)|$ from the origin to the trace of $\alpha$ is maximized at $q_0$. Show that the curvature $k$ of $\alpha$ at $q_0$ satisfies $|k(q_0)| \geq 1/|\alpha(q_0)|$.
+	
+	The maximum distance occurs where the rate of change is zero, 
+	\begin{gather*}
+		\dfrac{d}{dq} (|\alpha(q)|) = \dfrac{\alpha(q) \cdot \alpha'(q)}{|\alpha(q)|} = 0
+	\end{gather*}
+	We already know this is when $q = q_0$, so $\alpha(q_0) \cdot \alpha'(q_0) = 0$. For this to be the maximum, the second derivative has to be negative. The second derivative is
+	\begin{gather*}
+		\dfrac{d^2}{dq^2} (|\alpha(q)|)  = \dfrac{d}{dq} \left( \dfrac{\alpha(q) \cdot \alpha'(q)}{|\alpha(q)|} \right) =
+		-\dfrac{(\alpha(q) \cdot \alpha'(q))^2}{|\alpha(q)|^3} + \dfrac{\alpha'(q) \cdot \alpha'(q) + \alpha(q) \cdot \alpha''(q)}{|\alpha(q)|}
+	\end{gather*}
+	and at $q = q_0$, it must be that
+	\begin{gather*}
+		-\dfrac{(\alpha(q_0) \cdot \alpha'(q_0))^2}{|\alpha(q_0)|^3} + \dfrac{\alpha'(q_0) \cdot \alpha'(q_0) + \alpha(q_0) \cdot \alpha''(q_0)}{|\alpha(q_0)|} \leq 0
+	\end{gather*}
+	and since $\alpha(q_0) \cdot \alpha'(q_0) = 0$ and $\alpha'(q_0)$
+	\begin{gather*}
+		\dfrac{\alpha'(q_0) \cdot \alpha'(q_0) + \alpha(q_0) \cdot \alpha''(q_0)}{|\alpha(q_0)|} \leq 0
+	\end{gather*}
+	Now we know that
+	\begin{gather*}
+		\alpha''(q) = \dfrac{d}{dq} \left( t(q) |\alpha'(q)| \right) = \dfrac{t(q) \left(\alpha'(q) \cdot \alpha''(q) \right)}{|\alpha'(q)|} + t'(q) |\alpha'(q)| \\
+		= \dfrac{\alpha'(q) \left(\alpha'(q) \cdot \alpha''(q) \right)}{|\alpha'(q)|^2} + t'(q) |\alpha'(q)| 
+	\end{gather*}
+	and so
+	\begin{gather*}
+		\alpha(q) \cdot \alpha''(q) = \dfrac{ \left( \alpha(q) \cdot \alpha'(q) \right) \left(\alpha'(q) \cdot \alpha''(q) \right)}{|\alpha'(q)|^2} + \left( \alpha(q) \cdot t'(q) \right) |\alpha'(q)| 
+	\end{gather*}
+	Evaluating at $q = q_0$,
+	\begin{gather*}
+		\alpha(q_0) \cdot \alpha''(q_0) = \left( \alpha(q_0) \cdot t'(q_0) \right) |\alpha'(q_0)| = k(q_0) \left( \alpha(q_0) \cdot n(q_0) \right) |\alpha'(q_0)|^2 \\
+		= k(q_0) \left( \alpha(q_0) \cdot n(q_0) \right) \left( \alpha'(q_0) \cdot \alpha'(q_0) \right)
+	\end{gather*}
+	Thus,
+	\begin{gather*}
+		\alpha'(q_0) \cdot \alpha'(q_0) + \alpha(q_0) \cdot \alpha''(q_0) \leq 0 \\
+		\left( \alpha'(q_0) \cdot \alpha'(q_0) \right) \left( 1 + k(q_0) \left( \alpha(q_0) \cdot n(q_0) \right) \right) \leq 0 \\
+		1 + k(q_0) \left( \alpha(q_0) \cdot n(q_0) \right) \leq 0 \\
+		k(q_0) \left( \alpha(q_0) \cdot n(q_0) \right) \leq -1	\\
+		|k(q_0) \left( \alpha(q_0) \cdot n(q_0) \right)| \geq 1	\\
+		|k(q_0)| |\alpha(q_0) \cdot n(q_0)| \geq 1
+	\end{gather*}
+	Since $|\alpha(q_0) \cdot n(q_0)| \leq |\alpha(q_0)|$, $|k(q_0)| |\alpha(q_0)| \geq 1$ or $|k(q_0)| \geq 1/|\alpha(q_0)|$
+	
+	\subsubsection*{Exercise 15}
+	Show that knowledge of the vector function $b = b(s)$, the binormal vector of a curve $\alpha$, with nonzero torsion everywhere, determines the curvature $k(s)$ and the torsion $\tau(s)$ of $\alpha$.
+	
+	Since we know $b(s)$, we also know $b'(s)$, and from the Frenet formulas, we get 
+	\begin{gather*}
+		b'(s) = \tau(s) n(s)
+	\end{gather*}
+	and so
+	\begin{gather*}
+		|b'(s)| = |\tau(s) n(s)| = |\tau(s)|
+	\end{gather*}
+	From here, we know $n(s)$, which is
+	\begin{gather*}
+		n(s) = \dfrac{1}{\tau(s)} b'(s)
+	\end{gather*}
+	and since we know that $\{b(s), n(s), t(s)\}$ forms an orthonormal set, $t(s) = n(s) \wedge b(s)$. Finally, note that the derivative of $b'(s)$ with respect to $s$ is
+	\begin{gather*}
+		b''(s) = \tau'(s) n(s) - \tau(s)^2 b(s) - \tau(s) k(s) t(s)
+	\end{gather*}
+	resulting in
+	\begin{gather*}
+		b''(s) \cdot t(s) = - \tau(s) k(s) \\
+		k(s) = - \dfrac{b''(s) \cdot t(s)}{\tau(s)}
+	\end{gather*}
+	
+	Alternatively, looking online, one solution is to use the other Frenet formula  $n'(s) = -\tau(s) b(s) - k(s) t(s)$ to get
+	\begin{gather*}
+		k(s) t(s) = -n'(s) - \tau(s) b(s)
+	\end{gather*}
+	or
+	\begin{gather*}
+		k(s) = \left| -n'(s) - \tau(s) b(s) \right|
+	\end{gather*}
+	
+	\subsubsection*{Exercise 16}
+	Show that knowledge of the vector function $n = n(s)$, the normal vector of a curve $\alpha$, with nonzero torsion everywhere, determines the curvature $k(s)$ and the torsion $\tau(s)$ of $\alpha$.
+	
+	We know that $n'(s) = -\tau(s) b(s) - k(s) t(s)$ and so
+	\begin{gather*}
+		n'(s) \cdot n'(s) = \tau(s)^2 + k(s)^2
+	\end{gather*}
+	Furthermore, note that
+	\begin{gather*}
+		n(s) \wedge n'(s) = n(s) \wedge \left( -\tau(s) b(s) - k(s) t(s) \right) \\
+		= -\tau(s) (n(s) \wedge b(s)) - k(s) (n(s) \wedge t(s))
+	\end{gather*}
+	Recall that since $b, n, t$ are orthonormal and $b = t \wedge n$, $t = n \wedge b$ and so
+	\begin{gather*}
+		n(s) \wedge n'(s) = -\tau(s) t(s) + k(s) b(s)
+	\end{gather*}
+	Consider the derivative of $n'(s)$ with respect to $s$
+	\begin{gather*}
+		n''(s) = -\tau'(s) b(s) - \left( \tau(s)^2 + k(s)^2 \right) n(s) - k'(s) t(s)
+	\end{gather*}
+	and here we see that $(n(s) \wedge n'(s)) \cdot n''(s)$ is
+	\begin{gather*}
+		\left( -\tau(s) t(s) + k(s) b(s) \right) \cdot \left( -\tau'(s) b(s) - \left( \tau(s)^2 + k(s)^2 \right) n(s) - k'(s) t(s) \right) \\
+		= -k(s) \tau'(s) b(s) \cdot b(s) + \tau(s) k'(s) t(s) \cdot t(s) = -k(s) \tau'(s) + \tau(s) k'(s)
+	\end{gather*}
+	Now the trick to notice that 
+	\begin{gather*}
+		\dfrac{d}{ds} \left( \arctan \dfrac{k(s)}{\tau(s)} \right) = \dfrac{1}{1 + \left( k(s)/\tau(s) \right)^2 } \cdot \dfrac{\tau(s) k'(s) - k(s) \tau'(s)}{\tau(s)^2} \\
+		= \dfrac{\tau(s) k'(s) - k(s) \tau'(s)}{ \tau(s)^2 + k(s)^2 }
+	\end{gather*}
+	Letting $\theta(s) = \arctan \dfrac{k(s)}{\tau(s)}$, we get
+	\begin{gather*}
+		\dfrac{d\theta}{ds} = \dfrac{(n(s) \wedge n'(s)) \cdot n''(s)}{n'(s) \cdot n'(s)}
+	\end{gather*}
+	or
+	\begin{gather*}
+		\theta(s) = \int_{s_0}^s \dfrac{(n(q) \wedge n'(q)) \cdot n''(q)}{n'(q) \cdot n'(q)} dq
+	\end{gather*}
+	Then $k(s) = \tau(s) \tan \theta(s)$ and so
+	\begin{gather*}
+		n'(s) \cdot n'(s) = \tau(s)^2 + \left( \tau(s) \tan \theta(s) \right)^2 = \tau(s)^2 \sec^2 \theta(s)
+	\end{gather*}
+	leading to
+	\begin{gather*}
+		\tau(s) = |n'(s)| \cos \theta(s)
+	\end{gather*}
+	and
+	\begin{gather*}
+		k(s) = |n'(s)| \sin \theta(s)
+	\end{gather*}
+	
+	\subsection*{Section 6}
+	The best way to solve geometric problems is to find a coordinate system most suited for the problem. In particular, with the study of curves, in a neighborhood of the point $s$, the Frenet trihedron at $s$ is a natural coordinate system to use.
+	
+	Let $\alpha: I \to \R^3$ be a curve parameterized by arc length without singular points. We can express $\alpha$ in a neighborhood of $s_0$ solely using the basis $t(s_0), n(s_0), b(s_0)$. Consider the Taylor expansion of $\alpha$ at $s$ about $s_0$
+	\begin{gather*}
+		\alpha(s) = \alpha(s_0) + (s - s_0) \alpha'(s_0) + \dfrac{(s - s_0)^2}{2} \alpha''(s_0) + \dfrac{(s - s_0)^3}{6} \alpha'''(s_0) + R
+	\end{gather*}
+	Since $\alpha'(s_0) = t(s_0)$, $\alpha''(s_0) = k(s_0) n(s_0)$, and
+	\begin{gather*}
+		\alpha'''(s_0) = k'(s_0) n(s_0) - k(s_0)^2 t(s_0) - k(s_0) \tau(s_0) b(s_0)
+	\end{gather*}
+	we rewrite the Taylor expansion to get
+	\begin{gather*}
+		\alpha(s) - \alpha(s_0) = \left( (\Delta s) - \dfrac{(\Delta s)^3}{6} k(s_0)^2 \right) t(s_0)
+		+ \left( \dfrac{(\Delta s)^2}{2} k(s_0) + \dfrac{(\Delta s)^3}{6} k'(s_0) \right) n(s_0) \\
+		+ \left( \dfrac{-(\Delta s)^3}{6} k(s_0) \tau(s_0) \right) b(s_0) + R
+	\end{gather*}
+	where $\Delta s = s - s_0$.
+	
+	\subsubsection*{Definition}
+	Now consider the coordinate system $Oxyz$ where the origin $O$ agrees with $\alpha(s_0)$ and that $t(s_0) = (1, 0, 0)$, $n(s_0) = (0, 1, 0)$, $b(s_0) = (0, 0, 1)$. Under this coordinate system, the curve $\alpha(s) = (x(s), y(s), z(s))$ is given by
+	\begin{gather*}
+		x(s) = (\Delta s) - \dfrac{(\Delta s)^3}{6} k(s_0)^2 + R_x \\
+		y(s) = \dfrac{(\Delta s)^2}{2} k(s_0) + \dfrac{(\Delta s)^3}{6} k'(s_0) + R_y \\
+		z(s) = \dfrac{-(\Delta s)^3}{6} k(s_0) \tau(s_0) + R_z
+	\end{gather*} 
+	where $R = (R_x, R_y, R_z)$. The three equations given is known as \textit{local canonical form} of $\alpha$ in a neighborhood of $s_0$.
+	
+	This definition of the curve (viewing it in the local canonical form) allows us to interpret the sign of the torsion. Let us say that the positive side of the osculating plane is the direction $b(s)$ points towards. We see in the third equation for $z(s)$ that for $\tau(s_0) < 0$ and $\Delta s << 1$, $z(s)$ increases with $s$. On this note, if $\tau(s_0) < 0$, as $s$ increases the curve will move \textit{upwards} relative to the osculating plane/$z$ axis/$b(s)$. Likewise, if $\tau(s_0) > 0$, as $s$ increases, $z(z)$ decreases and so the curve will move \textit{downwards} relative to the osculating plane/$z$ axis/$b(s)$.
+	
+	Another nice result from the canonical form is that given $k(s_0) > 0$, there exists a neighborhood $J$ about $s_0$ such that this points in this neighborhood lie in the general direction of $n(s_0)$, or more specifically, there is a neighborhood $J$ such that for all points $s \in J$, $y(s) \geq 0$.
+	
+	\subsubsection*{Exercise 1}
+	Let $\alpha: I \to \R^3$ be a curve parametrized by arc length with curvature $k(s) \neq 0, s \in I$. Let $P$ be a plane satisfying the following two conditions: $P$ contains the tangent line at $s$, and given any neighborhood $J \subset I$ of $s$, there exists points of $\alpha(J)$ in both sides of $P$. Show that $P$ is the osculating plane of $\alpha$ at $s$.
+	
+	The local canonical form states that at $s$, the osculating plane is $z(s) = 0$. We want to arrive at the fact the equation for $P$ is equal to that equation.
+	
+	Rewriting the first condition, we have that in local canonical form, the tangent line of $\alpha$ at $s$ is the line lying along the $x$ axis, or $(t, 0, 0)$. The second condition is a bit more subtler. The plane $P$, like all planes, is of the form
+	\begin{gather*}
+		f_P(p) = 0 \leftrightarrow (a, b, c) \cdot (p_x, p_y, p_z) = 0
+	\end{gather*}
+	for some constants $a, b, c$. Rewriting the second condition, we have that for  any neighborhood $J$ of $s$, we must have at least two points $p_1, p_2 \in \alpha(J)$ such that $f_P(p_1) < 0$ and $f_P(p_2) > 0$.
+	
+	%Since this holds for every neighborhood of $s$, consider the neighborhoods that are balls around $s$, i.e. $B_{\Delta s}(s) = (s - \Delta s, s + \Delta s)$.
+
+	We see that since every point on the tangent line must lie on $P$, we have that
+	\begin{gather*}
+		(a, b, c) \cdot (t, 0, 0) = 0
+	\end{gather*}
+	or $at = 0$. This forces $a = 0$, resulting in $f_P(x, y, z) = by + cz$
+
+	Now consider $h = f_P \circ \alpha: I \subset \R \to \R$, and its Taylor expansion.
+	\begin{gather*}
+		h(s + \delta s) = b y(s + \delta s) + c z(s + \delta s) \\
+		\approx b \left( \dfrac{(\delta s)^2}{2} k(s) + \dfrac{(\delta s)^3}{6} k'(s) \right)
+		+ c \left( \dfrac{-(\delta s)^3}{6} k(s) \tau(s) \right) \\
+		= (\delta s)^2 \cdot \dfrac{b k(s)}{2} + (\delta s)^3 \cdot \dfrac{b k'(s) - c k(s) \tau(s)}{6} \\
+		= (\delta s)^2 \cdot \left( \dfrac{b k(s)}{2} + (\delta s) \cdot \dfrac{b k'(s) - c k(s) \tau(s)}{6} \right)
+	\end{gather*}
+	If $b \neq 0$, then $b > 0$ or $b < 0$. Regardless of the sign, we see that as $\delta s \to 0$, we have 
+	\begin{gather*}
+		\left( \dfrac{b k(s)}{2} + (\delta s) \cdot \dfrac{b k'(s) - c k(s) \tau(s)}{6} \right) \to \dfrac{b k(s)}{2}
+	\end{gather*}
+	and so
+	\begin{gather*}
+		h(s + \delta s) \approx (\delta s)^2 \cdot \left( \dfrac{b k(s)}{2} \right)
+	\end{gather*}
+	Since $b \neq 0$ and $k(s) \neq 0$, we have that for a small enough neighborhood of $s$, $B_{\delta s}(s) = (s - \delta s, s + \delta s)$, $h(x) < 0$ for all $x \in (s - \delta s, s + \delta s)$ or $h(x) > 0$ for all $x \in (s - \delta s, s + \delta s)$. This directly contradicts the requirement that every neighborhood have at least two points on either side of $P$. Therefore, $b = 0$, and so the plane $P$ has normal vector $(0, 0, c)$. This is nothing more than the binormal vector, and so $P$ is the osculating plane.
+	
 \end{document}

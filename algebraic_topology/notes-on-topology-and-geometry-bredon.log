@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.3.14)  10 MAR 2026 22:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.3.14)  24 MAR 2026 19:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -196,7 +196,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--55
 
  []
 
-[2] [3] (notes-on-topology-and-geometry-bredon.aux)
+[2] [3]
+Underfull \hbox (badness 10000) in paragraph at lines 132--139
+
+ []
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.147 	\noindent
+                
+? 
+[4] (notes-on-topology-and-geometry-bredon.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -205,30 +220,31 @@ L3 programming layer <2024-01-04>
 Here is how much of TeX's memory you used:
  2541 strings out of 474485
  37338 string characters out of 5743734
- 1936542 words of memory out of 5000000
+ 1937542 words of memory out of 5000000
  24829 multiletter control sequences out of 15000+600000
  566278 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,8n,65p,779b,220s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,8n,65p,991b,220s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbx10.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmbx12.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmex10.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/font
 s/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Kevin/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Kevin/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Kevin/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Kevin/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users
-/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C
-:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy
-10.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmsy7.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/amsfonts/cm/cmti10.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/symbols/msbm10.pfb>
-Output written on notes-on-topology-and-geometry-bredon.pdf (3 pages, 160850 by
+KTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Kevin/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Kevin/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Kevin/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users
+/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><
+C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
+7.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmsy7.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmti10.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on notes-on-topology-and-geometry-bredon.pdf (4 pages, 178166 by
 tes).
 PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
+ 85 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
