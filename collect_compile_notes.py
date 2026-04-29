@@ -4,8 +4,8 @@ import os
 import glob
 import shutil
 
-src_dir_list = ["Z:/books-to-read/alg-top", "Z:/books-to-read/diff-geo"]
-out_dir_list = ["./algebraic_topology", "./differential_geometry"]
+src_dir_list = ["Z:/books-to-read/alg-top", "Z:/books-to-read/diff-geo", "Z:/books-to-read/intro-to-manifolds"]
+out_dir_list = ["./algebraic_topology", "./differential_geometry", "./intro_to_manifolds"]
 
 assert(len(src_dir_list) == len(out_dir_list))
 

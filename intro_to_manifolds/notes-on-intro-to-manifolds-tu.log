@@ -2,8 +2,8 @@ This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./notes-on-topology-and-geometry-bredon.tex
-(notes-on-topology-and-geometry-bredon.tex
+**./notes-on-intro-to-manifolds-tu.tex
+(notes-on-intro-to-manifolds-tu.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2026-01-19>
 (C:\Users\Kevin\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -130,23 +130,23 @@ tex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count285
 )
-No file notes-on-topology-and-geometry-bredon.aux.
-\openout1 = `notes-on-topology-and-geometry-bredon.aux'.
+No file notes-on-intro-to-manifolds-tu.aux.
+\openout1 = `notes-on-intro-to-manifolds-tu.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
 
 (C:\Users\Kevin\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -173,47 +173,45 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 21.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 24.
 
  (C:\Users\Kevin\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 21.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 24.
 
 
 (C:\Users\Kevin\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 38--42
-
- []
-
 [1
 
 {C:/Users/Kevin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 50--55
-
+Overfull \hbox (0.61447pt too wide) in paragraph at lines 47--48
+[]\OT1/cmr/m/n/10 All real-analytic func-tions are $\OML/cmm/m/it/10 C[]$\OT1/c
+mr/m/n/10 , but not all $\OML/cmm/m/it/10 C[]$ \OT1/cmr/m/n/10 func-tions are r
+eal-analytic.
  []
 
-[2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 132--139
-
+[2] [3] [4] [5]
+Overfull \hbox (75.95207pt too wide) detected at line 225
+[]
  []
 
-[4] (notes-on-topology-and-geometry-bredon.aux)
+[6] [7] [8] [9] [10] [11] [12] (notes-on-intro-to-manifolds-tu.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 2541 strings out of 470262
- 37202 string characters out of 5479433
- 446775 words of memory out of 5000000
- 29045 multiletter control sequences out of 15000+600000
- 635930 words of font info for 72 fonts, out of 8000000 for 9000
+ 2553 strings out of 470262
+ 37344 string characters out of 5479433
+ 455775 words of memory out of 5000000
+ 29057 multiletter control sequences out of 15000+600000
+ 637177 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,8n,65p,991b,220s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,15n,65p,562b,220s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbx10.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmbx12.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/p
@@ -225,15 +223,16 @@ ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Kevin/A
 ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users
 /Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><
 C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
-7.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmsy10.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/amsfonts/cm/cmsy7.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmti10.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on notes-on-topology-and-geometry-bredon.pdf (4 pages, 177039 by
-tes).
+5.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmr7.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmsy10.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmsy5.pfb><C:/Users/Kevin/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Kevin/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Kevin/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on notes-on-intro-to-manifolds-tu.pdf (12 pages, 234914 bytes).
 PDF statistics:
- 85 PDF objects out of 1000 (max. 8388607)
+ 121 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

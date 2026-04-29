@@ -1,0 +1,449 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+
+\title{Notes on "An Introduction to Manifolds" by Tu}
+\author{Kevin Sony}
+\date{Spring 2026}
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\newcommand{\betabar}{\bar{\beta}}
+\newcommand{\kbar}{\bar{k}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Integers}{\mathbb{Z}}
+\newcommand{\Cinfty}{C^{\infty}}
+\newcommand{\comment}[1]{}
+
+
+\begin{document}
+	
+	\maketitle
+	
+	\section{Smooth Functions on Euclidean Space}
+	In an introductory calculus course, we had worked with $\R^n$. $\R^n$ is a manifold, but it also is equipped with a natural coordinate system, unlike many other manifolds. It turns out that a lot of stuff from calculus that was done was only possible because there existed a corresponding global coordinate system. For example, it is impossible to integrate functions on a manifold in general, since integration requires a coordinate system. The objects that can be integrated are differential forms.
+	
+	The goal is to recast calculus in $\R^n$ in a way independent of coordinates to generalize to manifolds.
+	
+	\subsection{Smooth vs Analytic Functions}
+	Write coordinates on $\R^n$ as $x^1, \cdots, x^n$ and let $p = (p^1, \cdots, p^n)$ be a point in an open set of $U \subset \R^n$. Index using indices as superscripts (there is reason for this).
+	
+	\subsubsection*{Definition}
+	Let $k \in \Integers^+_0$. A real-valued function $f: U \to \R^n$ is said to be $C^k$ at $p \in U$ if its partial derivatives
+	\begin{gather*}
+		\dfrac{\partial^j f}{\partial x^{i_1} \cdots \partial x^{i_j}}
+	\end{gather*}
+	of all orders $j \leq k$ exists and are continuous at $p$. The function $f: U \to \R^n$ is $C^{\infty}$ at $p \in U$ if it is $C^k$ for all $k \geq 0$. A vector-valued function $f: U \to \R^m$ is said to be $C^k$ if all of its component functions $f^1, \cdots, f^m$ are $C^k$ at $p$. We say that $f: U \to \R^m$ is $C^k$ on $U$ if it is $C^k$ for every point $p \in U$. The definition for $C^{\infty}$ for vector-valued functions are defined in a similar manner. $C^{\infty}$ and smooth are equivalent.
+	
+	A neighborhood of a point in $\R^n$ is an open set containing the point. The function $f$ is real analytic at $p$ if in some neighborhood of $p$ it is equal to its Taylor series at $p$, i.e.
+	\begin{gather*}
+		f(x) = f(p) + \sum_i \dfrac{\partial f}{\partial x^i}(p) (x^i - p^i) + \dfrac{1}{2!} \sum_{i, j} \dfrac{\partial^2 f}{\partial x^i \partial x^j}(p) (x^i - p^i) (x^j - p^j) \\
+		+ \cdots + \dfrac{1}{k!} \sum_{i_1, \cdots, i_k} \dfrac{\partial^k f}{\partial x^{i_1} \cdots \partial x^{i_j}}(p) (x^{i_1} - p^{i_1}) \cdots (x^{i_k} - p^{i_k}) + \cdots
+	\end{gather*} 
+	
+	All real-analytic functions are $C^{\infty}$, but not all $C^{\infty}$ functions are real-analytic. Consider the function
+	\begin{gather*}
+		f(x) = \begin{cases}
+			e^{-1/x}, \quad &x > 0 \\
+			0, \quad &x \leq 0
+		\end{cases}
+	\end{gather*}
+	It is relatively easy to show via induction that $f(x)$ is $C^{\infty}$. However, note that at $x = 0$, $f(0) = 0$ and $f^{(k)}(0) = 0$ and so its Taylor series expansion should be $0$. However, for $x > 0$, $f(x) = e^{-1/x} \neq 0$ and so there does not exist a neighborhood around $x = 0$ such that $f(x)$ is identical to its Taylor series.
+	
+	\subsection{Taylor's Theorem with Remainders}
+	While a $C^{\infty}$ is not necessarily equal to its Taylor series, there is a Taylor's theorem with remainder that is good enough. In the theorem below, the Taylor series will only consist of the constant term $f(p)$
+	
+	\subsubsection*{Taylor's theorem with remainders}
+	Let $f$ be $C^{\infty}$	function on an open convex subset $U \subset \R^n$. Let $p = (p^1, \cdots, p^n) \in U$. Then there exists functions $g_1(x), \cdots, g_n(x) \in C^{\infty}(U)$ such that
+	\begin{gather*}
+		f(x) = f(p) + \sum_{i=1}^{n} (x^i - p^i) g_i(x)
+	\end{gather*}
+	where
+	\begin{gather*}
+		g_i(p) = \dfrac{\partial f}{\partial x^i}(p)
+	\end{gather*}
+
+	\noindent \textit{Proof}: For any point $x \in U$, there exists a line segment entirely in $U$ which connects $x$ to $p$, given by $p + t(x - p)$, for $0 \leq t \leq 1$. Thus, $f(p + t(x - p))$ exists and is $C^{\infty}$ for all points along the line segment. Taking the derivative of this function with respect to $t$, we get
+	\begin{gather*}
+		\dfrac{d}{dt} f(p + t(x - p)) = \sum_{i=1}^{n} (x^i - p^i) \dfrac{\partial f}{\partial x^i} (p + t(x - p))
+	\end{gather*}
+	Integrating with respect to $t$ from 0 to 1, we get
+	\begin{gather*}
+		\int_{0}^{1} \dfrac{d}{dt} f(p + t(x - p)) dt = \int_{0}^{1} \sum_{i=1}^{n} (x^i - p^i) \dfrac{\partial f}{\partial x^i} (p + t(x - p)) dt
+	\end{gather*}
+	The LHS evaluates to
+	\begin{gather*}
+		\int_{0}^{1} \dfrac{d}{dt} f(p + t(x - p)) dt = f(p + t(x - p)) \Big|_0^1
+	\end{gather*}
+	and the RHS evaluates to
+	\begin{gather*}
+		\int_{0}^{1} \sum_{i=1}^{n} (x^i - p^i) \dfrac{\partial f}{\partial x^i} (p + t(x - p)) dt = \sum_{i=1}^{n} (x^i - p^i) \int_{0}^{1} \dfrac{\partial f}{\partial x^i} (p + t(x - p)) dt
+	\end{gather*}
+	If we define $g_i(x)$ to be
+	\begin{gather*}
+		g_i(x) = \int_{0}^{1} \dfrac{\partial f}{\partial x^i} (p + t(x - p)) dt
+	\end{gather*}
+	we see that $g_i(x)$ is $C^{\infty}$ as $f$ is also $C^{\infty}$. Combining the results, we have that
+	\begin{gather*}
+		f(x) - f(p) = \sum_{i=1}^{n} (x^i - p^i) g_i(x)
+	\end{gather*}
+	Now finally, notice that when $x = p$, $p + t(x - p) = p + t(p - p) = p$ and so
+	\begin{gather*}
+		g_i(p) = \int_{0}^{1} \dfrac{\partial f}{\partial x^i} (p) dt = \dfrac{\partial f}{\partial x^i} (p) \int_{0}^{1} dt = \dfrac{\partial f}{\partial x^i} (p)
+	\end{gather*}
+	
+	\subsubsection*{Exercise 1.2}
+	Let $f(x)$ be
+	\begin{gather*}
+		f(x) = \begin{cases}
+			e^{-1/x}, \quad &x > 0 \\
+			0, \quad &x \leq 0
+		\end{cases}
+	\end{gather*}
+	Show by induction that for $x > 0$ and $k \geq 0$, the $k$th derivative $f^{(k)}(x)$ is of the form $p_{2k}(1/x)e^{-1/x}$ for some polynomial $p_{2k}(y)$ of degree $2k$ in $y$. Prove that $f$ is $C^{\infty}$ on $\R$ and that $f^{(k)}(0) = 0$ for all $k \geq 0$
+	
+	Clearly, for $x > 0$, $f(x) = e^{-1/x}$. In the base case $n = 0$, $f(x) = e^{-1/x}$ and so $p_0 = 1$ is a polynomial of degree 0. Now suppose that for some $n = k$, $f^{(k)}(x) = p_{2k}(1/x)e^{-1/x}$ for some polynomial $p_{2k}(y)$ of degree $2k$ in $y$. Then
+	\begin{gather*}
+		f^{(k + 1)}(x) = \left( p_{2k}'(1/x) \cdot -\dfrac{1}{x^2} e^{-1/x} \right) + \left( p_{2k}(1/x)e^{-1/x} \cdot \dfrac{1}{x^2} \right) \\
+		= e^{-1/x} \left( 1 / x \right)^2 \left( p_{2k}(1/x) - p_{2k}'(1/x) \right)
+	\end{gather*}
+	Letting $y = 1/x$, we see that
+	\begin{gather*}
+		e^{-1/x} \left( 1 / x \right)^2 \left( p_{2k}(1/x) - p_{2k}'(1/x) \right) = e^{-1/x} y^2 \left( p_{2k}(y) - p_{2k}'(y) \right) \\
+		= e^{-1/x} p_{2k + 2}(y) = e^{-1/x} p_{2(k + 1)}(1/x)
+	\end{gather*}
+	Self-evidently, when $x < 0$, $f(x) = 0$ is $C^{\infty}$ and likewise, when $x > 0$, $f(x) = e^{-1/x}$ is $C^{\infty}$. The only contention arises when dealing with $x = 0$, as one must show all the derivatives of $f(x)$ is continuous there.
+	
+	To show that $f(x)$ is $C^{\infty}$ at 0, we need to show that for $k \geq 0$
+	\begin{gather*}
+		\lim_{x \to 0} f^{(k)}(x) = 0
+	\end{gather*}
+	Clearly, since $f(x) = 0$ for $x < 0$, we have that
+	\begin{gather*}
+		\lim_{x \to 0^-} f^{(k)}(x) = 0
+	\end{gather*}
+	Since $f(x) = e^{-1/x}$, $f^{(k)}(x) = p_{2k}(1/x)e^{-1/x}$ for some polynomial $p_{2k}(y)$ of degree $y$.
+	\begin{gather*}
+		\lim_{x \to 0^+} f^{(k)}(x) = \lim_{y \to \infty} p_{2k}(y)e^{-y} = 0
+	\end{gather*}
+	Therefore, $f(x)$ is $C^{\infty}$ at 0.
+
+	\subsubsection*{Exercise 1.6}
+	Prove that if $f: \R^2 \to \R$ is $C^{\infty}$, then there exists functions $g_{11}, g_{12}, g_{22}$ such that
+	\begin{gather*}
+		f(x, y) = f(0, 0) + \dfrac{\partial f}{\partial x}(0, 0)x + \dfrac{\partial f}{\partial y}(0, 0)y + x^2 g_{11}(x, y) \\
+		+ xy g_{12}(x, y) + y^2 g_{22}(x, y)
+	\end{gather*}
+	
+	Since we know that $f$ is $C^{\infty}$, we know from Taylor's theorem with Remainder that there exists $C^{\infty}$ functions $g_1, g_2$ such that
+	\begin{gather*}
+		f(x, y) = f(0, 0) + (x - 0) g_1(x, y) + (y - 0) g_2(x, y) \\
+		= f(0, 0) + x g_1(x, y) + y g_2(x, y)
+	\end{gather*}
+	and
+	\begin{gather*}
+		g_1(0, 0) = \dfrac{\partial f}{\partial x} (0, 0) \\
+		g_2(0, 0) = \dfrac{\partial f}{\partial y} (0, 0)
+	\end{gather*}
+	Applying Taylor's theorem with remainder to the function $g_1(x, y)$, we see that there exists functions $h_{11}, h_{12}$ in $C^{\infty}$ such that
+	\begin{gather*}
+		g_1(x, y) = g_1(0, 0) + (x - 0) h_{11}(x, y) + (y - 0) h_{12}(x, y) \\
+		= \dfrac{\partial f}{\partial x} (0, 0) + x h_{11}(x, y) + y h_{12}(x, y)
+	\end{gather*}
+	Similarly, applying it to $g_2(x, y)$, we see that there exists functions $h_{21}, h_{22}$ in $C^{\infty}$ such that
+	\begin{gather*}
+		g_2(x, y) = g_2(0, 0) + (x - 0) h_{21}(x, y) + (y - 0) h_{22}(x, y) \\
+		= \dfrac{\partial f}{\partial y} (0, 0) + x h_{21}(x, y) + y h_{22}(x, y)
+	\end{gather*}
+	Plugging these results in, we have that
+	\begin{gather*}
+		f(x, y) = f(0, 0) + x \left( \dfrac{\partial f}{\partial x} (0, 0) + x h_{11}(x, y) + y h_{12}(x, y) \right) \\
+		+ y \left( \dfrac{\partial f}{\partial y} (0, 0) + x h_{21}(x, y) + y h_{22}(x, y) \right) \\
+		f(x, y) = f(0, 0) + \dfrac{\partial f}{\partial x} (0, 0) x + \dfrac{\partial f}{\partial y} (0, 0) y + x^2 h_{11}(x, y)
+		\\ + xy \left( h_{12}(x, y) + h_{21}(x, y) \right) + y^2 h_{22}(x, y)
+	\end{gather*}
+	Now let $g_{11}(x, y) = h_{11}(x, y)$, $g_{12}(x, y) = h_{12}(x, y) + h_{21}(x, y)$, and $g_{22}(x, y) = h_{22}(x, y)$. This completes the proof.
+
+	
+	\subsubsection*{Exercise 1.7}
+	Let $f: \R^2 \to \R$ be a $C^{\infty}$ function with
+	\begin{gather*}
+		f(0, 0) = \dfrac{\partial f}{\partial x}(0, 0) = \dfrac{\partial f}{\partial y}(0, 0) = 0
+	\end{gather*}
+	Define a function $g: \R^2 \to \R$ by
+	\begin{gather*}
+		g(t, u) = \begin{cases}
+			\dfrac{f(t, tu)}{t}, \quad &t \neq 0 \\
+			0, \quad &t = 0
+		\end{cases}
+	\end{gather*}
+	Prove that $g(t, u)$ is $C^{\infty}$ for $(t, u) \in \R^2$
+	
+	Recall from the earlier exercise 1.6 that since $f$ is $C^{\infty}$, then there exists functions $g_{11}, g_{12}, g_{22}$ such that
+	\begin{gather*}
+		f(x, y) = f(0, 0) + \dfrac{\partial f}{\partial x}(0, 0)x + \dfrac{\partial f}{\partial y}(0, 0)y + x^2 g_{11}(x, y) \\
+		+ xy g_{12}(x, y) + y^2 g_{22}(x, y)
+	\end{gather*}
+	Plugging in the earlier conditions, we have that
+	\begin{gather*}
+		f(x, y) = x^2 g_{11}(x, y) + xy g_{12}(x, y) + y^2 g_{22}(x, y)
+	\end{gather*}
+	For $x = t, y = tu$, we have that
+	\begin{gather*}
+		f(t, tu) = t^2 g_{11}(t, tu) + t^2u g_{12}(t, tu) + (tu)^2 g_{22}(t, tu)
+	\end{gather*}	
+	and so finally, we have that
+	\begin{gather*}
+		\dfrac{f(t, tu)}{t} = t g_{11}(t, tu) + tu g_{12}(t, tu) + tu^2 g_{22}(t, tu) \\
+		= t \left( g_{11}(t, tu) + u g_{12}(t, tu) + u^2 g_{22}(t, tu) \right)
+	\end{gather*}
+	Recall the earlier definition of $g(t, u)$. The derivative of this function with respect to $t$ is
+	\begin{gather*}
+		\dfrac{\partial g}{\partial t}(t, u) = \left( g_{11}(t, tu) + u g_{12}(t, tu) + u^2 g_{22}(t, tu) \right) \\
+		+ t \left(
+		\dfrac{\partial g_{11}}{\partial x} (t, tu) \dfrac{\partial x}{\partial t} + \dfrac{\partial g_{11}}{\partial y} (t, tu) \dfrac{\partial y}{\partial t}
+		+ u \left( \dfrac{\partial g_{12}}{\partial x} (t, tu) \dfrac{\partial x}{\partial t} + \dfrac{\partial g_{12}}{\partial y} (t, tu) \dfrac{\partial y}{\partial t} \right) \right) \\
+		+ t u^2 \left( \dfrac{\partial g_{22}}{\partial x} (t, tu) \dfrac{\partial x}{\partial t} + \dfrac{\partial g_{22}}{\partial y} (t, tu) \dfrac{\partial y}{\partial t} \right) \\
+		= \left( g_{11}(t, tu) + u g_{12}(t, tu) + u^2 g_{22}(t, tu) \right) \\
+		+ t \left(
+		\dfrac{\partial g_{11}}{\partial x} (t, tu) + u \dfrac{\partial g_{11}}{\partial y} (t, tu)
+		+ u \left( \dfrac{\partial g_{12}}{\partial x} (t, tu) + u \dfrac{\partial g_{12}}{\partial y} (t, tu) \right) \right) \\
+		+ tu^2 \left( \dfrac{\partial g_{22}}{\partial x} (t, tu) + u \dfrac{\partial g_{22}}{\partial y} (t, tu) \right)
+	\end{gather*}
+	Similarly, the derivative of $g$ with respect to $u$ is
+	\begin{gather*}
+		\dfrac{\partial g}{\partial u}(t, u) = t \left(
+		\dfrac{\partial g_{11}}{\partial x} (t, tu) \dfrac{\partial x}{\partial u} + \dfrac{\partial g_{11}}{\partial y} (t, tu) \dfrac{\partial y}{\partial u}
+		+ g_{12}(t, tu) + u \left( \dfrac{\partial g_{12}}{\partial x} (t, tu) \dfrac{\partial x}{\partial u} + \dfrac{\partial g_{12}}{\partial y} (t, tu) \dfrac{\partial y}{\partial u} \right) \right) \\
+		+ t \left( 2u g_{22}(t, tu) + u^2 \left( \dfrac{\partial g_{22}}{\partial x} (t, tu) \dfrac{\partial x}{\partial u} + \dfrac{\partial g_{22}}{\partial y} (t, tu) \dfrac{\partial y}{\partial u} \right) \right) \\
+		= t \left(
+		t \dfrac{\partial g_{11}}{\partial y} (t, tu)
+		+ g_{12}(t, tu) + u \left( t \dfrac{\partial g_{12}}{\partial y} (t, tu) \right) + 2u g_{22}(t, tu) + u^2 \left( t \dfrac{\partial g_{22}}{\partial y} (t, tu) \right) \right)
+	\end{gather*}
+	Notice where $t \neq 0$
+	\begin{gather*}
+		g(t, u) = \dfrac{f(t, tu)}{t} = t \left( g_{11}(t, tu) + u g_{12}(t, tu) + u^2 g_{22}(t, tu) \right)
+	\end{gather*}
+	is $C^{\infty}$ for all points $(t, u)$ where $t \neq 0$ since all the component parts are also $C^{\infty}$. It is also continuous at $t = 0$ since
+	\begin{gather*}
+		\lim_{t \to 0} t \left( g_{11}(t, tu) + u g_{12}(t, tu) + u^2 g_{22}(t, tu) \right) = 0
+	\end{gather*}
+	since $g_{11}, g_{12}, g_{22}$ are $C^{\infty}$ and so must converge to a definite value. Finally, notice that the partial derivatives
+	\begin{gather*}
+		\nabla g(t, u) = \left( \dfrac{\partial g}{\partial t}(t, u), \dfrac{\partial g}{\partial u}(t, u) \right)
+	\end{gather*}
+	are composed of functions that at the limit is $C^{\infty}$ at $t = 0$ and so the partial derivatives are $C^{\infty}$ at $t = 0$.
+	
+	
+	\section*{Tangent vectors in $\R^n$ as Derivations}
+	We typically express a vector $v$ at a point $p \in \R^n$ as a column of numbers
+	\begin{gather*}
+		v = \begin{bmatrix}
+			v^1 \\
+			\vdots \\
+			v^n
+		\end{bmatrix}
+	\end{gather*}
+	or as a row of numbers bounded by angular brackets
+	\begin{gather*}
+		v = \langle v^1, \cdots, v^n \rangle
+	\end{gather*}
+	Recall that a secant plane to a surface in $\R^3$ is given by three non-collinear points on a surface, and as the three points approach a point $p$ on the surface, the plane at the limit position of the secant plane is called the tangent plane at $p$. Intuitively, we can understand this as the plane simply "touching" the surface at this point. A vector at $p$ is tangent to the surface if it lies in the tangent plane at $p$.
+	
+	
+	\subsection*{Directional Derivative}
+	In $\R^n$, we can visualize the tangent space $T_p(\R^n)$ at $p$ as the vector space of all vectors emanating from $p$. Since we can express the vector space with a list of $n$ numbers, it is identical to $\R^n$. To distinguish between points and vectors then, we let a point $p \in \R^n$ be written as $p = \left( p^1, \cdots, p^n \right)$ and a vector $v \in T_p(\R^n)$ be written as
+	\begin{gather*}
+		v = \begin{bmatrix}
+			v^1 \\
+			\vdots \\
+			v^n
+		\end{bmatrix} \quad \text{or} \quad 
+		v = \langle v^1, \cdots, v^n \rangle
+	\end{gather*}
+	Typically, the standard basis for $\R^n$ or $T_p(\R^n)$ is denoted by $e_1, \cdots, e_n$. Then, we can express $v \in T_p(\R^n)$ as $v = \sum v^i e_i$ for some $v^i \in \R$. Elements of $T_p(\R^n)$ are called tangent vectors at $p$ in $\R^n$.
+	
+	The line through a point $p = \left( p^1, \cdots, p^n \right)$ with a direction $v = \langle v^1, \cdots, v^n \rangle$ has parametrization
+	\begin{gather*}
+		c(t) = \left( p^1 + t v^1, \cdots, p^n + t v^n \right)
+	\end{gather*}
+	If $f$ is $C^{\infty}$ at $p$ and $v$ is a tangent vector at $p$, then the directional derivative of $f$ in the direction of $v$ at $p$ is defined to be
+	\begin{gather*}
+		D_v f = \lim_{t \to 0} \dfrac{f(c(t)) - f(p)}{t} = \dfrac{d}{dt} \Bigg|_{t = 0} f(c(t))
+	\end{gather*}
+	By the chain rule,
+	\begin{gather*}
+		D_v f = \sum_{i = 1}^n \dfrac{dc^i}{dt}(0) \dfrac{\partial f}{\partial x^i}(p)
+	\end{gather*}
+	We know that $c'(t) = v$ and so
+	\begin{gather*}
+		D_v f = \sum_{i = 1}^n v^i \dfrac{\partial f}{\partial x^i}(p) = v \cdot \nabla f(p)
+	\end{gather*}
+	\textit{The reason the notation $D_v f$ is used, instead of $D_v f(p)$, is that the point $p$ is already encoded in the vector $v$, since $v \in T_p \R^n$. $v$ is anchored at $p$. Thus, the directional derivative is inherently taken at $p$. Moreover, $D_v f$ is understood as a number, the directional derivative at $p$, and not a function of $p$.}
+	
+	We write
+	\begin{gather*}
+		D_v = \sum_{i = 1}^n v^i \dfrac{\partial}{\partial x^i} \Bigg|_p
+	\end{gather*}
+	to be the map that sends a function $f$ to the number $D_v f$. The association $v \mapsto D_v$ of the directional derivative $D_v$ to the tangent vector $v$ gives a way to characterize tangent vectors as operators on functions.
+	
+	
+	\subsection*{Germs of Functions}
+	
+	\subsubsection*{Equivalence Relation}
+	A relation on a set $S$ is a subset $R \subset S \times S$. $R$ is an equivalence relation if it satisfies for all $x, y, z \in S$
+	\begin{enumerate}
+		\item (Reflexivity) $x \sim x$
+		\item (Symmetry) $x \sim y$ if and only if $y \sim x$
+		\item (Transitivity) $x \sim y$ and $y \sim z$ implies $x \sim z$
+	\end{enumerate}
+	
+	If two functions agree on some neighborhood of a point $p$, they would have the same directional derivatives at $p$, suggesting that an equivalence relation can be defined on the $\Cinfty$ functions defined on some neighborhood of $p$.
+	
+	\subsubsection*{Germs of Functions}
+	Consider the set of all pairs $(f, U)$, where $U$ is a neighborhood of $p$ and $f: U \to \R$ is $\Cinfty$. We say that two pairs $(f, U)$ and $(g, V)$ are equivalent to each other if there exists an open set $W \subset U \cap V$ containing $p$ such that $f = g$ when restricted to $W$. The equivalence class of $(f, U)$ is called the germ of $f$ at $p$. We write $\Cinfty_p(\R^n)$ (or $\Cinfty_p$ if there is no possibility of confusion) for the set of all germs of $\Cinfty$ functions on $\R^n$ at $p$.
+	
+	Consider the function
+	\begin{gather*}
+		f(x) = \dfrac{1}{1 - x}
+	\end{gather*}
+	over the domain $\R - \{ 1 \}$ and
+	\begin{gather*}
+		g(x) = 1 + x + x^2 + x^3 + \cdots
+	\end{gather*}
+	with the domain $(-1, 1)$. $f$ and $g$ have the same germ at any point $p \in (-1, 1)$.
+	
+	\subsubsection*{Algebra}
+	An algebra over a field $K$ is a vector space $A$ over $K$ with the multiplication map
+	\begin{gather*}
+		\mu: A \times A \to A
+	\end{gather*}
+	denoted typically by $\mu(a, b) = a \cdot b$, such that for all $a, b, c \in A$ and $r \in K$
+	\begin{enumerate}
+		\item (Associativity) $(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+		\item (Distribution) $a \cdot (b + c) = a \cdot b + a \cdot c$ and $(a + b) \cdot c = a \cdot c + a \cdot b$
+		\item (Homegeneuity) $r(a \cdot b) = (ra) \cdot b = a \cdot (rb)$
+	\end{enumerate}
+	This is equivalent to stating that an algebra over a field $K$ is a ring $A$ that is also a vector space over $K$ such that the ring multiplication satisfies the homogeneity condition. 
+
+	\subsubsection*{Linear Operator}
+	A map $L: V \to W$ between vector spaces over a field $K$ is called a linear operator if for any $r \in K$ and $u, v \in V$
+	\begin{enumerate}
+		\item $L(u + v) = L(u) + L(v)$
+		\item $L(rv) = rL(v)$
+	\end{enumerate}
+	
+	If $A$ and $A'$ are algebras over a field $K$, then an algebra homomorphism is a linear map $L: A \to A'$ that preserves the algebra multiplication, i.e. $L(a \cdot b) = L(a) \cdot L(b)$ for all $a, b \in A$.
+	
+	The addition and multiplication of functions induces the corresponding operations on $\Cinfty_p$, making it into an algebra over $\R$.
+	
+	\subsection*{Derivation at a Point}
+	For each tangent vector $v$ at a point $p \in \R^n$, the directional derivative at $p$ gives a map of real vector spaces
+	\begin{gather*}
+		D_v: \Cinfty_p \to \R
+	\end{gather*}
+	Consider two functions $f, g \in \Cinfty_p$ and a scalar $r \in \R$. Recall that since
+	\begin{gather*}
+		D_v = \sum_{i = 1}^n v^i \dfrac{\partial}{\partial x^i} \Bigg|_p
+	\end{gather*}
+	we have that
+	\begin{gather*}
+		D_v (f + g) = \sum_{i = 1}^n v^i \dfrac{\partial (f + g)}{\partial x^i}(p) = \sum_{i = 1}^n v^i \dfrac{\partial f}{\partial x^i}(p) + \sum_{i = 1}^n v^i \dfrac{\partial g}{\partial x^i}(p) \\
+		= D_v f + D_v g
+	\end{gather*}
+	Similarly,
+	\begin{gather*}
+		D_v (rf) = \sum_{i = 1}^n v^i \dfrac{\partial (rf)}{\partial x^i}(p) = r \sum_{i = 1}^n v^i \dfrac{\partial f}{\partial x^i}(p) = r D_v f
+	\end{gather*}
+	Therefore, $D_v$ is a linear map ($D_v$ is $\R$-linear). Furthermore, we know that $D_v$ satisfies the Leibniz rule
+	\begin{gather*}
+		D_v (fg) = (D_v f) g(p) + f(p) D_v g
+	\end{gather*}
+	since
+	\begin{gather*}
+		D_v (fg) = \sum_{i = 1}^n v^i \dfrac{\partial (fg)}{\partial x^i}(p) = \sum_{i = 1}^n v^i \left( \dfrac{\partial f}{\partial x^i}(p) g(p) + f(p) \dfrac{\partial g}{\partial x^i}(p) \right) \\
+		= g(p) \sum_{i = 1}^n v^i \dfrac{\partial f}{\partial x^i}(p) + f(p) \sum_{i = 1}^n v^i \dfrac{\partial g}{\partial x^i}(p) = (D_v f) g(p) + f(p) (D_v g)
+	\end{gather*}
+	
+	Any linear map $D: \Cinfty_p \to \R$ that satisfies the Leibniz rule is referred to as a \textit{derivation at $p$} or a \textit{point-derivation} of $\Cinfty_p$. Denote the set of all derivations at $p$ by $\mathcal{D}_p(\R^n)$. This space is a vector space.
+	
+	We know that all directional derivatives at $p$ are all derivations at $p$, so there exists a map
+	\begin{gather*}
+		\phi: T_p (\R^n) \to \mathcal{D}_p(\R^n)
+	\end{gather*}
+	given by
+	\begin{gather*}
+		v \mapsto D_v = \sum_{i = 1}^n v^i \dfrac{\partial}{\partial x^i} \Bigg|_p
+	\end{gather*}
+	We can deduce that $\phi$ is a linear map since for vectors $v, w \in T_p (\R^n)$ and $r \in \R$
+	\begin{gather*}
+		\phi(v + w) = D_{v + w} = \sum_{i = 1}^n (v + w)^i \dfrac{\partial}{\partial x^i} \Bigg|_p = \sum_{i = 1}^n (v^i + w^i) \dfrac{\partial}{\partial x^i} \Bigg|_p \\
+		= \sum_{i = 1}^n v^i \dfrac{\partial}{\partial x^i} \Bigg|_p + \sum_{i = 1}^n w^i \dfrac{\partial}{\partial x^i} \Bigg|_p = D_v + D_w = \phi(v) + \phi(w)
+	\end{gather*}
+	and
+	\begin{gather*}
+		\phi(rw) = D_{rw} = \sum_{i = 1}^n (rw)^i \dfrac{\partial}{\partial x^i} \Bigg|_p = \sum_{i = 1}^n r(w^i) \dfrac{\partial}{\partial x^i} \Bigg|_p \\
+		= r \sum_{i = 1}^n w^i \dfrac{\partial}{\partial x^i} \Bigg|_p = r D_w = r \phi(w)
+	\end{gather*}
+	
+	\subsubsection*{Lemma 2.1}
+	If $D$ is a point-derivation of $\Cinfty_p$, then $D(c) = 0$ for any constant function $c$.
+	
+	\noindent \textit{Proof}: Since every point-derivation is $\R$-linear, we know that $D(c) = cD(1)$, and so what we need to show is that $D(1) = 0$. We know by Leibniz rule that
+	\begin{gather*}
+		D(1) = D(1 \cdot 1) = D(1) \cdot 1 + 1 \cdot D(1) = 2D(1)
+	\end{gather*}
+	and so $D(1) = 0$. Thus, $D(c) = 0$.
+	
+	The Kronecker delta $\delta$ is a convenient notation used defined in the following manner
+	\begin{gather*}
+		\delta_i^j = \begin{cases}
+			1 \quad i = j, \\
+			0 \quad i \neq j
+		\end{cases}
+	\end{gather*}
+	
+	\subsubsection*{Theorem 2.2}
+	The linear map $\phi: T_p (\R^n) \to \mathcal{D}_p(\R^n)$ given by $v \mapsto D_v$ is an isomorphism of vector spaces.
+	
+	\noindent \textit{Proof}: To show that this is an isomorphism, we have to show that it is bijective and that it is a linear map. We have already shown it is a linear operator, so now, we must show it is bijective.
+	
+	To show that it is injective, we need to show that the kernel of $\phi$ is solely the zero vector. Let $x^j: \R^n \to \R$ be the coordinate function sending a point $q$ to its coordinate $q^j$, i.e. $x^j(q) = q^j$ for $q \in \R$. Let $D_v = 0$. Applying this operator to the coordinate function, we have that
+	\begin{gather*}
+		D_v x^j = \sum_{i = 1}^n v^i \dfrac{\partial}{\partial x^i} \Bigg|_p x^j = \sum_{i = 1}^n v^i \delta_i^j = v^j = 0
+	\end{gather*}
+	Therefore, $v = 0$ and so $\phi$ is injective.
+	
+	To show that it is surjective, let $D$ be a derivation at $p$, i.e. $D \in \mathcal{D}_p(\R^n)$ and let $(f, V)$ be a representative of a germ in $\Cinfty_p$. By making $V$ as small as necessary, we can assume that $V$ is an open ball. By Taylor's Theorem with remainder, we know there exists $\Cinfty$ functions $g_1(x), \cdot, g_n(x)$ in a neighborhood of $p$ such that
+	\begin{gather*}
+		f(x) = f(p) + \sum_{i = 1}^n (x^i - p^i) g_i(x), \quad g_i(p) = \dfrac{\partial f}{\partial x^i}(p)
+	\end{gather*}
+	Apply $D$ to both sides
+	\begin{gather*}
+		D f(x) = D \left( f(p) + \sum_{i = 1}^n (x^i - p^i) g_i(x) \right) = D f(p) + D \left( \sum_{i = 1}^n (x^i - p^i) g_i(x) \right) \\
+		= D f(p) + \sum_{i = 1}^n D \left( (x^i - p^i) g_i(x) \right)
+	\end{gather*}
+	From Leibniz rule, we know that
+	\begin{gather*}
+		D \left( (x^i - p^i) g_i(x) \right) = D (x^i - p^i) g_i(p) + (p^i - p^i) D g_i(x) \\
+		= (D x^i) g_i(p) - (D p^i) g_i(p)
+	\end{gather*}
+	Since $f(p)$ and $p^i$ are constants, $D f(p) = Dp^i = 0$ and so
+	\begin{gather*}
+		D f(x) = \sum_{i = 1}^n (D x^i) g_i(p) = \sum_{i = 1}^n (D x^i) \dfrac{\partial f}{\partial x^i}(p)
+	\end{gather*}
+	Thus, there exists a vector $v = \langle D x^1, \cdots, D x^n \rangle$ such that $D = D_v$. \textit{Intuitively, a derivation $D$ at a point $p$ is completely determined by how it acts on the coordinate functions $x^1, \cdots, x^n$. The values $D x^i$ give the components of the vector $v$, showing that $D$ is just the directional derivative in that direction.}
+
+	This theorem allows us to identify the tangent vectors at $p$ with the derivations at $p$. Under the isomorphism $T_p (\R^n) \cong \mathcal{D}_p(\R^n)$, the standard basis $e_1, \cdots, e_n$ for $T_p (\R^n)$ corresponds to the set $\partial / \partial x^1 |_p, \cdots, \partial / \partial x^n |_p $ of partial derivatives. Thus, we can write a tangent vector $v = \langle v^1, \cdots, v^n \rangle = \sum v^i e_i$ as
+	\begin{gather*}
+		v = \sum v^i \dfrac{\partial}{\partial x^i} \Bigg|_p
+	\end{gather*}
+	
+	While $T_p (\R^n)$ is isomorphic to $\mathcal{D}_p(\R^n)$, there is a reason the latter is preferred over the former, which is that a vector $v \in T_p (\R^n)$ depends on a choice of coordinates to describe it, while a derivation $D \in \mathcal{D}_p(\R^n)$ is independent of coordinates and one solely relies on how it impacts functions to determine its behavior.
+	
+	\subsection*{Derivation at a Point}
+
+\end{document}

@@ -1918,7 +1918,7 @@
 		\left| \alpha''(s) \right| = \sqrt{ \left( \dfrac{d^2x}{ds^2} \right)^2 + \left( \dfrac{d^2y}{ds^2} \right)^2 } = \dfrac{ \rho^2 + 2(\rho')^2 - \rho\rho'' }{ \left( (\rho')^2 + \rho^2 \right)^{3/2} }
 	\end{gather*}
 
-	\subsubsection*{Exercise 12 [TO BE WORKED ON]}
+	\subsubsection*{Exercise 12}
 	Let $\alpha : I \to \R^3$ be a regular arbitrarily parametrized curve and let $\beta : J \to \R^3$ be a reparametrization of $\alpha(I)$ by the arc length $s = s(q)$, measured from $q_0 \in I$. Let $q = q(s)$ be the inverse of $s$. Show that
 	\begin{gather*}
 		\dfrac{dq}{ds} = \dfrac{1}{|\alpha'(q)|}, \qquad \dfrac{d^2q}{ds^2} = - \dfrac{\alpha'(q) \cdot \alpha''(q)}{ |\alpha'(q)|^4 }
@@ -1931,6 +1931,11 @@
 	\begin{gather*}
 		\tau(q) = - \dfrac{(\alpha'(q) \cdot \alpha''(q)) \cdot \alpha'''(q)}{ |\alpha'(q) \cdot \alpha''(q)|^2 }
 	\end{gather*}
+	Finally, show that for a plane curve $\alpha: I \to \R^2$ given by $\alpha(q) = (x(q), y(q))$, the signed curvature is
+	\begin{gather*}
+		k(q) = \dfrac{x'(q) y''(q) - x''(q) y'(q)}{ \left( \left( x'(q) \right)^2 + \left( y'(q) \right)^2 \right)^{3/2} }
+	\end{gather*}
+	
 	
 	We know that
 	\begin{gather*}
@@ -2027,15 +2032,48 @@
 	\end{gather*}
 }
 
-	Recall from an earlier exercise that
+	Let $\alpha: I \to \R^2$ be a regular parametrized curve given by $\alpha(q) = \left( x(q), y(q) \right)$. We can reparametrize it, resulting in $\beta(s) = \alpha(q(s))$. Recall that $t_{\beta}(s) = t_{\alpha}(q(s))$, $n_{\beta}(s) = n_{\alpha}(q(s))$, and $k_{\beta}(s) = k_{\alpha}(q(s))$. Also, $t_{\beta}'(s) = k_{\beta}(s) n_{\beta}(s)$. We can also get the derivative of the tangent by using the chain rule, i.e.
 	\begin{gather*}
-		k(\theta) = \dfrac{ \rho^2 + 2(\rho')^2 - \rho\rho'' }{ \left( (\rho')^2 + \rho^2 \right)^{3/2} }
+		\dfrac{d^2\beta}{ds^2} = \dfrac{d}{ds} \left( \dfrac{d\beta}{ds} \right)
+		= \dfrac{d}{dq} \left( \dfrac{d\alpha}{dq} \dfrac{dq}{ds} \right)
+		= \left( \dfrac{d^2\alpha}{dq^2} \dfrac{dq}{ds} - \dfrac{d\alpha}{dq} \left( \dfrac{ds}{dq} \right)^{-2} \dfrac{d^2s}{dq^2} \right) \dfrac{dq}{ds} \\
+		= \left( \dfrac{d^2\alpha}{dq^2} - \dfrac{d\alpha}{dq} \dfrac{dq}{ds} \dfrac{d^2s}{dq^2} \right) \left( \dfrac{dq}{ds} \right)^2
+		= \left( \alpha''(q) - \dfrac{s''(q)}{s'(q)} \alpha'(q) \right) \left( \dfrac{1}{s'(q)} \right)^2
 	\end{gather*}
-	We know that $x(t(\theta)) = \rho(\theta) \cos \theta$, $y(t(\theta)) = \rho(\theta) \sin \theta$, and 
+	We know that
 	\begin{gather*}
-		\dfrac{dk}{dt} = \dfrac{dk}{d\theta} \dfrac{d\theta}{dt}
+		s'(q)^2 = |\alpha'(q)|^2 = x'(q)^2 + y'(q)^2
 	\end{gather*}
-	
+	and so
+	\begin{gather*}
+		s' s'' = x' x'' + y' y'' \\
+		s'' = \dfrac{x' x'' + y' y''}{s'} = \dfrac{x' x'' + y' y''}{ \sqrt{\left( x' \right)^2 + \left( y' \right)^2 } }
+	\end{gather*}
+	Thus
+	\begin{gather*}
+		\dfrac{d^2\beta}{ds^2} = \left( \left( x'', y'' \right) - \dfrac{x' x'' + y' y''}{ \left( x' \right)^2 + \left( y' \right)^2 } \left( x', y' \right) \right) \left( \dfrac{1}{ \left( x' \right)^2 + \left( y' \right)^2 } \right) \\
+		= \left(
+		\dfrac{x'' \left( \left( x' \right)^2 + \left( y' \right)^2 \right) - \left( x' \right)^2 x'' - x' y' y''}{ \left( \left( x' \right)^2 + \left( y' \right)^2 \right)^2 },
+		\dfrac{y'' \left( \left( x' \right)^2 + \left( y' \right)^2 \right) - x' x'' y' - \left( y' \right)^2 y''}{ \left( \left( x' \right)^2 + \left( y' \right)^2 \right)^2 }
+		\right) \\
+		= \left(
+		\dfrac{x'' \left( \left( y' \right)^2 \right) - x' y' y''}{ \left( \left( x' \right)^2 + \left( y' \right)^2 \right)^2 },
+		\dfrac{y'' \left( \left( x' \right)^2\right) - x' x'' y'}{ \left( \left( x' \right)^2 + \left( y' \right)^2 \right)^2 }
+		\right) \\
+		= \left(
+		\dfrac{y' \left( x'' y' - x' y'' \right)}{ \left( \left( x' \right)^2 + \left( y' \right)^2 \right)^2 }, \dfrac{x' \left( x' y'' - x'' y' \right)}{ \left( \left( x' \right)^2 + \left( y' \right)^2 \right)^2 }
+		\right)
+	\end{gather*}
+	Since $k_{\alpha}(q) = k_{\beta}(s(q))$, we have that
+	\begin{gather*}
+		k_{\alpha}(q)^2 = \dfrac{ \left( x'' y' - x' y'' \right)^2 }{ \left( \left( x' \right)^2 + \left( y' \right)^2 \right)^3 }
+	\end{gather*}
+	To get the full orientation, recall that a signed curvature is defined such that it is positive if the orientations of $\{ t, n \}$ and $\{ e_1, e_2 \}$ are the same and negative if the orientations differs. This is equivalent to stating that if $\alpha$ is "turning counterclockwise" locally at $s$, $k_{\alpha}(s)$ is positive and if $\alpha$ is "turning clockwise" locally at $s$, $k_{\alpha}(s)$ is negative. Thus in this light, we have
+	\begin{gather*}
+		k_{\alpha}(q) = -\dfrac{ x'' y' - x' y'' }{ \left( \left( x' \right)^2 + \left( y' \right)^2 \right)^{3/2} }
+		= \dfrac{ x' y'' - x'' y' }{ \left( \left( x' \right)^2 + \left( y' \right)^2 \right)^{3/2} }
+	\end{gather*}
+
 	\subsubsection*{Exercise 13}
 	Assume that $\tau(s) \neq 0$ and $k'(s) \neq 0$ for all $s \in I$. Show that a necessary and sufficient condition for $\alpha(I)$ to lie on the sphere is that
 	\begin{gather*}
@@ -2318,4 +2356,349 @@
 	\end{gather*}
 	Since $b \neq 0$ and $k(s) \neq 0$, we have that for a small enough neighborhood of $s$, $B_{\delta s}(s) = (s - \delta s, s + \delta s)$, $h(x) < 0$ for all $x \in (s - \delta s, s + \delta s)$ or $h(x) > 0$ for all $x \in (s - \delta s, s + \delta s)$. This directly contradicts the requirement that every neighborhood have at least two points on either side of $P$. Therefore, $b = 0$, and so the plane $P$ has normal vector $(0, 0, c)$. This is nothing more than the binormal vector, and so $P$ is the osculating plane.
 	
+	\subsubsection*{Exercise 2}
+	Let $\alpha: I \to \R^3$ be a curve parametrized by arc length, with curvature $k(s) \neq 0, s \in I$. Show that the osculating plane at $s$ is the limit position of the plane passing through $\alpha(s), \alpha(s + h_1), \alpha(s + h_2)$ when $h_1, h_2 \to 0$. Show that the limit position of the circle passing through $\alpha(s), \alpha(s + h_1), \alpha(s + h_2)$ when $h_1, h_2 \to 0$ is a circle in the osculating plane at $s$, the center of which is on the line that contains $n(s)$ and the radius of which is the radius of the curvature $1/k(s)$, also known as the osculating circle at $s$.
+	
+	We know the equation for $\alpha$ at $s$ in local canonical form is
+	\begin{gather*}
+		x(s + h) = h - \dfrac{h^3}{6} k(s)^2 \\
+		y(s + h) = \dfrac{h^2}{2} k(s) + \dfrac{h^3}{6} k'(s) \\
+		z(s + h) = \dfrac{-h^3}{6} k(s) \tau(s)
+	\end{gather*} 
+	The plane that contains $\alpha(s), \alpha(s + h_1), \alpha(s + h_2)$ has the normal
+	\begin{gather*}
+		(\alpha(s + h_1) - \alpha(s)) \wedge (\alpha(s + h_2) - \alpha(s))
+	\end{gather*}
+	and in local canonical form, $\alpha(s) = (0, 0, 0)$ in the new coordinates. Therefore, the normal is
+	\begin{gather*}
+		\left( h_1 - \dfrac{h_1^3 k^2}{6}, \dfrac{h_1^2 k}{2} + \dfrac{h_1^3 k'}{6}, \dfrac{-h_1^3 k \tau}{6} \right) \wedge
+		\left( h_2 - \dfrac{h_2^3 k^2}{6}, \dfrac{h_2^2 k}{2} + \dfrac{h_2^3 k'}{6}, \dfrac{-h_2^3 k \tau}{6} \right)
+	\end{gather*}
+	Compute each component of the normal. The $x$ component is
+	\begin{gather*}
+		\left( \dfrac{h_1^2 k}{2} + \dfrac{h_1^3 k'}{6} \right) \cdot \left( \dfrac{-h_2^3 k \tau}{6} \right) - \left( \dfrac{h_2^2 k}{2} + \dfrac{h_2^3 k'}{6} \right) \cdot \left( \dfrac{-h_1^3 k \tau}{6} \right) \\
+		= \dfrac{h_1^2 h_2^2 k \tau}{6} \left( \left( \dfrac{k}{2} + \dfrac{h_1 k'}{6} \right) \cdot -h_2 + \left( \dfrac{k}{2} + \dfrac{h_2 k'}{6} \right) \cdot h_1 \right) \\
+		= \dfrac{h_1^2 h_2^2 k \tau}{6} \left( \dfrac{k h_1 - k h_2}{2} \right)
+		= \dfrac{h_1^2 h_2^2 k^2 \tau}{12} \left( h_1 - h_2 \right)
+	\end{gather*}
+	The $y$ component is
+	\begin{gather*}
+		- \left( h_1 - \dfrac{h_1^3 k^2}{6} \right) \cdot \left( \dfrac{-h_2^3 k \tau}{6} \right) + \left( h_2 - \dfrac{h_2^3 k^2}{6} \right) \cdot \left( \dfrac{-h_1^3 k \tau}{6} \right) \\
+		= \dfrac{h_1 h_2 k \tau}{6} \left( h_2^2 - h_1^2 \right) \\
+		= \dfrac{h_1 h_2 k \tau}{6} \left( h_2 - h_1 \right) \left( h_2 + h_1 \right)
+	\end{gather*}
+	The $z$ component is
+	\begin{gather*}
+		\left( h_1 - \dfrac{h_1^3 k^2}{6} \right) \cdot \left( \dfrac{h_2^2 k}{2} + \dfrac{h_2^3 k'}{6} \right) - \left( h_2 - \dfrac{h_2^3 k^2}{6} \right) \cdot \left( \dfrac{h_1^2 k}{2} + \dfrac{h_1^3 k'}{6} \right) \\
+		= h_1 h_2^2 \left( 1 - \dfrac{h_1^2 k^2}{6} \right) \cdot \left( \dfrac{k}{2} + \dfrac{h_2 k'}{6} \right) - h_2 h_1^2 \left( 1 - \dfrac{h_2^2 k^2}{6} \right) \cdot \left( \dfrac{k}{2} + \dfrac{h_1 k'}{6} \right) \\
+		= \dfrac{h_1 h_2^2}{36} \left( 6 - h_1^2 k^2 \right) \cdot \left( 3k + h_2 k' \right) - \dfrac{h_2 h_1^2}{36} \left( 6 - h_2^2 k^2 \right) \cdot \left( 3k + h_1 k' \right) \\
+		= \dfrac{h_1 h_2}{36} \left( 18k (h_2 - h_1) + 6k' (h_2^2 - h_1^2) - 3k^2 h_1 h_2 (h_1 - h_2) \right) \\
+		= \dfrac{h_1 h_2 (h_2 - h_1)}{36} \left( 18k + 6k' (h_2 + h_1) - 3k^2 h_1 h_2 \right)
+	\end{gather*}
+	The lowest order term in the $x$ component is $O(h^5)$. The lowest order term in the $y$ component is $O(h^4)$. The lowest order term in the $z$ component is $O(h^3)$. When factoring out $h_1 h_2 (h_2 - h_1)$ from the vector product, the $z$ component dominates the other, converging to $k/2$ and as $h_1, h_2 \to 0$, the vector product converges to $(0, 0, k/2)$. Therefore, the limit position of the plane passing through the three points $\alpha(s), \alpha(s + h_1), \alpha(s + h_2)$ as $h_1, h_2 \to 0$ is the osculating plane.
+	
+	To find the circle passing through the three points, first get the plane it lies on, then get the perpendicular bisectors of two of the sides of the triangle created by the points on the plane.
+
+	Alternatively, the center of the circle $C = (c_x, c_y, c_z)$ and the radius $R$ satisfies
+	\begin{gather*}
+		\left| C - \alpha(s) \right|^2 = \left| C - \alpha(s + h_1) \right|^2 = \left| C - \alpha(s + h_2) \right|^2 = R^2 
+	\end{gather*}
+	Under the local canonical form, we know $\alpha(s) = (0, 0, 0)$ and so
+	\begin{gather*}
+		c_x^2 + c_y^2 + c_z^2 = R^2 \\
+		(c_x - x(s + h))^2 + (c_y - y(s + h))^2 + (c_z - z(s + h))^2 = R^2
+	\end{gather*}
+	where $h = h_1, h_2$. Expanding out the second term, we get
+	\begin{gather*}
+		\left( c_x^2 + c_y^2 + c_z^2 \right) - 2 \left( c_x x(s + h) + c_y y(s + h) + c_z z(s + h) \right) \\
+		+ \left( x(s + h)^2 + y(s + h)^2 + z(s + h)^2 \right) = R^2
+	\end{gather*}
+	Rearranging some terms, we have
+	\begin{gather*}
+		x(s + h)^2 + y(s + h)^2 + z(s + h)^2 = 2 \left( c_x x(s + h) + c_y y(s + h) + c_z z(s + h) \right)
+	\end{gather*}
+	The LHS evaluates to
+	\begin{gather*}
+		x(s + h)^2 + y(s + h)^2 + z(s + h)^2 = \left( h - \dfrac{h^3 k^2}{6} \right)^2 + \left( \dfrac{h^2 k}{2} + \dfrac{h^3 k'}{6} \right)^2 + \left( - \dfrac{h^3 k \tau}{6} \right)^2 \\
+		= \left( h^2 - \dfrac{h^4 k^2}{3} + \dfrac{h^6 k^4}{36} \right) + \left( \dfrac{h^4 k^2}{4} + \dfrac{h^5 k k'}{6} + \dfrac{h^6 (k')^2}{36} \right) + \left( \dfrac{h^6 k^2 \tau^2}{36} \right)
+	\end{gather*}
+	Grouping by powers of $h$, the LHS is
+	\begin{gather*}
+		h^2 + h^4 \left( - \dfrac{k^2}{3} + \dfrac{k^2}{4} \right) + h^5 \left( \dfrac{k k'}{6} \right) + h^6 \left( \dfrac{k^4 + (k')^2 + k^2 \tau^2}{36} \right)
+	\end{gather*}
+	The RHS evaluates to
+	\begin{gather*}
+		2 \left( c_x x(s + h) + c_y y(s + h) + c_z z(s + h) \right) = 2 c_x \left( h - \dfrac{h^3 k^2}{6} \right) + 2 c_y \left( \dfrac{h^2 k}{2} + \dfrac{h^3 k'}{6} \right) \\
+		+ 2 c_z \left( - \dfrac{h^3 k \tau}{6} \right) = h \left( 2 c_x \right) + h^2 \left( c_y k \right) + h^3 \left( \dfrac{-c_x k^2 + c_y k' - c_z k \tau}{3} \right)
+	\end{gather*}
+	While it would be nice to be able to directly compare the two equations by comparing orders of $h$, we cannot do that in this case since the center $C$ is a function of $h_1, h_2$, i.e. $C = C(h_1, h_2)$. However, there are some things we can note. Since $h \neq 0$, when dividing both sides by $2h$ and swapping the sides of the equation, we have
+	\begin{gather*}
+		c_x + h \left( \dfrac{c_y k}{2} \right) + h^2 \left( \dfrac{-c_x k^2 + c_y k' - c_z k \tau}{6} \right) = h \left( \dfrac{1}{2} \right) + h^3 \left( - \dfrac{k^2}{24} \right) \\
+		+ h^4 \left( \dfrac{k k'}{12} \right) + h^5 \left( \dfrac{k^4 + (k')^2 + k^2 \tau^2}{72} \right)
+	\end{gather*}
+	Note since $h$ represents both $h_1, h_2$, we have two equations here. Subtracting the two, we get
+	\begin{gather*}
+		(h_1 - h_2) \left( \dfrac{c_y k}{2} \right) + \left( h_1^2 - h_2^2 \right) \left( \dfrac{-c_x k^2 + c_y k' - c_z k \tau}{6} \right) = (h_1 - h_2) \left( \dfrac{1}{2} \right) \\
+		+ \left( h_1^3 - h_2^3 \right) \left( - \dfrac{k^2}{24} \right) + \left( h_1^4 - h_2^4 \right) \left( \dfrac{k k'}{12} \right) + \left( h_1^5 - h_2^5 \right) \left( \dfrac{k^4 + (k')^2 + k^2 \tau^2}{72} \right)
+	\end{gather*}
+	Factoring out $(h_1 - h_2)/2$ from both sides, we have
+	\begin{gather*}
+		c_y k + \left( \dfrac{h_1^2 - h_2^2}{h_1 - h_2} \right) \left( \dfrac{-c_x k^2 + c_y k' - c_z k \tau}{3} \right) = 1 + \left( \dfrac{h_1^3 - h_2^3}{h_1 - h_2} \right) \left( - \dfrac{k^2}{24} \right) \\
+		+ \left( \dfrac{h_1^4 - h_2^4}{h_1 - h_2} \right) \left( \dfrac{k k'}{12} \right) + \left( \dfrac{h_1^5 - h_2^5}{h_1 - h_2} \right) \left( \dfrac{k^4 + (k')^2 + k^2 \tau^2}{72} \right)
+	\end{gather*}
+	and so as $h_1, h_2 \to 0$, $c_y k \to 1$, and so
+	\begin{gather*}
+		c_y \to \dfrac{1}{k(s)}
+	\end{gather*}
+	Plugging this back to the original equation, we get that $c_x \to 0$. To get $c_z$, recall that the points $\alpha(s), \alpha(s + h_1), \alpha(s + h_2)$ induces a plane, which at the limit is the osculating plane $z = 0$. Since the points also lie on the circle, this circle must end up lying on the osculating plane, and so the center of the circle must lie on this plane, meaning
+	\begin{gather*}
+		C \cdot (0, 0, k/2) = 0
+	\end{gather*}
+	or
+	\begin{gather*}
+		\left(c_x, c_y, c_z\right) \cdot (0, 0, k/2) = 0
+	\end{gather*}
+	Therefore, $c_z k/2 = 0$ or $c_z = 0$. Thus, the center of the osculating circle is $(0, 1/k, 0)$ and the radius of this circle is $R = 1/k$. Clearly, the center of the circle lies on the normal line $\ell = tn(s) = (0, t, 0)$
+	
+	\subsubsection*{Exercise 3}
+	Show that the curvature $k(t) \neq 0$ of a regular parametrized curve $\alpha: I \to \R^3$ is the curvature at $t$ of the plane $\pi \circ \alpha$, where $\pi$ is the normal projection of $\alpha$ over the osculating plane at $t$.
+	
+	Let $\beta(s)$ be the reparametrization of $\alpha$ such that the new parametrization is expressed in terms of arc length. The equation for $\beta$ at $s_0$ in local canonical form is $\beta(s) = \left( x(s), y(s), z(s) \right)$, where
+	\begin{gather*}
+		x(s) = (\Delta s) - \dfrac{(\Delta s)^3}{6} k_{\beta}(s_0)^2 + R_x(\Delta s) \\
+		y(s) = \dfrac{(\Delta s)^2}{2} k_{\beta}(s_0) + \dfrac{(\Delta s)^3}{6} k_{\beta}'(s_0) + R_y(\Delta s) \\
+		z(s) = \dfrac{-(\Delta s)^3}{6} k_{\beta}(s_0) \tau_{\beta}(s_0) + R_z(\Delta s)
+	\end{gather*}
+	and $\Delta s = s - s_0$. Also note that $\beta'(s) = \left( x'(s), y'(s), z'(s) \right)$ and $\beta''(s) = \left( x''(s), y''(s), z''(s) \right)$.
+	
+	The map $\pi$ for $\beta$ at $s$ maps $\beta$ onto the osculating plane at $s$, that is, in the local canonical form, it sends the $z$ values onto 0, and so $( \pi \circ \beta )(t) = \left( x(s), y(s), 0 \right)$. It follows that $( \pi \circ \beta )'(s) = \left( x'(s), y'(s), 0 \right)$ and $( \pi \circ \beta )''(s) = \left( x''(s), y''(s), 0 \right)$.
+	
+	From the previous equations, it is known that
+	\begin{gather*}
+		x'(s) = - \dfrac{(\Delta s)^2}{2} k_{\beta}(s_0)^2 + R_x'(\Delta s) \\
+		y'(s) = (\Delta s) k_{\beta}(s_0) + \dfrac{(\Delta s)^2}{2} k_{\beta}'(s_0) + R_y'(\Delta s) \\
+		z'(s) = \dfrac{-(\Delta s)^2}{2} k_{\beta}(s_0) \tau_{\beta}(s_0) + R_z'(\Delta s)
+	\end{gather*}
+	and
+	\begin{gather*}
+		x''(s) = - (\Delta s) k_{\beta}(s_0)^2 + R_x''(\Delta s) \\
+		y''(s) = k_{\beta}(s_0) + (\Delta s) k_{\beta}'(s_0) + R_y''(\Delta s) \\
+		z''(s) = -(\Delta s) k_{\beta}(s_0) \tau_{\beta}(s_0) + R_z''(\Delta s)
+	\end{gather*}
+	Therefore, $\beta''(s_0) = (0, k_{\beta}(s_0), 0)$ and $( \pi \circ \beta )''(s_0) = \left( 0, k_{\beta}(s_0), 0 \right)$. Reparametrizing, we get $\alpha''(t) = (0, k_{\alpha}(t), 0)$ and $( \pi \circ \alpha )''(s_0) = \left( 0, k_{\alpha}(t), 0 \right)$. Thus the curvature of $\alpha$ at $t$ is the same as the curvature of $\pi \circ \alpha$ at $t$.
+	
+	\subsection*{Section 7}
+	Some basic global properties of plane curves are proved. A more systemic presentation will require tools to be developed.
+	
+	\subsubsection*{Definition}
+	A \textit{closed plane curve} is a regular parametrized curve $\alpha: [a, b] \to \R^2$ such that $\alpha$ and all its derivatives agree at $a$ and $b$, i.e.
+	\begin{gather*}
+		\alpha(a) = \alpha(b), \alpha'(a) = \alpha'(b), \cdots, \alpha^{(n)}(a) = \alpha^{(n)}(b), \cdots
+	\end{gather*}
+	
+	\subsubsection*{Definition}
+	A closed plane curve is \textit{simple} if it has no self-intersections, i.e. if $t_1, t_2 \in [a, b), t_1 \neq t_2$, then $\alpha(t_1) \neq \alpha(t_2)$.
+	
+	\subsubsection*{Definition}
+	A simple closed curve $C$ in the plane bounds a region of this plane known as the \textit{interior} of $C$. This is known as the \textit{Jordan Curve Theorem}. The area bound by a simple curve $C$ is the area of the interior of $C$.
+	
+	The curve $C$ is typically parameterized such that as one goes along the curve as the parameter increases, the interior of the curve is to the left. Such a curve is \textit{positively oriented}.
+	
+	\subsubsection*{Isometric Inequality}
+	One of the oldest questions in geometry is the following: \textit{Of all the simple closed curves in the plane with a given length $l$, which one bounds the largest area?}
+	
+	Consider a simple closed curve $\alpha: [a, b] \to \R^2$ given by $\alpha(t) = \left( x(t), y(t) \right)$. The area of this curve is given by
+	\begin{gather*}
+		A = - \int_a^b y(t) x'(t) dt = \int_a^b x(t) y'(t) dt
+	\end{gather*}
+	The two integrals are equivalent since
+	\begin{gather*}
+		\int_a^b x(t) y'(t) dt = \left( x(b) y(b) - x(a) y(a) \right) - \int_a^b y(t) x'(t) dt = - \int_a^b y(t) x'(t) dt
+	\end{gather*}
+	and since both are equal to each other, we have that
+	\begin{gather*}
+		2A = \int_a^b x(t) y'(t) dt - \int_a^b y(t) x'(t) dt \\
+		= \int_a^b \left( x(t) y'(t) dt - y(t) x'(t) \right) dt
+	\end{gather*}
+	and so
+	\begin{gather*}
+		A = \dfrac{1}{2} \int_a^b \left( x(t) y'(t) dt - y(t) x'(t) \right) dt
+	\end{gather*}
+	This equation can be derived by using Stokes' theorem on the plane.
+	
+	With this laid down, we can state the following. \textit{Let $C$ be a simple closed plane curve with length $l$, and let $A$ be the area of the region bounded by $C$. Then}
+	\begin{gather*}
+		l^2 - 4\pi A \geq 0
+	\end{gather*}
+	and $l^2 - 4\pi A = 0$ if and only if $C$ is a circle.
+	
+	A visual demonstration of the proof would clarify some things, but it is still possible to grasp it without seeing it. First bound $C$ by parallel vertical lines. Then "below" $C$, imagine a circle $S^1$ bounded by these parallel lines. Set the center of the circle to be the origin of a coordinate system. Parametrize $C$ by its length, that is, $\alpha(s) = \left( x(s), y(s) \right)$, where $s \in [0, l]$. $S^1$ is parametrized by $s$ as well (not necessarily its arc length but simply $s \in [0, 1]$), i.e. $\beta(s) = \left( \bar{x}(s), \bar{y}(s) \right) = \left( x(s), \bar{y}(s) \right)$
+	
+	The area of the interior of $C$ is
+	\begin{gather*}
+		A = \int_0^l x y' ds
+	\end{gather*}
+	and the area of the corresponding circle is
+	\begin{gather*}
+		A_{S^1} = \pi r^2 = - \int_0^l \bar{y} x' ds
+	\end{gather*}
+	where $r$ is the radius of the circle, satisfying $2r = w$, where $w$ is the shortest distance between the two parallel lines. Adding the two integrals together, we have
+	\begin{gather*}
+		A + A_{S^1} = \int_0^l \left( x y' - \bar{y} x' \right) ds
+	\end{gather*}
+	We know that $a \leq |a|$ and so
+	\begin{gather*}
+		\int_0^l \left( x y' - \bar{y} x' \right) ds \leq \int_0^l \left| x y' - \bar{y} x' \right| ds \leq \int_0^l \left| \left( x, -\bar{y} \right) \cdot \left( y', x' \right) \right| ds \\
+		= \int_0^l \left| \left( x, -\bar{y} \right) \right| \left| \left( y', x' \right) \right| ds = \int_0^l \left| \left( \bar{x}, -\bar{y} \right) \right| ds
+	\end{gather*}
+	Since the center of the circle is the origin of the coordinate system
+	\begin{gather*}
+		\int_0^l \left| \left( \bar{x}, -\bar{y} \right) \right| ds = \int_0^l \left| \left( \bar{x}, \bar{y} \right) \right| ds = rl
+	\end{gather*}
+	and so
+	\begin{gather*}
+		A + A_{S^1} = A + \pi r^2 \leq rl
+	\end{gather*}
+	We know that for $a, b > 0$
+	\begin{gather*}
+		\sqrt{ab} \leq \dfrac{a + b}{2}
+	\end{gather*}
+	and so
+	\begin{gather*}
+		\sqrt{A} \sqrt{\pi r^2} \leq \dfrac{A + \pi r^2}{2}
+	\end{gather*}
+	Thus, we have the combined inequalities
+	\begin{gather*}
+		\sqrt{A} \sqrt{\pi r^2} \leq \dfrac{A + \pi r^2}{2} \leq \dfrac{rl}{2}
+	\end{gather*}
+	or
+	\begin{gather*}
+		4 A \pi r^2 \leq r^2 l^2
+	\end{gather*}
+	
+	Now suppose that $4 A \pi r^2 = r^2 l^2$. It follows then that
+	\begin{gather*}
+		\sqrt{A} \sqrt{\pi r^2} = \dfrac{A + \pi r^2}{2} = \dfrac{rl}{2}
+	\end{gather*}
+	and so $A = rl - \pi r^2$
+	\begin{gather*}
+		A = rl - \pi r^2
+	\end{gather*}
+	From there, we have that
+	\begin{gather*}
+		4 \left( rl - \pi r^2 \right) \pi r^2 = r^2 l^2 \\
+		4 \pi r^3 l - 4 \pi^2 r^4 = r^2 l^2 \\
+		l^2 - l \left( 4 \pi r \right) + 4 \pi^2 r^2 = 0
+	\end{gather*}
+	and so $\left( l - 2 \pi r \right)^2 = 0$ or $l = 2 \pi r$. And so, $A = \pi r^2$, meaning the curve which satisfies this inequality is the circle.
+	
+	\subsubsection*{Four Vertex Theorem}
+	
+
+
+
+
+
+
+
+
+	\subsubsection*{Exercise 1}
+	Is there a simple closed curve in the plane with a length of 6 feet and a bounding area of 3 feet squared?
+	
+	If such a curve exists, then it must satisfy
+	\begin{gather*}
+		l^2 - 4 \pi A \geq 0
+	\end{gather*}
+	We know that $l = 6$ and $A = 3$ and so $36 - 4 \pi \cdot 3 = -1.6991$. Thus, there is no curve with a length of 6 feet and a bounding area of 3 feet squared.
+
+	\subsubsection*{Exercise 2}
+	Let $\overline{AB}$ be a line segment. Let $l_1$ be the length of $\overline{AB}$,  and let $l_c > l_1$. Show that the curve $C$, with length $l_c$, joining $A$ and $B$, such that it combined with the line segment $\overline{AB}$ produces the largest area possible, is the arc of a circle passing through $A$ and $B$.
+	
+	Recall that the area of a simple closed curve $\alpha$ given by $\alpha(t) = \left( x(t), y(t) \right)$ for $t \in [a, b]$ is
+	\begin{gather*}
+		A = \dfrac{1}{2} \int_a^b \left( x(t) y'(t) - y(t) x'(t) \right) dt
+	\end{gather*}
+	
+	The curved described above is a piecewise smooth curve. Position the line segment $\overline{AB}$ so that $A$ lies on the origin and $B$ lies on $(0, l_1)$. Then the corresponding map representing the curve, parametrized by arc length, is
+	\begin{gather*}
+		\alpha_1(s) = (0, s), \quad s \in [0, l_1]
+	\end{gather*}
+	The curve $C$, given by $\alpha_2$, must start at $(0, s)$ and end at $(0, 0)$. Being parametrized by arc length, we have that $\alpha_2(0) = (0, l_1)$ and $\alpha_2(l_2) = (0, 0)$ 
+
+	Combining the two curves, we get a new curve $\alpha$ given by
+	\begin{gather*}
+		\alpha(s) =
+		\begin{cases}
+			\alpha_1(s), \quad s \in [0, l_1] \\
+			\alpha_2(s - l_1), \quad s \in [l_1, l_1 + l_2]
+		\end{cases}
+	\end{gather*}
+	The area bound by this curve is
+	\begin{gather*}
+		A = \dfrac{1}{2} \int_{0}^{l_1 + l_2} \left( x(s) y'(s) - y(s) x'(s) \right) ds = \dfrac{1}{2} \int_{0}^{l_1} \left( x(s) y'(s) - y(s) x'(s) \right) ds \\
+		+ \dfrac{1}{2} \int_{l_1}^{l_1 + l_2} \left( x(s) y'(s) - y(s) x'(s) \right) ds
+	\end{gather*}
+	The first integral is over the part of the curve described by $\alpha_1$, and since $x(s) = 0$ (and $x'(s) = 0$) for $s \in [0, l_1]$, we have that
+	\begin{gather*}
+		\int_{0}^{l_1} \left( x(s) y'(s) - y(s) x'(s) \right) ds = 0
+	\end{gather*}
+	Now, all that is necessary is to find $x(s), y(s)$ such that
+	\begin{gather*}
+		A = \dfrac{1}{2} \int_{l_1}^{l_1 + l_2} \left( x(s) y'(s) - y(s) x'(s) \right) ds
+	\end{gather*}
+	is maximized, under the constraint $x'(s)^2 + y'(s)^2 = 1$. Thus, we have the corresponding Lagrangian
+	\begin{gather*}
+		\mathcal{L}(x, y, x', y', s) = \dfrac{1}{2} \left( x y' - y x' \right) + \lambda(s) \left( \left( x' \right)^2 + \left( y' \right)^2 - 1 \right)
+	\end{gather*}
+	Applying the Euler-Lagrange equation for $x$ we have
+	\begin{gather*}
+		\dfrac{\partial \mathcal{L}}{\partial x} = \dfrac{1}{2} y', \quad
+		\dfrac{\partial \mathcal{L}}{\partial x'} = -\dfrac{1}{2} y + 2 \lambda x' \\
+		\dfrac{\partial \mathcal{L}}{\partial x} - \dfrac{d}{ds} \left( \dfrac{\partial \mathcal{L}}{\partial x'} \right) = 0 \\
+		 \dfrac{1}{2} y' - \dfrac{d}{ds} \left( -\dfrac{1}{2} y + 2 \lambda x' \right) = 0 \\
+		 \dfrac{1}{2} y' - \left( -\dfrac{1}{2} y' + 2 \lambda' x' + 2 \lambda x'' \right) = 0 \\
+		 y' - 2 \lambda' x' - 2 \lambda x'' = 0
+	\end{gather*}
+	Similarly, applying the Euler-Lagrange equation for $y$ we have
+	\begin{gather*}
+		\dfrac{\partial \mathcal{L}}{\partial y} = - \dfrac{1}{2} x', \quad
+		\dfrac{\partial \mathcal{L}}{\partial y'} = \dfrac{1}{2} x + 2 \lambda y' \\
+		\dfrac{\partial \mathcal{L}}{\partial y} - \dfrac{d}{ds} \left( \dfrac{\partial \mathcal{L}}{\partial y'} \right) = 0 \\
+		-\dfrac{1}{2} x' - \dfrac{d}{ds} \left( \dfrac{1}{2} x + 2 \lambda y' \right) = 0 \\
+		-\dfrac{1}{2} x' - \left( \dfrac{1}{2} x' + 2 \lambda' y' + 2 \lambda y'' \right) = 0 \\
+		-x' - 2 \lambda' y' - 2 \lambda y'' = 0
+	\end{gather*}
+	Multiplying the first result by $x'$ and the second by $y'$, we have
+	\begin{gather*}
+		x' y' - 2 \lambda' x'^2 - 2 \lambda x' x'' = 0 \\
+		-x' y' - 2 \lambda' y'^2 - 2 \lambda y' y'' = 0
+	\end{gather*}
+	Therefore,
+	\begin{gather*}
+		-2 \lambda \left( x' x'' + y' y'' \right) - 2 \lambda' \left( \left( x' \right)^2 + \left( y' \right)^2 \right) = 0
+	\end{gather*}
+	Since we know that $\left( x' \right)^2 + \left( y' \right)^2 = 1$, it follows $x' x'' + y' y'' = 0$ and so
+	\begin{gather*}
+		-2 \lambda' = 0
+	\end{gather*}
+	and so $\lambda(s) = c$ for some constant $c$. With that, we have the two equations $y' - 2 \lambda x'' = 0$ and $x' + 2 \lambda y'' = 0$, which we got from substituting $\lambda' = 0$ in earlier results. Thus,
+	\begin{gather*}
+		y' = 2 \lambda x'' \\
+		x' = - 2 \lambda y''
+	\end{gather*}
+	Recall that the curvature of a plane curve is given by
+	\begin{gather*}
+		k(t) = \dfrac{x'(t) y''(t) - x''(t) y'(t)}{ \left( x'(t)^2 + y'(t)^2 \right)^{3/2} }
+	\end{gather*}
+	We know that $\left( x' \right)^2 + \left( y' \right)^2 = 1$ and that $\left( x' \right)^2 + \left( y' \right)^2 = \left( - 2 \lambda y'' \right)^2 + \left( 2 \lambda x'' \right)^2 = 4 \lambda^2 \left( \left( x'' \right)^2 + \left( y'' \right)^2 \right) = 1$. Rearranging some terms, we have that
+	\begin{gather*}
+		\left( x'' \right)^2 + \left( y'' \right)^2 = \dfrac{1}{ 4 \lambda^2 }
+	\end{gather*}
+	With this, we solve for the curvature
+	\begin{gather*}
+		k(s) = \dfrac{x'(s) y''(s) - x''(s) y'(s)}{ \left( x'(s)^2 + y'(s)^2 \right)^{3/2} } = \left( - 2 \lambda y''(s) \right)  y''(s) - x''(s) \left( 2 \lambda x'' \right) \\
+		= -2 \lambda \left( x''(s)^2 + y''(s)^2 \right) = -\dfrac{1}{2 \lambda}
+	\end{gather*}
+	A constant curvature implies that $\alpha_2$ is a curve on the circle, and so $C$ is the arc of a circle.
+
 \end{document}
