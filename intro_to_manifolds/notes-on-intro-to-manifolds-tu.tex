@@ -4,7 +4,6 @@
 \usepackage{amssymb}
 \usepackage{amsfonts}
 
-
 \title{Notes on "An Introduction to Manifolds" by Tu}
 \author{Kevin Sony}
 \date{Spring 2026}
@@ -411,13 +410,17 @@
 	
 	\noindent \textit{Proof}: To show that this is an isomorphism, we have to show that it is bijective and that it is a linear map. We have already shown it is a linear operator, so now, we must show it is bijective.
 	
-	To show that it is injective, we need to show that the kernel of $\phi$ is solely the zero vector. Let $x^j: \R^n \to \R$ be the coordinate function sending a point $q$ to its coordinate $q^j$, i.e. $x^j(q) = q^j$ for $q \in \R$. Let $D_v = 0$. Applying this operator to the coordinate function, we have that
+	To show that it is injective, we need to show that $\phi(a) = \phi(b)$ implies $a = b$. By using the linear properties of $\phi$, we have that
+	\begin{gather*}
+		\phi(a) - \phi(b) = \phi(a - b) = 0
+	\end{gather*}
+	and so $a - b \in \text{ker}(\phi)$. To show that $a = b$, we need to show that the only vector in the kernel of $\phi$ is the zero vector. Suppose that for some vector $v \in T_p (\R^n)$, we have $D_v = 0$, i.e. $v$ is a vector in the kernel of $\phi$. Let $x^j : \R^n \to \R$ be the coordinate function sending a point $q$ to its coordinate $q^j$. Applying $D_v$ to the coordinate function, we have that
 	\begin{gather*}
 		D_v x^j = \sum_{i = 1}^n v^i \dfrac{\partial}{\partial x^i} \Bigg|_p x^j = \sum_{i = 1}^n v^i \delta_i^j = v^j = 0
 	\end{gather*}
-	Therefore, $v = 0$ and so $\phi$ is injective.
+	Therefore, $v = 0$ and so the kernel of $\phi$ consists solely of the zero vector, meaning $\phi$ is injective.
 	
-	To show that it is surjective, let $D$ be a derivation at $p$, i.e. $D \in \mathcal{D}_p(\R^n)$ and let $(f, V)$ be a representative of a germ in $\Cinfty_p$. By making $V$ as small as necessary, we can assume that $V$ is an open ball. By Taylor's Theorem with remainder, we know there exists $\Cinfty$ functions $g_1(x), \cdot, g_n(x)$ in a neighborhood of $p$ such that
+	To show that it is surjective, let $D$ be a derivation at $p$, i.e. $D \in \mathcal{D}_p(\R^n)$ and let $(f, V)$ be a representative of a germ in $\Cinfty_p$. By making $V$ as small as necessary, we can assume that $V$ is an open ball. By Taylor's Theorem with remainder, we know there exists $\Cinfty$ functions $g_1(x), \cdots, g_n(x)$ in a neighborhood of $p$ such that
 	\begin{gather*}
 		f(x) = f(p) + \sum_{i = 1}^n (x^i - p^i) g_i(x), \quad g_i(p) = \dfrac{\partial f}{\partial x^i}(p)
 	\end{gather*}
@@ -444,6 +447,195 @@
 	
 	While $T_p (\R^n)$ is isomorphic to $\mathcal{D}_p(\R^n)$, there is a reason the latter is preferred over the former, which is that a vector $v \in T_p (\R^n)$ depends on a choice of coordinates to describe it, while a derivation $D \in \mathcal{D}_p(\R^n)$ is independent of coordinates and one solely relies on how it impacts functions to determine its behavior.
 	
-	\subsection*{Derivation at a Point}
+	\subsection*{Vector Fields}
+	A \textit{vector field} $X$ on an open subset $U \subset \R^n$ is a function that assigns to each point $p$ a tangent vector $X_p$ in $T_p (\R^n)$. Since $T_p (\R^n)$ is isomorphic to $\mathcal{D}_p(\R^n)$, it is convenient in this instance to use the basis $\{ \partial / \partial x^i |_p \}$. Thus the vector $X_p$ is a linear combination
+	\begin{gather*}
+		X_p = \sum a^i(p) \dfrac{\partial}{\partial x^i} \Bigg|_p
+	\end{gather*}
+	We can omit $p$, thus expressing $X$ as
+	\begin{gather*}
+		X = \sum a^i \dfrac{\partial}{\partial x^i}
+	\end{gather*}
+	where $a^i$ are functions on $U$. We say the vector field $X$ is $\Cinfty$ on $U$ if the coefficient functions $a^i$ are $\Cinfty$ on $U$.
 
+	Consider the space $\R^2 - \{0\}$ and let $p = (x, y)$. Then we can define a vector field $X$ on this space by
+	\begin{gather*}
+		X = \dfrac{-y}{\sqrt{x^2 + y^2}} \dfrac{\partial }{\partial x} + \dfrac{x}{\sqrt{x^2 + y^2}} \dfrac{\partial }{\partial y} = \left\langle \dfrac{-y}{\sqrt{x^2 + y^2}}, \dfrac{x}{\sqrt{x^2 + y^2}} \right\rangle
+	\end{gather*}
+	The vector $X_p$ at a point $p$ is a unit vector on a circle of radius $\sqrt{x^2 + y^2}$ perpendicular to it going counter. 
+	
+	For another example, on the space $\R^2$, consider the vector field
+	\begin{gather*}
+		X = \langle x, -y \rangle
+	\end{gather*}
+	The vector field, when visualized by plotting various vectors $X_p$ attached to different points $p$, looks to move towards the $x$ axis and away from the $y$ axis.
+	
+	One can identify the vector fields on $U$ with column vectors of $\Cinfty$ functions on $U$, that is
+	\begin{gather*}
+		X = \sum a^i \dfrac{\partial}{\partial x^i} \iff
+		\begin{bmatrix}
+			a^1 \\
+			\vdots \\
+			a^n
+		\end{bmatrix}
+	\end{gather*}
+	Notice here that it is very similar to the reinterpretation of the vector
+	\begin{gather*}
+		v = \sum v^i \dfrac{\partial}{\partial x^i} \Bigg|_p
+	\end{gather*}
+	with $v^i$ (a number corresponding to a point $p$) changing to $a^i$ (a function corresponding to $U$, becoming a number only when the specific point is chosen).
+	
+	The set of $\Cinfty$ functions equipped with the standard addition function obviously forms a ring, typically denoted by $\Cinfty(U)$ or $\mathcal{F}(U)$. We will demonstrate it is a ring in Exercise 2.2.
+	
+	\textit{Tu doesn't make it clear that he is no longer working with $\Cinfty(U, \R^m)$ functions, i.e. functions from $U \subset \R^n$ to $\R^m$, and has shifted to $\Cinfty(U, \R)$, i.e. functions from $U \subset \R^n$ to $\R$. This shift is important to keep in mind to understand the context. Importantly, without keepining this in mind, the only way to establish that $\Cinfty(U, \R^m)$ is a ring is to utilize component-wise multiplication, a very controversial choice that I personally found uncomfortable.}
+	
+	Multiplication of vector fields by functions on $U$ is defined pointwise
+	\begin{gather*}
+		(fX)_p = f(p) X_p, \quad p \in U
+	\end{gather*}
+	Since $X = \sum a^i \partial / \partial x^i$ is a $\Cinfty$ vector field and $f$ is a $\Cinfty$ function on $U$, $fX = \sum (fa^i) \partial / \partial x^i$ is also a vector field. Thus, the set of all $\Cinfty$ vector fields on $U$, denoted by $\mathbb{X}(U)$, is not just a vector space over $\R$ but also a module over the ring $\Cinfty(U)$ (but crucially, it is NOT a vector space over $\Cinfty(U)$ since $\Cinfty(U)$ is not a field).
+	
+	\subsubsection*{Module}
+	If $R$ is a commutative ring (not rng), then a (left) $R$-module is an abelian group $A$ with scalar multiplication
+	\begin{gather*}
+		\mu : R \times A \to A
+	\end{gather*}
+	typically denoted $\mu(r, a) = ra$, such that for $r, s \in R$ and $a, b \in A$
+	\begin{enumerate}
+		\item (Associativity) $(rs)a = r(sa)$
+		\item (Identity) If $1$ is the multiplicative identity in $R$, then $1a = a$
+		\item (Distributivity) $(r + s)a = ra + sa$ and $r(a + b) = ra + rb$
+	\end{enumerate}
+	
+	\subsubsection*{Module Homomorphism}
+	Let $A$ and $A'$ be $R$-modules. An $R$-module homomorphism between $A$ and $A'$ is a map $f : A \to A'$ that preserves addition and scalar multiplication, i.e. for all $a, b \in A$ and $r \in R$
+	\begin{enumerate}
+		\item $f(a + b) = f(a) + f(b)$
+		\item $f(ra) = rf(a)$
+	\end{enumerate}
+	
+	\subsubsection*{Vector Fields as Derivations}
+	If $X$ is a $\Cinfty$ vector field on an open subset $U \subset \R^n$ and $f$ is $\Cinfty$ function on $U$, then we define a new function $Xf$ on $U$ by
+	\begin{gather*}
+		(Xf)(p) = X_p f, \quad p \in U
+	\end{gather*}
+	Recall, though, that $X = \sum a^i \partial / \partial x^i$, meaning
+	\begin{gather*}
+		(Xf)(p) = \sum a^i(p) \dfrac{\partial f}{\partial x^i}(p)
+	\end{gather*}
+	and so
+	\begin{gather*}
+		Xf = \sum a^i \dfrac{\partial f}{\partial x^i}
+	\end{gather*}
+	a $\Cinfty$ function on $U$. We can thus interpret the vector field $X$ as an $\R$-linear map
+	\begin{gather*}
+		\Cinfty(U) \mapsto \Cinfty(U) \\
+		f \mapsto Xf
+	\end{gather*}
+	And from here, we can show that $X$ satisfies the Leibniz rule, thus establishing that it is a derivation.	
+	
+	\subsubsection*{Leibniz rule for vector fields}
+	Given that $X$ is a $\Cinfty$ vector field and $f, g$ are $\Cinfty$ functions on an open set $U \subset \R^n$, then $X(fg)$ satisfies the Leibniz rule
+	\begin{gather*}
+		X(fg) = (Xf)g + f(Xg)
+	\end{gather*}
+	
+	\noindent \textit{Proof}: $X(fg)$ is defined on $U$ by
+	\begin{gather*}
+		(X(fg))(p) = X_p(fg)
+	\end{gather*}
+	for all $p \in U$. We know that
+	\begin{gather*}
+		X_p(fg) = \sum a^i(p) \dfrac{\partial (fg)}{\partial x^i} (p) = \sum a^i(p) \left( \dfrac{\partial f}{\partial x^i} (p) g(p) + f(p) \dfrac{\partial g}{\partial x^i} (p) \right) \\
+		= \sum \left( a^i(p) \dfrac{\partial f}{\partial x^i} (p) \right) g(p) + \sum \left( a^i(p) \dfrac{\partial g}{\partial x^i} (p) \right) f(p) \\
+		= \left( \sum a^i(p) \dfrac{\partial f}{\partial x^i} (p) \right) g(p) + \left( \sum a^i(p) \dfrac{\partial g}{\partial x^i} (p) \right) f(p) \\
+		= (X_p f) g(p) + f(p) (X_p g)
+	\end{gather*}
+	and so 
+	\begin{gather*}
+		X(fg) = (Xf)g + f(Xg)
+	\end{gather*}
+	
+	\subsubsection*{Generalization of the Concept of Derivation}
+	If $A$ is an algebra over a field $K$, the derivation of $A$ is a $K$-linear map $D: A \to A$ such that $D$ satisfies the Leibniz rule
+	\begin{gather*}
+		D(ab) = (Da)b + a(Db)
+	\end{gather*}
+	for all $a, b \in A$. The set of all derivations of $A$, denoted by $\text{Der}(A)$, is closed under addition and scalar multiplication.
+	
+	We have just shown that a $\Cinfty$ vector field $X$ gives rise to a derivation of the algebra $\Cinfty(U)$ (and not just $\Cinfty_p$). Now consider the map
+	\begin{gather*}
+		\phi: \mathbb{X} \to \text{Der}(\Cinfty(U)) \\
+		X \mapsto (f \mapsto (Xf))
+	\end{gather*}
+	Recall earlier that the initial conception of the vector field was a function that assigns to each point $p \in U$ a tangent vector $v \in T_p(\R^n)$. What this map informs us is that just like how we can identify tangent vectors $v$ at point $p$ with the point-derivations at $\Cinfty_p$ (as $T_p(\R^n)$ is isomorphic to $\mathcal{D}_p(\R^n)$), so to can vector fields on an open set $U$ be identified with the derivations of the algebra $\Cinfty(U)$ (we can treat it sort of like a \textit{flow} overlapping the space, how much \textit{work} is done by the vector field as an object traverses a path on $U$).
+	
+	\noindent \textit{Comment: Tu doesn't explicitly contrasts $\text{Der}(\Cinfty(U))$ with the set of all pointwise operators formed by arbitrarily gluing together point-derivations. However, we can construct a counterexample to show where they differ. Consider the space $\R$. At each point $p \in \R$, we select a point derivation $\tilde{D}(p)$ via the following assignment}
+	\begin{gather*}
+		\tilde{D}(p) = \begin{cases}
+			\dfrac{\partial }{\partial x}, \quad p \in \mathbb{Q} \\
+			-\dfrac{\partial }{\partial x}, \quad p \notin \mathbb{Q}
+		\end{cases}
+	\end{gather*}
+	\textit{We are entirely free to glue together all these point-derivations to get a pointwise operator $\tilde{D} \in \prod_{p \in \mathbb{R}} \mathcal{D}_p(\mathbb{R})$. However, this operator is not an element in $\text{Der}(\Cinfty(U))$, because if it did, its component function $a(p)$ would have to be $\Cinfty$, but here we see that this is not the case.}
+	
+	
+	\subsubsection*{Exercise 2.1}
+	Let $X = x \partial / \partial x + y \partial / \partial y$ be a vector field on $\R^3$ and let $f(x, y, z) = x^2 + y^2 + z^2$ be a function on $\R^3$. Compute $Xf$
+	
+	Recall that $Xf$ is given by
+	\begin{gather*}
+		Xf = \sum a^i \dfrac{\partial f}{\partial x^i}
+	\end{gather*}
+	We see that $a^1 = x$, $a^2 = y$, and $a^3 = 0$, and so
+	\begin{gather*}
+		X_p f = x \dfrac{\partial f}{\partial x} \Bigg|_p + y \dfrac{\partial f}{\partial y} \Bigg|_p + 0 \dfrac{\partial f}{\partial z} \Bigg|_p 
+		= x \cdot 2 x + y \cdot 2 y = 2 \left( x^2 + y^2 \right)
+	\end{gather*}
+	
+	\subsubsection*{Exercise 2.2}
+	Define addition, multiplication, and scalar multiplication in $\Cinfty_p$. Prove that addition in $\Cinfty_p$ is commutative.
+	
+	Recall that $\Cinfty_p$ is the set of all germs of $\Cinfty$ functions on $\R^n$ at $p$. Furthermore, recall that two pairs $(f, U)$ and $(g, V)$ (where $U$ and $V$ are neighborhoods of $p$) are equivalent to each other if there exists an open set $W \subset U \cap V$ containing $p$ such that $f|_W = g|_W$, and that the equivalence class of such pairs is called the germ of $f$ at $p$.
+	
+	Consider two germs $[f], [g] \in \Cinfty_p$. We know that there exists pairs
+	\begin{gather*}
+		(f_1, U_1) \in [f] \\
+		(g_1, V_1) \in [g]
+	\end{gather*}
+	and since $U_1$ and $V_1$ are neighborhoods of $p$, we know there exists a nonempty set $W_1 \subset U_1 \cap V_1$ containing $p$. We define $[f] + [g]$ to be the equivalence class of all pairs equivalent to $(f_1|_{W_1} + g_1|_{W_1}, W_1)$. In a similar manner, we define $[f] \cdot [g]$ to be the equivalence class of all pairs equivalent to  $(f_1|_{W_1} \cdot g_1|_{W_1}, W_1)$
+	
+	To show that addition and multiplication is well-defined, consider two other pairs
+	\begin{gather*}
+		(f_2, U_2) \in [f] \\
+		(g_2, V_2) \in [g]
+	\end{gather*}
+	Since $U_2$ and $V_2$ are neighborhoods of $p$, we know there exists a nonempty set $W_2 \subset U_2 \cap V_2$ containing $p$. Finally, since both $W_1$ and $W_2$ are neighborhoods of $p$, there must exist a nonempty set $W \subset W_1 \cap W_2$ containing $p$. Since both $(f_1, U_1)$ and $(f_2, U_2)$ are elements of the same germ of $f$ at $p$, we know that $f_1|_U = f_2|_U$ for some set $U$. Similarly, since both $(g_1, V_1)$ and $(g_2, V_2)$ are elements of $[g]$, we know that $g_1|_V = g_2|_V$ for some set $V$. Now, consider the set $W = W_1 \cap W_2 \cap U \cap V$. Clearly, $W \subset U_1 \cap U_2$ and $W \subset V_1 \cap V_2$, and so
+	\begin{gather*}
+		f_1|_W = f_2|_W \\
+		g_1|_W = g_2|_W
+	\end{gather*}
+	and from here, we see that for addition, we have
+	\begin{gather*}
+		\left( f_1|_{W_1} + g_1|_{W_1} \right)|_W = f_1|_W + g_1|_W = f_2|_W + g_2|_W
+		= \left( f_2|_{W_2} + g_2|_{W_2} \right)|_W
+	\end{gather*}
+	and for multiplication, we have
+	\begin{gather*}
+		\left( f_1|_{W_1} \cdot g_1|_{W_1} \right)|_W = f_1|_W \cdot g_1|_W
+		= f_2|_W \cdot g_2|_W = \left( f_2|_{W_2} \cdot g_2|_{W_2} \right)|_W	
+	\end{gather*}
+	Therefore $(f_1|_{W_1} + g_1|_{W_1}, W_1)$ and $(f_2|_{W_2} + g_2|_{W_2}, W_2)$ are part of the same equivalence class $[f] + [g]$, and $(f_1|_{W_1} \cdot g_1|_{W_1}, W_1)$ and $(f_2|_{W_2} \cdot g_2|_{W_2}, W_2)$ are part of the same equivalence class $[f] \cdot [g]$. Addition and multiplication are commutative since
+	\begin{gather*}
+		\left( f_1|_{W_1} + g_1|_{W_1} \right)(x) = f_1|_{W_1}(x) + g_1|_{W_1}(x) \\
+		= g_1|_{W_1}(x) + f_1|_{W_1}(x) = \left( g_1|_{W_1} + f_1|_{W_1} \right)(x) 
+	\end{gather*}
+	and
+	\begin{gather*}
+		\left( f_1|_{W_1} \cdot g_1|_{W_1} \right)(x) = f_1|_{W_1}(x) \cdot g_1|_{W_1}(x) \\
+		= g_1|_{W_1}(x) \cdot f_1|_{W_1}(x) = \left( g_1|_{W_1} \cdot f_1|_{W_1} \right)(x) 
+	\end{gather*}
+	
+	Finally, let $c \in \R$, $[f] \in \Cinfty_p$, and $(f, U) \in [f]$. Then $c [f]$ is defined to be the equivalence class of all pairs equivalent to $(c f, U)$. Scalar multiplication is well-defined because for pairs $(f_1, U_1), (f_2, U_2) \in [f]$, there exists a set $U \subset U_1 \cap U_2$ such that $f_1|_U = f_2|_U$ and so $cf_1|_U = cf_2|_U$. Therefore, $(cf_1, U_1)$ and $(cf_2, U_2)$ are part of the same equivalence class.
+	
 \end{document}
